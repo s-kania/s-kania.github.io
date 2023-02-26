@@ -10,7 +10,7 @@ layout:
 # The tabs of sidebar
 tabs:
   # format: <filename_without_extension>: <value>
-  home: Główna
+  home: Blog
   categories: Kategorie
   tags: Tagi
   archives: Archiwum
@@ -20,57 +20,59 @@ tabs:
 search:
   hint: szukaj
   cancel: Anuluj
-  no_results: Oops! Nie znaleziono wyników.
+  no_results: Ludzie! Tu nic nie ma!
 
 panel:
   lastmod: Recently Updated
-  trending_tags: Trending Tags
-  toc: Contents
+  trending_tags: Popularne tagi
+  toc: Spis treści
 
 copyright:
   # Shown at the bottom of the post
   license:
-    template: This post is licensed under :LICENSE_NAME by the author.
-    name: CC BY 4.0
-    link: https://creativecommons.org/licenses/by/4.0/
+    template: Ten post jest udostępniony na licencji :LICENSE_NAME przez autora.
+    name: CC BY-NC-ND 2.0
+    link: https://creativecommons.org/licenses/by-nc-nd/2.0/
 
   # Displayed in the footer
-  brief: Some rights reserved.
+  brief: Niektóre prawa zastrzeżone.
   verbose: >-
-    Except where otherwise noted, the blog posts on this site are licensed
-    under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.
+    O ile nie zaznaczono inaczej, wpisy na blogu na tej stronie są licencjonowane
+    na licencji Attribution-NonCommercial-NoDerivs 2.0 Generic (CC BY-NC-ND 2.0) przez autora.
 meta: Using the :PLATFORM theme :THEME.
 
 not_found:
-  statment: Sorry, we've misplaced that URL or it's pointing to something that doesn't exist.
+  statment: Dotarłeś do pustki. Tu nic nie ma. Sprawdź ponownie link albo naciesz się ciszą.
+  
 
 notification:
-  update_found: A new version of content is available.
-  update: Update
+  update_found: Dostępna jest nowa wersja treści.
+  update: Aktualizacja
 
 # ----- Posts related labels -----
 
 post:
-  written_by: By
-  posted: Posted
-  updated: Updated
-  words: words
-  pageview_measure: views
+  written_by: Napisał
+  posted: Opublikowano
+  updated: Zaktualizowano
+  words: słowa
+  pageview_measure: wyświetleń
   read_time:
     unit: min
-    prompt: read
-  relate_posts: Further Reading
-  share: Share
+    prompt: czytania
+  relate_posts: Inne wpisy
+  share: Udostępnij
   button:
-    next: Newer
-    previous: Older
+    next: Nowsze
+    previous: Starsze
     copy_code:
-      succeed: Copied!
+      succeed: Skopiowano!
     share_link:
-      title: Copy link
-      succeed: Link copied successfully!
-  # pinned prompt of posts list on homepage
-  pin_prompt: Pinned
+      title: Skopiuj link
+      succeed: Link skopiowany pomyślnie!
+
+# pinned prompt of posts list on homepage
+pin_prompt: Przypięty
 
 # Date time format.
 # See: <http://strftime.net/>, <https://day.js.org/docs/en/display/format>
@@ -85,8 +87,8 @@ df:
 # categories page
 categories:
   category_measure:
-    singular: category
-    plural: categories
+    singular: kategoria
+    plural: kategorie
   post_measure:
-    singular: post
-    plural: posts
+    singular: wpis
+    plural: wpisy

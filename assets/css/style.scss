@@ -23,6 +23,21 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
     display: flex;
 }
 
-a {
-    color: #f67d22;
+%sidebar-links {
+    color: var(--text-muted-color);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+#sidebar ul>li:last-child::after {
+    background: var(--sidebar-active-color);
+}
+
+.text-muted {
+    color: var(--text-muted-color)!important;
+}
+
+#sidebar .site-title a {
+    color: #D1D1D1;
 }
