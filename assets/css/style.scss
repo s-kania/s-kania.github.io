@@ -14,7 +14,7 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
     height: 9.1rem;
     width: 13rem;
     margin-right: 1rem;
-    border-radius: 10% 0 0 10%;
+    border-radius: 3.5%;
     object-fit: cover;
     object-position: left;
 }
@@ -30,6 +30,12 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
     user-select: none;
 }
 
+%link-hover {
+    color: var(--heading-color) !important;
+    border-bottom: 1px solid var(--heading-color);
+    text-decoration: none;
+}
+
 #sidebar ul>li:last-child::after {
     background: var(--sidebar-active-color);
 }
@@ -39,5 +45,29 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 }
 
 #sidebar .site-title a {
-    color: #D1D1D1;
+    color: var(--heading-color);
+}
+
+.post-tag:hover {
+    color: var(--heading-color);
+}
+
+.post-preview a {
+    color: var(--heading-color);
+}
+
+#panel-wrapper .post-tag:hover {
+    background-color: var(--topbar-wrapper-bg);
+    border-color: var(--topbar-wrapper-bg);
+    color: var(--heading-color);
+}
+
+.post-navigation .btn:hover {
+    background: var(--topbar-wrapper-bg);
+    color: #fff;
+    border-color: var(--btn-border-color);
+}
+
+#related-posts .card:hover {
+    border: solid 1px var(--btn-border-color);
 }
