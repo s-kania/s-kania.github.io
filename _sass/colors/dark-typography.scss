@@ -18,7 +18,7 @@
   --blockquote-text-color: rgb(117, 117, 117);
   --link-color: var(--text-muted-color);
   --link-underline-color: var(--text-muted-color);
-  --button-bg: rgb(39, 40, 43);
+  --button-bg: var(--sidebar-bg);
   --btn-border-color: rgb(63, 65, 68);
   --btn-backtotop-color: var(--text-color);
   --btn-backtotop-border-color: var(--btn-border-color);
@@ -37,7 +37,7 @@
     );
 
   /* Sidebar */
-  --sidebar-bg: #141617;
+  --sidebar-bg: rgb(21, 22, 22);
   --sidebar-muted-color: var(--text-muted-color);
   --sidebar-active-color: var(--heading-color);
   --nav-cursor-color: rgb(183, 182, 182);
@@ -61,7 +61,7 @@
   --pin-color: inherit;
 
   /* Posts */
-  --toc-highlight: rgb(116, 178, 243);
+  --toc-highlight: var(--heading-color);
   --tag-bg: var(--topbar-wrapper-bg);
   --tag-hover: var(--sidebar-bg);
   --tb-odd-bg: rgba(42, 47, 53, 0.52); /* odd rows of the posts' table */
@@ -88,7 +88,7 @@
   --prompt-danger-icon-color: #cd0202;
 
   /* tags */
-  --tag-border: rgb(59, 79, 88);
+  --tag-border: var(--btn-border-color);
   --tag-shadow: rgb(32, 33, 33);
   --search-tag-bg: var(--tag-bg);
   --dash-color: rgb(63, 65, 68);

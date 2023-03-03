@@ -71,3 +71,7 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 #related-posts .card:hover {
     border: solid 1px var(--btn-border-color);
 }
+
+#archives a {
+    color: var(--heading-color);
+}

@@ -49,8 +49,8 @@ layout: page
     </h1>
 
     <div class="post-content post-content-home">
-      {% if post.image %}
-        <img src="{{ post.image | relative_url }}" alt="" class="post-featured-image">
+      {% if post.preview_image %}
+        <img src="{{ post.preview_image | relative_url }}" alt="" class="post-featured-image">
       {% endif %}
       <p>
         {% include no-linenos.html content=post.content %}
@@ -93,6 +93,6 @@ layout: page
 
 </div> <!-- #post-list -->
 
-{% if paginator.total_pages > 0 %}
+{% if paginator.total_pages > 9 %}
   {% include post-paginator.html %}
 {% endif %}
