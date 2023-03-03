@@ -1,0 +1,94 @@
+# The layout text of site
+
+# ----- Commons label -----
+
+layout:
+  post: Post
+  category: Kategoria
+  tag: Tag
+
+# The tabs of sidebar
+tabs:
+  # format: <filename_without_extension>: <value>
+  home: Blog
+  categories: Kategorie
+  tags: Tagi
+  archives: Archiwum
+  about: O mnie
+
+# the text displayed in the search bar & search results
+search:
+  hint: szukaj
+  cancel: Anuluj
+  no_results: Ludzie! Tu nic nie ma!
+
+panel:
+  lastmod: Ostatnio zaktualizowane
+  trending_tags: Popularne tagi
+  toc: Spis treści
+
+copyright:
+  # Shown at the bottom of the post
+  license:
+    template: Ten post jest udostępniony na licencji :LICENSE_NAME przez autora.
+    name: CC BY-NC-ND 2.0
+    link: https://creativecommons.org/licenses/by-nc-nd/2.0/
+
+  # Displayed in the footer
+  brief: All rights reserved.
+  verbose: >-
+    O ile nie zaznaczono inaczej, wpisy na blogu na tej stronie są licencjonowane
+    na licencji Attribution-NonCommercial-NoDerivs 2.0 Generic (CC BY-NC-ND 2.0) przez autora.
+meta: Using the :PLATFORM theme :THEME.
+
+not_found:
+  statment: Dotarłeś do pustki. Tu nic nie ma. Sprawdź ponownie link albo naciesz się ciszą.
+  
+
+notification:
+  update_found: Dostępna jest nowa wersja treści.
+  update: Aktualizacja
+
+# ----- Posts related labels -----
+
+post:
+  written_by: Napisał
+  posted: Opublikowano
+  updated: Zaktualizowano
+  words: słowa
+  pageview_measure: wyświetleń
+  read_time:
+    unit: min
+    prompt: czytania
+  relate_posts: Inne wpisy
+  share: Udostępnij
+  button:
+    next: Nowsze
+    previous: Starsze
+    copy_code:
+      succeed: Skopiowano!
+    share_link:
+      title: Skopiuj link
+      succeed: Link skopiowany pomyślnie!
+
+# pinned prompt of posts list on homepage
+pin_prompt: Przypięty
+
+# Date time format.
+# See: <http://strftime.net/>, <https://day.js.org/docs/en/display/format>
+df:
+  post:
+    strftime: '%b %e, %Y'
+    dayjs: 'll'
+  archives:
+    strftime: '%b'
+    dayjs: 'MMM'
+
+# categories page
+categories:
+  category_measure:
+    singular: kategoria
+    plural: kategorie
+  post_measure:
+    singular: wpis
+    plural: wpisy

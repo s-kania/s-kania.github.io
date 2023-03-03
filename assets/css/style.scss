@@ -1,0 +1,77 @@
+---
+---
+
+/*
+  If the number of TAB files has changed, the following variable is required.
+  And it must be defined before `@import`.
+*/
+$tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
+
+@import "{{ site.theme }}";
+
+/* append your custom style below */
+.post-featured-image {
+    height: 9.1rem;
+    width: 13rem;
+    margin-right: 1rem;
+    border-radius: 3.5%;
+    object-fit: cover;
+    object-position: left;
+}
+
+.post-content-home {
+    display: flex;
+}
+
+%sidebar-links {
+    color: var(--text-muted-color);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+%link-hover {
+    color: var(--heading-color) !important;
+    border-bottom: 1px solid var(--heading-color);
+    text-decoration: none;
+}
+
+#sidebar ul>li:last-child::after {
+    background: var(--sidebar-active-color);
+}
+
+.text-muted {
+    color: var(--text-muted-color)!important;
+}
+
+#sidebar .site-title a {
+    color: var(--heading-color);
+}
+
+.post-tag:hover {
+    color: var(--heading-color);
+}
+
+.post-preview a {
+    color: var(--heading-color);
+}
+
+#panel-wrapper .post-tag:hover {
+    background-color: var(--topbar-wrapper-bg);
+    border-color: var(--topbar-wrapper-bg);
+    color: var(--heading-color);
+}
+
+.post-navigation .btn:hover {
+    background: var(--topbar-wrapper-bg);
+    color: #fff;
+    border-color: var(--btn-border-color);
+}
+
+#related-posts .card:hover {
+    border: solid 1px var(--btn-border-color);
+}
+
+#archives a {
+    color: var(--heading-color);
+}
