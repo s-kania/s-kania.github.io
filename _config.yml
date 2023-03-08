@@ -27,7 +27,7 @@ description: >-                        # used by seo meta and the atom feed
   Blog i recenzje klocków LEGO i nie tylko. Do tego luźne wpisy i proces tworzenia gier.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: 'https://s-kania.github.io/'
+url: 'https://brickfiction.pl/'
 
 # github:
 #   username: github_username             # change to your github username
@@ -38,7 +38,7 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: JSnetic
+  name: brickfiction.pl
   email: jsnetic@outlook.com            # change to your email address
   links:
     # The first element serves as the copyright owner's link
@@ -87,24 +87,26 @@ avatar: /assets/img/avatar.jpg
 toc: true
 
 comments:
-  active:         # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
+  active: 'cactus'      # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
   # The active options are as follows:
-  disqus:
-    shortname:    # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
-  # utterances settings › https://utteranc.es/
-  utterances:
-    repo:         # <gh-username>/<repo>
-    issue_term:   # < url | pathname | title | ...>
-  # Giscus options › https://giscus.app
-  giscus:
-    repo:              # <gh-username>/<repo>
-    repo_id:
-    category:
-    category_id:
-    mapping:           # optional, default to 'pathname'
-    input_position:    # optional, default to 'bottom'
-    lang:              # optional, default to the value of `site.lang`
-    reactions_enabled: # optional, default to the value of `1`
+  # disqus:
+  #   shortname:  # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+  # # utterances settings › https://utteranc.es/
+  # utterances:
+  #   repo:         # <gh-username>/<repo>
+  #   issue_term:   # < url | pathname | title | ...>
+  # # Giscus options › https://giscus.app
+  # giscus:
+  #   repo:              # <gh-username>/<repo>
+  #   repo_id:
+  #   category:
+  #   category_id:
+  #   mapping:           # optional, default to 'pathname'
+  #   input_position:    # optional, default to 'bottom'
+  #   lang:              # optional, default to the value of `site.lang`
+  #   reactions_enabled: # optional, default to the value of `1`
+  # cactus:
+  #   id: brickfiction
 
 # Self-hosted static assets, optional › https://github.com/cotes2020/chirpy-static-assets
 assets:
