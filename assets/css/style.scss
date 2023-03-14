@@ -46,6 +46,7 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 
 #sidebar .site-title a {
     color: var(--heading-color);
+    text-transform: uppercase;
 }
 
 .post-tag:hover {
@@ -74,4 +75,98 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 
 #archives a {
     color: var(--heading-color);
+}
+
+.footer-left {
+    width: 400px !important;
+}
+
+.footer-privacy-policy {
+    color: var(--text-muted-color);
+}
+
+// cactus
+body {
+    --cactus-button-color: limegreen;
+    --cactus-background-color--strong: var(--topbar-wrapper-bg);
+    --cactus-border-color: var(--btn-border-color);
+    --cactus-button-color: var(--topbar-wrapper-bg);
+    --cactus-border-radius: 5px;
+}
+
+.cactus-login-form {
+    box-shadow: none !important;
+}
+
+.cactus-comments-list div:last-child {
+    border-block-end: none !important;
+}
+
+.cactus-container {
+    margin-bottom: 0 !important;
+
+    & a, h5, h4, h3, h2, h1 {
+        color: var(--text-color) !important;
+    }
+}
+
+.cactus-editor-textarea {
+    height: 130px !important;
+    background-color: var(--topbar-wrapper-bg) !important;
+    &:focus {
+        outline: none !important;
+        border:1px solid var(--heading-color);
+        box-shadow: none;
+    }
+}
+
+.cactus-editor-name>span>input, .cactus-login-field>input {
+    background-color: var(--topbar-wrapper-bg) !important;
+    &:focus {
+        outline: none !important;
+        border:1px solid var(--heading-color);
+        box-shadow: none;
+    }
+}
+
+.cactus-login-form {
+    border-radius: 0 !important;
+    // background-color: var(--cactus-background-color--strong);
+    border: 2px solid var(--cactus-border-color);
+}
+
+.cactus-login-close {
+    scale: 1.5 !important;
+    color: var(--text-muted-color) !important;
+    padding: 1px 7px !important;
+}
+
+.cactus-login-close:hover {
+    color: var(--heading-color) !important;
+}
+
+.cactus-view-more {
+    margin-bottom: 1.5rem;
+}
+
+.comment-disclaimer {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.cactus-button:disabled {
+    color: var(--btn-backtotop-border-color) !important;
+    border: 1px solid var(--button-bg);
+    background: var(--button-bg) !important;
+}
+
+.cactus-button:not(:disabled) {
+    border: 1px solid var(--btn-backtotop-border-color);
+    background: var(--button-bg) !important;
+    color: var(--btn-backtotop-color) !important;
+    &:hover {
+        border-color: var(--heading-color) !important;
+        color: var(--heading-color) !important;
+        background-color: var(--topbar-wrapper-bg) !important;
+    }
 }
