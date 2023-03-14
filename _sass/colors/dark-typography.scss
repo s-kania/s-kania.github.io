@@ -15,7 +15,7 @@
   --text-muted-color: #8C8C8C; // 999999
   --heading-color: rgb(255, 200, 0);
   --blockquote-border-color: rgb(66, 66, 66);
-  --blockquote-text-color: rgb(117, 117, 117);
+  --blockquote-text-color: var(--text-muted-color);
   --link-color: var(--text-muted-color);
   --link-underline-color: var(--text-muted-color);
   --button-bg: var(--sidebar-bg);

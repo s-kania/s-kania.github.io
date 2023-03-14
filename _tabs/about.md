@@ -38,5 +38,8 @@ Chat GPT potrafi fajnie wytłumaczyć co to jest:
 ### Jak się poruszać po blogu?
 Jeśli interesuje Cię konkretny temat, radzę przejść na stronę `Kategorie` i wybrać odpowiedni dział.
 
+### Polityka prywatności
+Znajdziesz ją pod tym adresem -> [link](https://brickfiction.pl/privacy-policy/).
+
 ### Kontakt
 Po lewej stronie strony na samym spodzie znajdziesz linki do moich social-mediów jak i również adres e-mail.
