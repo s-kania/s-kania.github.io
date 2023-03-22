@@ -49,7 +49,9 @@
   
     <title>
     {%- unless page.layout == "home" -%}
-      {{ page.title | append: " | "}}
+      {% assign tab_key = page.title | downcase %}
+      {% assign title = site.data.locales[site.lang].tabs[tab_key] | default: page.title %}
+      {{ title | append: " | "}}
     {%- endunless -%}
       {{ site.title }}
     </title>
@@ -114,15 +116,23 @@
     <link rel="stylesheet" href="https://latest.cactus.chat/style.css" type="text/css">
 
     <!-- MailerLite Universal -->
-    <!-- <script>
+    <script>
         (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
         .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
         n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
         (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
         ml('account', '353101');
-    </script> -->
+    </script>
     <!-- End MailerLite Universal -->
-  
+
+    <!-- Insights analytics -->
+    <script src="https://getinsights.io/js/insights.js"></script>
+    <script>
+      insights.init('hbiwrrma0PzP_8D4');
+      insights.trackPages();
+    </script>
+    <!-- End Insights analytics -->
+
     {% unless site.theme_mode %}
       {% include mode-toggle.html %}
     {% endunless %}

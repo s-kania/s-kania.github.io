@@ -1,78 +1,113 @@
-<!-- <script type='text/javascript' src='/assets/js/cactus.js'></script>
-<link rel='stylesheet' href='https://latest.cactus.chat/style.css' type='text/css'> -->
-
 {%- if page.comments != false -%}
-  <div class="ml-embedded" data-form="Bs3IUX"></div>
-  <!-- <button class="ml-onclick-form" onclick="ml('show', 'nl6dNq', true)">Click here to show form</button> -->
-  <!-- <button class="ml-onclick-form" onclick="ml('show', 'vNlJEZ', true)">Click here to show form</button> -->
+  <div class='subscribe'>
+    <div class='subscribe-info'>
+      <div>
+        <span>
+          📯 Powiadomienia
+        </span>
+        <p>
+          Subskrybuj powiadomienia o nowych wpisach/komiksach na blogu
+        </p>
+      </div>
+      <button id='subscribe-button' class='cactus-button'>Zapisz!</button>
+    </div>
+    <div class='subscribe-modal'>
+      <img src="/assets/img/subscribe.jpg" alt="" class='subscribe-img'>
+      <div class='ml-embedded' data-form='Bs3IUX'></div>
+    </div>
+  </div>
+
   <h2>Komentarze</h2>
-  <p class='comment-disclaimer'>
-    System komentarzy wykorzystuje protokół Matrix do zapewnienia bezpiecznej,
-    anonimowej i zdecentralizowanej komunikacji. Dostępna jest również opcja rejestracji konta,
-    co pozwala na korzystanie z dodatkowych funkcjonalności.
-  </p>
   <div id='comment-section'></div>
   <script>
     (function() {
-      // let userNames = {};
-      initComments({
-        node: document.getElementById('comment-section'),
-        defaultHomeserverUrl: 'https://matrix.cactus.chat:8448',
-        serverName: 'cactus.chat',
-        siteName: 'brickfiction',
-        commentSectionId: '{{ post.title }}'.replaceAll(' ', '-')
-      })
-      // document.getElementsByClassName('cactus-editor-textarea')[0].placeholder = 'Dodaj komentarz';
-      // document.querySelector('.cactus-editor-name input').placeholder = 'Pseudonim';
-      // document.getElementsByClassName('cactus-login-button')[0].innerHTML = 'Zaloguj';
-      // document.getElementsByClassName('cactus-send-button')[0].innerHTML = 'Dodaj';
+      // ukryj modal do newslettera
+      document.getElementById('subscribe-button').addEventListener('click', () => {
+        document.querySelector('.subscribe-info').style.display = 'none';
+        document.querySelector('.subscribe-modal').style.display = 'flex';
+      });
+      
 
-      // document.getElementsByClassName('cactus-button cactus-login-button')[0].addEventListener('click', function(event) {
-      //     console.log('du')
-      //     setTimeout(() => {
-      //         document.getElementsByClassName('cactus-login-title')[0].textContent = 'Zaloguj się przez Matrix';
-      //     }, 50)
-      // });
-      const updateNames = () => {
+      // czeka na element html
+      const waitForElm = (selector, observedElement) => {
+        return new Promise(resolve => {
+          if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+          }
+
+          const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+              resolve(document.querySelector(selector));
+              observer.disconnect();
+            }
+          });
+
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true
+          });
+        });
+      }
+
+      // zamienia nicki z cactus chat na nicki uzytkownikow
+      const updateNames = (baseNode = document) => {
         const userNames = Array.from(document.querySelectorAll('.cactus-comment-displayname')).reverse().reduce((acc, val) => ({...acc, [val.href]: val.innerText}), {});
-        // const splitted = document.querySelector('.cactus-button.cactus-send-button').innerText.split('o ')
 
-        // if (splitted.length > 1 && userNames['https://matrix.to/#/' + splitted[1]]) {
-        //   document.querySelector('.cactus-button.cactus-send-button').innerText = 'Dodaj jako ' + userNames['https://matrix.to/#/' + splitted[1]]
-        // }
-
-        // console.log({userNames});
-        // console.log('dupka', document.querySelectorAll('.cactus-message-text blockquote a'));
-
-        Array.from(document.querySelectorAll('.cactus-message-text blockquote a')).forEach(x => {
-            if (x.innerText === 'In reply to') {
-              x.innerText = ''
-            } else if (userNames[x.href]) {
+        Array.from(baseNode.querySelectorAll('.cactus-message-text blockquote a')).forEach(x => {
+          if (x.innerText === 'In reply to') {
+            x.innerText = ''
+          } else if (userNames[x.href]) {
             x.innerText = `${userNames[x.href]}`
           }
         });
       };
 
-      document.querySelector('.cactus-button.cactus-login-button').addEventListener('click', () => {
-        setTimeout(() => {
-          document.querySelector('.cactus-login-client a').target = '_blank';
-        }, 500);
+      // inizjalizacja cactus.chat
+      initComments({
+        node: document.getElementById('comment-section'),
+        defaultHomeserverUrl: 'https://matrix.cactus.chat:8448',
+        serverName: 'cactus.chat',
+        siteName: 'brickfiction',
+        commentSectionId: '{{ page.title }}'.replaceAll(' ', '-')
+      })
+
+      const cactusContainer = document.querySelector('.cactus-container')
+
+      // dodaje listener do przycisku aby dodać text do modala
+      document.querySelector('.cactus-button.cactus-login-button').addEventListener('click', function(event) {
+          waitForElm('.cactus-login-form-wrapper', cactusContainer).then((elm) => {
+            document.querySelector('.cactus-login-client a').target = '_blank';
+
+            const p = document.createElement("p");
+              p.textContent = `System komentarzy wykorzystuje protokół Matrix do zapewnienia bezpiecznej,
+    anonimowej i zdecentralizowanej komunikacji. Używając klienta otrzymujesz dodatkowe możliwości.`;
+              p.classList.add('comment-disclaimer');
+              const wiwi = document.querySelector('.cactus-login-client-title');
+
+              wiwi.parentNode.insertBefore(p, wiwi.nextSibling);
+          });
       });
 
 
-      // po 2 sekundach updajtune nicki uzytkownikow
-      setTimeout(() => {
-        const seeMoreButton = document.querySelector('.cactus-view-more button');
-        console.log('seeMoreButton', seeMoreButton)
+      waitForElm('.cactus-comments-list', cactusContainer).then((elm) => {
+          const seeMoreButton = document.querySelector('.cactus-view-more button');
 
-        if (seeMoreButton) {
-          seeMoreButton.addEventListener('click', () => {
-            setTimeout(updateNames, 500);
-          });
-        }
+          if (seeMoreButton) {
+            seeMoreButton.addEventListener('click', () => {
+              const commentsList = document.querySelector('.cactus-comments-list')
 
-        updateNames();
-      }, 2000);
+              const observer = new MutationObserver(mutations => {
+                  mutations.forEach(x => x.addedNodes.length && x.addedNodes[0].nodeType && x.addedNodes[0].nodeType === 1 && updateNames(x.addedNodes[0]));
+              });
+
+              observer.observe(commentsList, {
+                childList: true,
+                subtree: true
+              });
+            });
+          }
+          updateNames();
+      });
     })();
   </script>
   <noscript>Please enable JavaScript to view the <a href='https://cactus.chat' rel='nofollow'>comments powered by matrix.org.</a></noscript>
