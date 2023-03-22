@@ -1,0 +1,111 @@
+{%- if page.comments != false -%}
+  <div class='subscribe'>
+    <div class='subscribe-info'>
+      <div>
+        <span>
+          📯 Powiadomienia
+        </span>
+        <p>
+          Subskrybuj powiadomienia o nowych wpisach/komiksach na blogu
+        </p>
+      </div>
+      <button id='subscribe-button' class='cactus-button'>Zapisz!</button>
+    </div>
+    <div class='subscribe-modal'>
+      <img src='/assets/img/subscribe.jpg' alt='Space minifigure hold a cup' class='subscribe-img'>
+      <div class='ml-embedded' data-form='Bs3IUX'></div>
+    </div>
+  </div>
+
+  <h2>Komentarze</h2>
+  <div id='comment-section'></div>
+  <script>
+    (function() {
+
+      document.getElementById('subscribe-button').addEventListener('click', () => {
+        document.querySelector('.subscribe-info').style.display = 'none';
+        document.querySelector('.subscribe-modal').style.display = 'flex';
+      });
+      
+      const waitForElm = (selector, observedElement) => {
+        return new Promise(resolve => {
+          if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+          }
+
+          const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+              resolve(document.querySelector(selector));
+              observer.disconnect();
+            }
+          });
+
+          observer.observe(document.body, {
+            childList: true,
+            subtree: true
+          });
+        });
+      };
+
+      const updateNames = (baseNode = document) => {
+        const userNames = Array.from(document.querySelectorAll('.cactus-comment-displayname')).reverse().reduce((acc, val) => ({...acc, [val.href]: val.innerText}), {});
+
+        Array.from(baseNode.querySelectorAll('.cactus-message-text blockquote a')).forEach(x => {
+          if (x.innerText === 'In reply to') {
+            x.innerText = '';
+          } else if (userNames[x.href]) {
+            x.innerText = `${userNames[x.href]}`;
+          }
+        });
+      };
+
+      initComments({
+        node: document.getElementById('comment-section'),
+        defaultHomeserverUrl: 'https://matrix.cactus.chat:8448',
+        serverName: 'cactus.chat',
+        siteName: 'brickfiction',
+        commentSectionId: '{{ page.title }}'.replaceAll(' ', '-')
+      });
+
+      const cactusContainer = document.querySelector('.cactus-container');
+
+      document.querySelector('.cactus-button.cactus-login-button').addEventListener('click', function(event) {
+          waitForElm('.cactus-login-form-wrapper', cactusContainer).then((elm) => {
+            document.querySelector('.cactus-login-client a').target = '_blank';
+
+            const p = document.createElement("p");
+              p.textContent = `System komentarzy wykorzystuje protokół Matrix do zapewnienia bezpiecznej,
+    anonimowej i zdecentralizowanej komunikacji. Używając klienta otrzymujesz dodatkowe możliwości.`;
+              p.classList.add('comment-disclaimer');
+              const wiwi = document.querySelector('.cactus-login-client-title');
+
+              wiwi.parentNode.insertBefore(p, wiwi.nextSibling);
+          });
+      });
+
+
+      waitForElm('.cactus-comments-list', cactusContainer).then((elm) => {
+          const seeMoreButton = document.querySelector('.cactus-view-more button');
+
+          if (seeMoreButton) {
+            seeMoreButton.addEventListener('click', () => {
+              const commentsList = document.querySelector('.cactus-comments-list');
+
+              const observer = new MutationObserver(mutations => {
+                  mutations.forEach(x => x.addedNodes.length && x.addedNodes[0].nodeType && x.addedNodes[0].nodeType === 1 && updateNames(x.addedNodes[0]));
+              });
+
+              observer.observe(commentsList, {
+                childList: true,
+                subtree: true
+              });
+            });
+          }
+          updateNames();
+      });
+
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href='https://cactus.chat' rel='nofollow'>comments powered by matrix.org.</a></noscript>
+
+{%- endif -%}
