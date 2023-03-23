@@ -36,7 +36,8 @@ Czym w ogóle jest ten cały Matrix? Nie, nie chodzi tu o film :)
 > Matrix to protokół do bezpiecznej, zdecentralizowanej komunikacji, który umożliwia komunikację tekstową, głosową i wideo przez internet. Jest to system open-source, co oznacza, że jego kod źródłowy jest publicznie dostępny i może być zmodyfikowany przez każdego dewelopera. Matrix pozwala na tworzenie niezależnych, interoperacyjnych sieci komunikacyjnych, które mogą ze sobą współpracować. Dzięki temu użytkownicy mogą korzystać z różnych aplikacji i usług, a jednocześnie komunikować się ze sobą w czasie rzeczywistym.
 
 ### Jak się poruszać po blogu?
-Jeśli interesuje Cię konkretny temat, radzę przejść na stronę `Kategorie` i wybrać odpowiedni dział.
+Na stronie głównej znajdziesz najnowsze wpisy.
+Jeśli jednak interesuje Cię konkretny temat, radzę przejść na stronę `Kategorie` i wybrać odpowiedni dział.
 
 ### Powiadomienia
 Pod każdym postem można zapisać się do listy powiadomień e-mail. Wybierz interesujące Cię tematy i czekaj na wieści 📰
