@@ -21,11 +21,6 @@
   <div id='comment-section'></div>
   <script>
     (function() {
-
-      document.getElementById('subscribe-button').addEventListener('click', () => {
-        document.querySelector('.subscribe-info').style.display = 'none';
-        document.querySelector('.subscribe-modal').style.display = 'flex';
-      });
       
       const waitForElm = (selector, observedElement) => {
         return new Promise(resolve => {
