@@ -4,7 +4,7 @@ author: rybeusz
 date: 2023-03-30 09:00:00 +0100
 categories: [Inne]
 tags: [inne, lego, indiedev, historie]
-preview_content:  W dzień swoich urodzin, otwieram oficjalnie tego bloga 🎉 Dlaczego i co tu będzie się działo? Zapraszam do przeczytania mojej krótkiej historii i motywacji stojącej za tym miejscem 🥳
+preview_content:  W dzień swoich urodzin, otwieram oficjalnie tego bloga 🎉 Dlaczego i co tu będzie się działo? Zapraszam do przeczytania mojej krótkiej historii i motywacji stojącej za stworzeniem tego miejsca 🥳
 ---
 
 ### Historia pewnych klocków
