@@ -53,7 +53,7 @@ layout: page
         <img src="{{ post.preview_image | relative_url }}" alt="" class="post-featured-image">
       {% endif %}
       <p>
-        {% assign final_content = post.preview_content | default: post.content %}
+        {% assign final_content = post.summary | default: post.content %}
         {% include no-linenos.html content=final_content %}
         {{ content | markdownify | strip_html | truncate: 350 | escape }}
       </p>

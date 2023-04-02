@@ -11,16 +11,25 @@
 
 /* append your custom style below */
 .post-featured-image {
-    height: 9.1rem;
+    height: 7rem;
     width: 13rem;
     margin-right: 1rem;
     border-radius: 3.5%;
     object-fit: cover;
     object-position: left;
+    align-self: center;
+
+    @media screen and (max-width: 500px) {
+        height: auto;
+    }
 }
 
 .post-content-home {
     display: flex;
+
+    @media screen and (max-width: 500px) {
+        flex-direction: column;
+    }
 }
 
 %sidebar-links {
@@ -95,6 +104,37 @@
 
 footer {
     margin-top: 0.5rem;
+}
+
+.images-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+
+    a {
+        margin: 0 !important;
+    }
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.image-smaller-height {
+    width: 100%;
+    img {
+        height: 350px;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+#post-list .post-preview .post-content>p {
+    display: block;
+}
+
+.preview-img:not(.no-bg) img.lazyloaded {
+    background: none;
 }
 
 // mailerlite
