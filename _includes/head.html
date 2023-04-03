@@ -127,11 +127,13 @@
     <!-- End MailerLite Universal -->
 
     <!-- Insights analytics -->
-    <script src="https://getinsights.io/js/insights.js"></script>
-    <script>
-      insights.init('hbiwrrma0PzP_8D4');
-      insights.trackPages();
-    </script>
+    {% if site.url != "http://localhost:4000"%}
+      <script src="https://getinsights.io/js/insights.js"></script>
+      <script>
+        insights.init('hbiwrrma0PzP_8D4');
+        insights.trackPages({hash: true, search: true});
+      </script>
+    {% endif %}
     <!-- End Insights analytics -->
 
     {% unless site.theme_mode %}
