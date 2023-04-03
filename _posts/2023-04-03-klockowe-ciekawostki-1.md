@@ -12,7 +12,7 @@ summary: Do świata LEGO® wraca seria Indiana Jones, a rodzima firma COBI wprow
 ---
 ## Powrót legendy
 Jak to zwykle z początkiem miesiąca bywa, mamy kolejne klockowe premiery ze strony LEGO®.
-Po 14 latach znów w ofercie pojawiają się zestawy z serii Indiana Jones, co ma to związek z nadchodzącym filmem o jego przygodach.
+Po 14 latach znów w ofercie pojawiają się zestawy z serii Indiana Jones, co ma związek z nadchodzącym filmem o jego przygodach.
 Jeden z tych zestawów mocno zaskoczył mnie cenowo. Mowa o _77013 Escape from Lost Tomb_.
 
 ![LEGO® 77013](/assets/posts/2023-04-03/77013_alt1.webp "LEGO® 77013")
@@ -57,11 +57,11 @@ Premierę miała również wyczekiwana seria pociągów od COBI. Przyznam że sa
 ![COBI 6280](/assets/posts/2023-04-03/cobi-pociag.jpg "COBI 6280")
 ![COBI 6280](/assets/posts/2023-04-03/cobi-pociag-1.jpg "COBI 6280")
 ![Tory COBI](/assets/posts/2023-04-03/cobi-tory.jpg "Tory od COBI"){: .image-smaller-height}
-_Póki co są tylko proste, w planach mają też zakręty._
+_Póki co w zestawach dostępne są tylko proste tory, ale w planach mają też zakręty._
 
 ## Prima aprilis
 
-Niedawno był 1 kwietnia, więc każdy starał się zabłysnąć jakimś żartem. Można było spodziewać się fejkowych zestawów, jednak firma LEGO® w tym roku poszła o krok dalej i wysłała kilku znanym youtuberom niby “prototypowy” zestaw do oceny. Na zdjęciach wyglądał zupełnie inaczej niż po złożeniu. Sam bym takim nie pogardził - zdaje się mieć dużo fajnych części. 😄 Co ciekawe, nikt nie otrzymał pudełka, klocki przyszły w plastikowych workach. Żarty trzymały się również naszej rodzimej firmy COBI, jednak obyło się bez większych akcji.
+Niedawno był 1 kwietnia, więc każdy starał się zabłysnąć jakimś żartem. Można było spodziewać się fejkowych zestawów, jednak firma LEGO® w tym roku poszła o krok dalej i wysłała kilku znanym youtuberom “prototypowy” zestaw do oceny. Na zdjęciach wyglądał zupełnie inaczej niż po złożeniu. Sam bym takim nie pogardził - zdaje się mieć dużo fajnych części. 😄 Co ciekawe, nikt nie otrzymał pudełka, klocki przyszły w plastikowych workach. Żarty trzymały się również naszej rodzimej firmy COBI, jednak obyło się bez większych akcji.
 
 <div class='images-gallery'>
     <img style='' src='/assets/posts/2023-04-03/majestic-horse-1.png' alt='Prima aprilis'/>
@@ -70,3 +70,5 @@ Niedawno był 1 kwietnia, więc każdy starał się zabłysnąć jakimś żartem
     <img style='' src='/assets/posts/2023-04-03/cobi1.PNG' alt='Prima aprilis'/>
 </div>
 
+## Podsumowanie
+Oto i koniec pierwszego wpisu z serii Klockowych ciekawostek. Dziękuję za przeczytanie tekstu! Mam nadzieję, że format przypadł Ci do gustu :) Zachęcam do komentowania oraz dzielenia się innymi ciekawostkami związanymi ze światem LEGO® i COBI. Do następnego!
