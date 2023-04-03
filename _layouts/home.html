@@ -50,7 +50,7 @@ layout: page
 
     <div class="post-content post-content-home">
       {% if post.preview_image %}
-        <img src="{{ post.preview_image | relative_url }}" alt="" class="post-featured-image">
+        <img src="{{ post.preview_image.path | relative_url }}" alt="{{post.preview_image.alt}}" class="post-featured-image">
       {% endif %}
       <p>
         {% assign final_content = post.summary | default: post.content %}

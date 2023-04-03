@@ -5,7 +5,9 @@ date: 2023-04-03 09:00:00 +0100
 categories: [Ciekawostki]
 tags: [lego, cobi, ciekawostki, premiery]
 image: /assets/posts/2023-04-03/77015_alt5.webp
-preview_image: /assets/posts/2023-04-03/preview.webp
+preview_image:
+    path: /assets/posts/2023-04-03/preview.webp
+    alt: Figurka Indiany Jonesa i jego pomocnika
 summary: Do świata LEGO® wraca seria Indiana Jones, a rodzima firma COBI wprowadza do oferty kolekcję pociągów! Znajdzie się też coś dla fanów Castle i motoryzacji. Na koniec podsumowanie żartów prima aprilisowych 😄
 ---
 ## Powrót legendy
