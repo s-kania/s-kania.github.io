@@ -132,6 +132,16 @@
       <script>
         insights.init('hbiwrrma0PzP_8D4');
         insights.trackPages({hash: true, search: true});
+        const urlParams = new URLSearchParams(window.location.search);
+        const source = urlParams.get('source');
+        if (source) {
+          insights.track({
+            id: 'from-source',
+            parameters: {
+              source,
+            }
+          });
+        }
       </script>
     {% endif %}
     <!-- End Insights analytics -->
