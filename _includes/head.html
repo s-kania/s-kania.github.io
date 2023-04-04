@@ -146,6 +146,10 @@
     {% endif %}
     <!-- End Insights analytics -->
 
+    <!-- Nullitics analytics -->
+    <script type="text/javascript">new Image().src='https://nullitics.com/n.gif?u=' + encodeURI(location.href) + '&r=' + encodeURI(document.referrer) + '&d=' + screen.width;</script>
+    <!-- End Nullitics analytics -->
+
     {% unless site.theme_mode %}
       {% include mode-toggle.html %}
     {% endunless %}
