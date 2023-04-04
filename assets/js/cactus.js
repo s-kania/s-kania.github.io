@@ -6975,7 +6975,7 @@ parcelRequire = function(e, r, t, n) {
                 var e, u = (e = y(f(cu, ih, r), f(cu, vg, r))).a.$ || !e.a.a || e.b.$ ? "Dodaj" : "Dodaj jako " + e.b.a, a = p(r, $t) || !ge(t), c = E(N([Pg("cactus-button"), Pg("cactus-send-button"), nh(a)]), f(ju, L, f(cu, Qp, f(cu, Fg, n))));
                 return f(Bg, c, N([Zg(u)]))
             }), kh = t(function(r, n) {
-                var t, e = r, u = n.be, a = n.dO, c = n.a4, i = n.aV, o = n.$7, b = n.dS, d = n.dl, v = s(Ah, u, n.dQ, e.V), p = f(ju, !0, f(cu, f(Tc, ih, Oa), u)) ? f(_g, N([Pg("cactus-editor-name")]), N([l(ph, "Pseudonim", L, Zg("Pseudonim"), f(ch, e.ai, N([qh("Pseudonim"), yh(f(Tc, Xg, o))])))])) : Zg(""), m = c ? function(r) {
+                var t, e = r, u = n.be, a = n.dO, c = n.a4, i = n.aV, o = n.$7, b = n.dS, d = n.dl, v = s(Ah, u, n.dQ, e.V), p = f(ju, !0, f(cu, f(Tc, ih, Oa), u)) ? f(_g, N([Pg("cactus-editor-name")]), N([l(ph, "Pseudonim", L, Zg("Pseudonim"), f(ch, e.ai, N([qh("Pseudonim (opcjonalnie)"), yh(f(Tc, Xg, o))])))])) : Zg(""), m = c ? function(r) {
                     var n = r.b0
                       , t = r.b1
                       , e = r.be

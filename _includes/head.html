@@ -126,8 +126,9 @@
     </script>
     <!-- End MailerLite Universal -->
 
-    <!-- Insights analytics -->
+    
     {% if site.url != "http://localhost:4000"%}
+      <!-- Insights analytics -->
       <script src="https://getinsights.io/js/insights.js"></script>
       <script>
         insights.init('hbiwrrma0PzP_8D4');
@@ -143,11 +144,12 @@
           });
         }
       </script>
+      <!-- End Insights analytics -->
     {% endif %}
-    <!-- End Insights analytics -->
+    
 
     <!-- Nullitics analytics -->
-    <script type="text/javascript">new Image().src='https://nullitics.com/n.gif?u=' + encodeURI(location.href) + '&r=' + encodeURI(document.referrer) + '&d=' + screen.width;</script>
+    <script type="text/javascript">new Image().src='https://nullitics.com/n.gif?u=' + encodeURI('{{ site.nullitics_url }}') + '&r=' + encodeURI(document.referrer) + '&d=' + screen.width;</script>
     <!-- End Nullitics analytics -->
 
     {% unless site.theme_mode %}
