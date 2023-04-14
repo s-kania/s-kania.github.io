@@ -41,7 +41,7 @@
         defaultHomeserverUrl: 'https://matrix.cactus.chat:8448',
         serverName: 'cactus.chat',
         siteName: 'brickfiction',
-        commentSectionId: '{{ page.title }}'.replaceAll(' ', '-')
+        commentSectionId: '{{ page.title }}'.replace(/[^a-zA-Z0-9 ]/g, '').replaceAll(' ', '-')
       });
 
       const cactusContainer = document.querySelector('.cactus-container');
