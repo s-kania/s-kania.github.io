@@ -11,13 +11,14 @@
 
 /* append your custom style below */
 .post-featured-image {
-    height: 7rem;
-    width: 13rem;
-    margin-right: 1rem;
+    height: 125px;
+    width: 167px;
+    // margin-right: 1rem;
+    margin-top: 5px;
     border-radius: 3.5%;
     object-fit: cover;
     object-position: left;
-    align-self: center;
+    // align-self: center;
 
     @media screen and (max-width: 500px) {
         height: auto;
@@ -25,7 +26,14 @@
 }
 
 .post-content-home {
-    display: flex;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 167px 1fr;
+
+    p {
+        // height: 125px;
+        // line-height: 26px;
+    }
 
     @media screen and (max-width: 500px) {
         flex-direction: column;
