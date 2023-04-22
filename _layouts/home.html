@@ -48,14 +48,14 @@ layout: page
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     </h1>
 
-    <div class="post-content post-content-home">
+    <div class="post-content post-content-home {% if post.preview_image %}post-preview-image-wrapper{% endif %}">
       {% if post.preview_image %}
         <img src="{{ post.preview_image.path | relative_url }}" alt="{{post.preview_image.alt}}" class="post-featured-image">
       {% endif %}
       <p>
         {% assign final_content = post.summary | default: post.content %}
         {% include no-linenos.html content=final_content %}
-        {{ content | markdownify | strip_html | truncate: 350 | escape }}
+        {{ content | markdownify | strip_html | truncate: 360 | escape }}
       </p>
     </div>
 

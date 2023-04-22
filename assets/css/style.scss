@@ -11,33 +11,34 @@
 
 /* append your custom style below */
 .post-featured-image {
-    height: 125px;
-    width: 167px;
-    // margin-right: 1rem;
+    height: 113px;
+    width: 151px;
     margin-top: 5px;
     border-radius: 3.5%;
     object-fit: cover;
-    object-position: left;
-    // align-self: center;
 
-    @media screen and (max-width: 500px) {
-        height: auto;
+    margin-top: 5px;
+
+    @media screen and (min-width: 1200px) {
+        margin-top: 2px;
     }
 }
 
-.post-content-home {
+.post-preview-image-wrapper {
     display: grid;
     gap: 1rem;
-    grid-template-columns: 167px 1fr;
+    grid-template-columns: 151px 1fr;
 
     p {
-        // height: 125px;
-        // line-height: 26px;
+        height: 120px;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 4 !important;
+        word-wrap: normal;
     }
 
-    @media screen and (max-width: 500px) {
-        flex-direction: column;
-    }
+    // @media screen and (max-width: 500px) {
+    //     flex-direction: column;
+    // }
 }
 
 %sidebar-links {
