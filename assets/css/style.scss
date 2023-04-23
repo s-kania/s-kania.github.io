@@ -11,25 +11,34 @@
 
 /* append your custom style below */
 .post-featured-image {
-    height: 7rem;
-    width: 13rem;
-    margin-right: 1rem;
+    height: 113px;
+    width: 151px;
+    margin-top: 5px;
     border-radius: 3.5%;
     object-fit: cover;
-    object-position: left;
-    align-self: center;
 
-    @media screen and (max-width: 500px) {
-        height: auto;
+    margin-top: 5px;
+
+    @media screen and (min-width: 1200px) {
+        margin-top: 2px;
     }
 }
 
-.post-content-home {
-    display: flex;
+.post-preview-image-wrapper {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 151px 1fr;
 
-    @media screen and (max-width: 500px) {
-        flex-direction: column;
+    p {
+        height: 120px;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 4 !important;
+        word-wrap: normal;
     }
+
+    // @media screen and (max-width: 500px) {
+    //     flex-direction: column;
+    // }
 }
 
 %sidebar-links {
@@ -135,6 +144,16 @@ footer {
 
 .preview-img:not(.no-bg) img.lazyloaded {
     background: none;
+}
+
+// footnote
+sup:target:not([scroll-focus]), sup[scroll-focus=true]>a.footnote {
+    background-color: transparent;
+    color: var(--heading-color);
+}
+
+.footnotes>ol>li:target:not([scroll-focus]), .footnotes>ol>li[scroll-focus=true]>p {
+    background-color: transparent;
 }
 
 // mailerlite
