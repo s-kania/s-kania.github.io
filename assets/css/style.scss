@@ -146,6 +146,16 @@ footer {
     background: none;
 }
 
+// footnote
+sup:target:not([scroll-focus]), sup[scroll-focus=true]>a.footnote {
+    background-color: transparent;
+    color: var(--heading-color);
+}
+
+.footnotes>ol>li:target:not([scroll-focus]), .footnotes>ol>li[scroll-focus=true]>p {
+    background-color: transparent;
+}
+
 // mailerlite
 .ml-form-embedWrapper.embedForm {
     max-width: none !important;
