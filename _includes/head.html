@@ -97,7 +97,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ site.data.assets[origin].fontawesome.css | relative_url }}">
   
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.style_version }}">
   
     {% if site.toc and page.toc %}
       <link rel="stylesheet" href="{{ site.data.assets[origin].bootstrap-toc.css | relative_url }}">
