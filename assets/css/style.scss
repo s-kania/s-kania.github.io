@@ -10,6 +10,10 @@
 @import "{{ site.theme }}";
 
 /* append your custom style below */
+.gold {
+    color: var(--heading-color);
+}
+
 .post-featured-image {
     height: 113px;
     width: 151px;
@@ -119,6 +123,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
+    margin-bottom: 1rem;
 
     a {
         margin: 0 !important;
@@ -126,6 +131,10 @@ footer {
 
     @media screen and (max-width: 768px) {
         grid-template-columns: 1fr;
+    }
+
+    img {
+        object-fit: cover;
     }
 }
 
@@ -145,6 +154,14 @@ footer {
 .preview-img:not(.no-bg) img.lazyloaded {
     background: none;
 }
+
+// #sidebar .sidebar-bottom {
+//     padding-left: 1rem;
+// }
+
+// #sidebar .sidebar-bottom.justify-content-center {
+//     justify-content: center !important;
+// }
 
 // footnote
 sup:target:not([scroll-focus]), sup[scroll-focus=true]>a.footnote {
