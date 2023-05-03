@@ -138,9 +138,9 @@ _Wnętrze pojazdu po zdjęciu sufitu kabiny, w lewym górnym rogu jest klocek z 
 _Autor drugiego zdjęcia: <a href="https://commons.wikimedia.org/wiki/File:Schokakola_1941.jpg">Jan Wellen</a>_  
 Schokolada od Cobi i Scho-Ka-Kola z 1941 roku.
 
-![Numer seryjny](/assets/posts/2023-05-03/preview.JPEG){: width="972" height="589" }
-![Dowódca w niszczycielu](/assets/posts/2023-05-03/FullSizeRender-3.JPG){: width="972" height="589" }
-![Panzergrenadier](/assets/posts/2023-05-03/FullSizeRender-7.JPG){: width="972" height="589" }
+![Numer seryjny](/assets/posts/2023-05-03/preview.jpeg){: width="972" height="589" }
+![Dowódca w niszczycielu](/assets/posts/2023-05-03/FullSizeRender-3.jpg){: width="972" height="589" }
+![Panzergrenadier](/assets/posts/2023-05-03/FullSizeRender-7.jpg){: width="972" height="589" }
 ![Jagdpanther przód](/assets/posts/2023-05-03/IMG_3888.JPG){: width="972" height="589" }
-![Jagdpanther bok](/assets/posts/2023-05-03/FullSizeRender-6.JPG){: width="972" height="589" }
+![Jagdpanther bok](/assets/posts/2023-05-03/FullSizeRender-6.jpg){: width="972" height="589" }
 ![Jagdpanther tył](/assets/posts/2023-05-03/IMG_3890.JPG){: width="972" height="589" }
