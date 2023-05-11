@@ -163,6 +163,10 @@ footer {
 //     justify-content: center !important;
 // }
 
+.post-content a.popup+em, img[data-src]+em {
+    margin-bottom: 4px;
+}
+
 // footnote
 sup:target:not([scroll-focus]), sup[scroll-focus=true]>a.footnote {
     background-color: transparent;
