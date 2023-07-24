@@ -11,7 +11,7 @@ preview_image:
 comments: true
 ---
 
-W krakowskim muzeum minifigurek Bricks and Figs, 22 lipca odbyło się wydarzenie/konkurs polegający na ułożeniu jak największej ilości klocków.
+W krakowskim muzeum minifigurek LEGO®, 22 lipca odbyło się wydarzenie/konkurs polegający na ułożeniu jak największej ilości klocków.
 Zgłosiłem się, i wuala! Dostałem SMS że zostałem wybrany i czekają na mnie w sobotę o godzinie 10:00.
 
 Na miejscu obecni byli już niektórzy uczestnicy. Okazało się że wybrano tylko 10 osób, z czego jeśli dobrze pamiętam, pojawiło się 8. Sami dorośli, więc moje obawy że jestem za stary na to wydarzenie, zniknęły 😮‍💨 Spotkałem twarz muzeum -> Dżodżo oraz Mateusza Kustrę! Jedynego certyfikowanego profesjonalnego składacza LEGO® w Polsce 😱 
