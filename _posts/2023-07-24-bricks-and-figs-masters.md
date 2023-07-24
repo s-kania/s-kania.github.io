@@ -14,7 +14,7 @@ comments: true
 W krakowskim muzeum minifigurek LEGO®, 22 lipca odbyło się wydarzenie/konkurs polegający na ułożeniu jak największej ilości klocków.
 Zgłosiłem się, i wuala! Dostałem SMS że zostałem wybrany i czekają na mnie w sobotę o godzinie 10:00.
 
-Na miejscu obecni byli już niektórzy uczestnicy. Okazało się że wybrano tylko 10 osób, z czego jeśli dobrze pamiętam, pojawiło się 8. Sami dorośli, więc moje obawy że jestem za stary na to wydarzenie, zniknęły 😮‍💨 Spotkałem twarz muzeum -> Dżodżo oraz Mateusza Kustrę! Jedynego certyfikowanego profesjonalnego składacza LEGO® w Polsce 😱 
+Na miejscu okazało się że wybrano tylko 10 osób, z czego jeśli dobrze pamiętam, pojawiło się 8. Sami dorośli, więc moje obawy że jestem za stary na to wydarzenie, zniknęły 😮‍💨 Spotkałem twarz muzeum -> Dżodżo oraz Mateusza Kustrę! Jedynego certyfikowanego profesjonalnego składacza LEGO® w Polsce 😱 
 
 Przedstawiono nam zasady które były bardzo proste, losujemy stolik na terenie muzeum, a następnie zestaw który będziemy składać. Po jego ukończeniu dostawaliśmy kolejny i tak aż do godziny 20:00 lub wyczerpania zapasów. Wygranym miała zostać osoba która ułoży największą ilość klocków w tym czasie.
 
@@ -23,7 +23,7 @@ Nagrody za 3 pierwsze miejsca nie były byle jakie:
 - <b>LEGO® 80045 Monkie Kid - Monkey King w ultramechu</b>
 - <b>LEGO® 71369 Super Mario - Walka w zamku Bowsera</b>
 
-Jeśli chodzi o zestawy które dostaliśmy, były one wszystkie nowe, i często niedawno wydane. Znalazł się nawet <b>LEGO® 40580 - Krążownik Blacktron</b>.
+Zestawy które dostaliśmy na początku, były nowe i wydane stosunkowo niedawno. Znalazł się nawet <b>LEGO® 40580 - Krążownik Blacktron</b>.
 Mi się na samym początku wylosował największy z nich, konkretnie <b>LEGO® 43225 Disney - Królewska muszla Małej Syrenki</b> liczący 1808 elementów.
 Co prawda, do wylosowania został jeszcze <b>LEGO® 43222 Disney - Zamek Disneya</b> mający aż 4837 klocków! Jednak organizatorzy schowali go przed nami, z obawy że nie zdążymy go złożyć. Phi.
 
@@ -58,7 +58,7 @@ Gdy ukończyłem Krusty Kraba, do wylosowania zostały 3 nowe zestawy, padło na
 W momencie kiedy z półek zeszły ostatnie pudełka, organizatorzy zaczęli wykładać prawdziwe perełki...
 
 <b>Space, Blacktron, Western 🤠</b>. Czyli klasyczne zestawy, które większość z nas oglądała jedynie w katalogach za dzieciaka.
-Mój niefart polegał na tym, że z tym ekspresem do Hogwartu zeszło mi do godziny 18:25, a klocki do układania wydawano do 18:10 😭
+Mój niefart polegał na tym, że z tym ekspresem do Hogwartu zeszło mi do godziny 18:25, a klocki wydawano do 18:10 😭
 
 Sami zobaczcie co układali inni uczestnicy:
 
@@ -68,7 +68,7 @@ Sami zobaczcie co układali inni uczestnicy:
 ![Konkurs 12](/assets/posts/2023-07-24/IMG_4477.JPG){: width="972" height="589" }
 ![Konkurs 13](/assets/posts/2023-07-24/IMG_4479.JPG){: width="972" height="589" }
 
-Gdybym skończył układać jakieś 10 min wcześniej, miałbym okazję ułożyć jeden z 3 dołożonych retro zestawów:
+Gdybym skończył układać jakieś 10 min wcześniej, miałbym okazję dorwać jeden z 3 dołożonych retro zestawów:
 
 ![Konkurs 14](/assets/posts/2023-07-24/IMG_4480.JPG){: width="972" height="589" }
 ![Konkurs 15](/assets/posts/2023-07-24/IMG_4481.JPG){: width="972" height="589" }
