@@ -18,7 +18,7 @@ Na miejscu okazało się że wybrano tylko 10 osób, z czego jeśli dobrze pami�
 
 Przedstawiono nam zasady które były bardzo proste, losujemy stolik na terenie muzeum, a następnie zestaw który będziemy składać. Po jego ukończeniu dostawaliśmy kolejny i tak aż do godziny 20:00 lub wyczerpania zapasów. Wygranym miała zostać osoba która ułoży największą ilość klocków w tym czasie.
 
-Nagrody za 3 pierwsze miejsca nie były byle jakie:
+Nagrody za 3 pierwsze miejsca prezentowały się zacnie:
 - <b>LEGO® 92176 Ideas - Rakieta NASA Apollo Saturn V</b>
 - <b>LEGO® 80045 Monkie Kid - Monkey King w ultramechu</b>
 - <b>LEGO® 71369 Super Mario - Walka w zamku Bowsera</b>
@@ -28,7 +28,7 @@ Mi się na samym początku wylosował największy z nich, konkretnie <b>LEGO® 4
 Co prawda, do wylosowania został jeszcze <b>LEGO® 43222 Disney - Zamek Disneya</b> mający aż 4837 klocków! Jednak organizatorzy schowali go przed nami, z obawy że nie zdążymy go złożyć. Phi.
 
 Konkurs zaczął się o 10:30, każdy już siedział przy swoim stoliku z wylosowanym zestawem.
-Syrenkę ukończyłem przed 13:00. Potem w moje ręce wpadł nowy mech z serii Ninjago. Zeszło mi z godzinę, i jeszcze przed planowaną godzinną przerwą o 14:30, zdążyłem poskładać trochę wieży astronomicznej, nigdy wcześniej nie składałem Harrego Pottera, więc było to miłe doświadczenie.
+Syrenkę ukończyłem przed 13:00. Potem w moje ręce wpadł nowy mech z serii Ninjago. Zeszło mi z godzinę i jeszcze przed planowaną przerwą o 14:30, zdążyłem poskładać trochę wieży astronomicznej. Nigdy wcześniej nie składałem Harrego Pottera, więc było to miłe doświadczenie.
 
 <div class='images-gallery'>
     <img style='' src='/assets/posts/2023-07-24/syrenka1.JPG' alt='Konkurs 1'/>
