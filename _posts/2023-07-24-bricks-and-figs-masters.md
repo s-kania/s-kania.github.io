@@ -1,5 +1,5 @@
 ---
-title: Układaliśmy retro zestawy w konkursie muzeum Bricks&Figs!
+title: Układaliśmy retro zestawy w muzeum Bricks&Figs!
 author: rybeusz
 date: 2023-07-24 12:00:00 +0100
 categories: [Ciekawostki]
@@ -28,7 +28,7 @@ Mi się na samym początku wylosował największy z nich, konkretnie <b>LEGO® 4
 Co prawda, do wylosowania został jeszcze <b>LEGO® 43222 Disney - Zamek Disneya</b> mający aż 4837 klocków! Jednak organizatorzy schowali go przed nami, z obawy że nie zdążymy go złożyć. Phi.
 
 Konkurs zaczął się o 10:30, każdy już siedział przy swoim stoliku z wylosowanym zestawem.
-Syrenkę ukończyłem przed 13:00. Potem w moje ręce wpadł nowy mech z serii Ninjago. Zeszło mi z godzinę i jeszcze przed planowaną przerwą o 14:30, zdążyłem poskładać trochę wieży astronomicznej. Nigdy wcześniej nie składałem Harrego Pottera, więc było to miłe doświadczenie.
+Syrenkę ukończyłem przed 13:00. Potem w moje ręce wpadł nowy mech z serii Ninjago z którym zeszło mi około godzinę. Jeszcze przed planowaną przerwą o 14:30, zdążyłem poskładać trochę wieży astronomicznej. Nigdy wcześniej nie składałem Harrego Pottera, więc było to miłe doświadczenie.
 
 <div class='images-gallery'>
     <img style='' src='/assets/posts/2023-07-24/syrenka1.JPG' alt='Konkurs 1'/>
@@ -37,11 +37,11 @@ Syrenkę ukończyłem przed 13:00. Potem w moje ręce wpadł nowy mech z serii N
     <img style='' src='/assets/posts/2023-07-24/harry1.JPG' alt='Konkurs 4'/>
 </div>
 
-W czasie tej godzinki, zabrano nas na pizzę. Margherita dodała mi niezbędnej do układania energii. Okazało się również, że ułożyliśmy praktycznie wszystkie zestawy z którymi miało nam zejść do 20:00 😎
+Na obiad zabrano nas do pizzeri. Margherita dodała mi niezbędnej do układania energii. Okazało się również, że skończyliśmy praktycznie wszystkie zestawy z którymi miało nam zejść do 20:00 😎
 Organizatorzy zaczęli więc dokładać do puli kolejne, okazało się że nie byle jakie!
 Była to seria SpongeBob wydawana na przełomie lat 2006-2012.
 
-Po ukończeniu wieży, w moje ręce wpadł zestaw właśnie z tej serii, <b>LEGO® 3833 SpongeBob - Przygody w barze Krusty Kraba</b> z 2009 roku. Średnia cen z bricklinka to 836.70 zł za MISB, czyli taki który trafił do mnie. Instrukcja była toporna, nie zgadzały się kolory w instrukcji, no i słynny reddish brown, czuć było że klocki tego koloru aż chcą się rozsypać w rękach, a to dopiero początek zalet tego zestawu 😛 Bardzo miłe doświadczenie.
+Po ukończeniu wieży, w moje ręce wpadł jeden z takich zestawów, <b>LEGO® 3833 SpongeBob - Przygody w barze Krusty Kraba</b> z 2009 roku. Średnia cen z bricklinka to 836.70 zł za MISB, czyli taki który trafił do mnie. Instrukcja była toporna, nie zgadzały się w niej odcienie, no i słynny reddish brown, czuć było, że klocki tego koloru chcą się rozsypać w rękach, a to dopiero początek zalet tego zestawu 😛 Ogólnie bardzo miłe doświadczenie.
 
 <div class='images-gallery'>
     <img style='' src='/assets/posts/2023-07-24/spongebob1.JPG' alt='Konkurs 5'/>
@@ -86,7 +86,7 @@ Dokładnych liczb nie pamiętam, ale wyglądało to mniej więcej tak:
 - 1 miejsce - 4800 klocków
 
 Może i nie miałem okazji złożyć indiańskiej wioski, za to zgarnąłem pierwsze miejsce 😄🎉
-Ułożyłem prawie 5000 klocków w 7 godzin!
+Siedem godzin układania w tempie 690 klocków/h zapewniło mi wygraną.
 Jako nagrodę wybrałem sobie rakietę Saturn, brakowało mi jej w kolekcji, więc jestem bardzo zadowolony.
 Uczestnicy spoza podium mogli zgarnąć czapkę albo kubek.
 
