@@ -155,16 +155,12 @@ footer {
     background: none;
 }
 
-// #sidebar .sidebar-bottom {
-//     padding-left: 1rem;
-// }
-
-// #sidebar .sidebar-bottom.justify-content-center {
-//     justify-content: center !important;
-// }
-
 .post-content a.popup+em, img[data-src]+em {
     margin-bottom: 4px;
+}
+
+.object-fit-contain img {
+    object-fit: contain;
 }
 
 // footnote
