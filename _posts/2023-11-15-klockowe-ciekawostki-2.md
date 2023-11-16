@@ -20,7 +20,7 @@ Okazało się, że produkt finalny nie tylko wygląda **źle**, ale żeby go zdo
 
 Jak widać, LEGO® testuje granice naszej nostalgii. Gdyby chociaż dodali rycerzowi tarczę z nadrukiem i specjalny hełm. Niestety w obecnym stanie oceniam owy zestaw jako **paździerz**. Znacznie lepiej sprawić sobie używany oryginał, chociaż i tu tanio nie jest, średnia cen używanych modeli wynosi 312 zł.
 
-![1700164703622](/assets/posts/2023-11-15-klockowe-ciekawostki-2/1700164703622.png "6048")
+![Zestaw 6048](/assets/posts/2023-11-15-klockowe-ciekawostki-2/1700164703622.png "6048")
 _Zestaw 6048. Zdjęcie ze strony [BrickLink](https://www.bricklink.com/v2/catalog/catalogitem.page?S=6048-1)_
 
 Gdyby ktoś jednak miał chrapkę na tę nowość, to będzie go można zdobyć ją w dniach 18-19.11.2023. Dodatkowo będą wtedy podwójne punkty Insiders i jakieś inne pierdoły, ale nie nich dzisiaj mowa. Obstawiam jednak, że dużo ludzi odpuści sobie **[40601](https://www.lego.com/pl-pl/product/majisto-s-magical-workshop-40601)** i będzie on dostępny jeszcze ze dwa razy w podobnej akcji.
