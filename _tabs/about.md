@@ -14,8 +14,7 @@ spędzisz tu trochę czasu i znajdziesz coś dla siebie.
 ### Klocki
 Na moim blogu znajdziesz przeglądy niektórych zestawów (również MOC-ów) LEGO, Cobi i innych, luźne przemyślenia a także moje własne projekty, które mogą stanowić inspirację do tworzenia Twoich unikatowych dzieł z klocków :) Ale to nie wszystko!
 
-Znajdziesz tu również fotografie klocków z których czasami tworzę komiksy.
-W niektórych z nich może być toporny humor gdyż w głowie mam twórczość Bartosza Walaszka (czyli niewiele).
+Znajdziesz tu również fotografie klocków, relacje z ciekawych miejsc i luźne przemyślenia związane z tym hobby.
 Przygotowuję je w wolnym czasie i są one dla mnie sposobem na wypoczynek i ekspresję myśli.
 
 Nie jest to jednak typowy blog z newsami ze świata klocków. Tych już trochę jest :)
@@ -36,7 +35,7 @@ Jeśli jednak interesuje Cię konkretny temat, radzę przejść na stronę `Kate
 ### Powiadomienia
 Pod każdym postem można zapisać się do listy powiadomień e-mail. Wybierz interesujące Cię tematy i czekaj na wieści.
 - Klocki - powiadomienia będą wysyłane gdy zbierze się kilka wpisów.
-- Komiksy i Tworzenie gier - dostaniesz wiadomość gdy tylko pojawi się nowy wpis lub komiks :)
+- Tworzenie gier - dostaniesz wiadomość gdy tylko pojawi się nowy wpis z devloga :)
 
 ### Polityka prywatności
 Znajdziesz ją pod tym adresem -> [link](https://brickfiction.pl/privacy-policy/).
