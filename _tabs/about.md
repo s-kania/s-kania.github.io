@@ -2,6 +2,7 @@
 # the default layout is 'page'
 icon: fas fa-info-circle
 order: 4
+title: O mnie
 ---
 
 ### Wstęp
@@ -28,19 +29,12 @@ Ja także pracuję nad moją własną grą i dzielę się tutaj moimi odkryciami
 To zdanie zainspirowało mnie do stworzenia tego miejsca. Wrzucając tu wpisy będę starał się
 wytłumaczyć zagadnienia z procesu kreowania gier, tak aby samemu lepiej je rozumieć. Czyli z korzyścią dla wszystkich.
 
-### Społeczność i komentarze
-Zapraszam również do komentowania moich tekstów i kontaktu. Można to robić pod każdym wpisem lub przez dowolnego klienta Matrix (działają także w przeglądarkach). Wszystkie posty są dostępne w przestrzeni którą utworzyłem -> [link](https://matrix.to/#/#brick-fiction:matrix.org). Każdy wpis na blogu to osobny pokój.
-
-Czym w ogóle jest ten cały Matrix? Nie, nie chodzi tu o film :)
-
-> Matrix to protokół do bezpiecznej, zdecentralizowanej komunikacji, który umożliwia komunikację tekstową, głosową i wideo przez internet. Jest to system open-source, co oznacza, że jego kod źródłowy jest publicznie dostępny i może być zmodyfikowany przez każdego dewelopera. Matrix pozwala na tworzenie niezależnych, interoperacyjnych sieci komunikacyjnych, które mogą ze sobą współpracować. Dzięki temu użytkownicy mogą korzystać z różnych aplikacji i usług, a jednocześnie komunikować się ze sobą w czasie rzeczywistym.
-
 ### Jak się poruszać po blogu?
 Na stronie głównej znajdziesz najnowsze wpisy.
 Jeśli jednak interesuje Cię konkretny temat, radzę przejść na stronę `Kategorie` i wybrać odpowiedni dział.
 
 ### Powiadomienia
-Pod każdym postem można zapisać się do listy powiadomień e-mail. Wybierz interesujące Cię tematy i czekaj na wieści 📰
+Pod każdym postem można zapisać się do listy powiadomień e-mail. Wybierz interesujące Cię tematy i czekaj na wieści.
 - Klocki - powiadomienia będą wysyłane gdy zbierze się kilka wpisów.
 - Komiksy i Tworzenie gier - dostaniesz wiadomość gdy tylko pojawi się nowy wpis lub komiks :)
 
@@ -51,4 +45,3 @@ Znajdziesz ją pod tym adresem -> [link](https://brickfiction.pl/privacy-policy/
 Email: kontakt@brickfiction.pl
 
 Po lewej stronie strony na samym spodzie znajdziesz również linki do moich social-mediów.
-

@@ -8,7 +8,6 @@ image: /assets/posts/2023-04-23/IMG_3795.JPEG
 preview_image:
     path: /assets/posts/2023-04-23/IMG_3795.JPEG
     alt: Minifigurki
-comments: false
 ---
 
 #### Kontrowersje

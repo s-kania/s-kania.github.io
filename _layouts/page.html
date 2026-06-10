@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+<article class="page">
+  {% unless page.hide_title %}
+    <header class="page-header">
+      <h1>{{ page.title | default: site.title }}</h1>
+    </header>
+  {% endunless %}
+
+  <div class="content">
+    {{ content }}
+  </div>
+</article>

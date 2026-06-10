@@ -8,7 +8,6 @@ image: /assets/posts/2023-07-24/preview.png
 preview_image:
     path: /assets/posts/2023-07-24/previewmini.png
     alt: MISB
-comments: true
 ---
 
 W krakowskim muzeum minifigurek LEGO®, 22 lipca odbyło się wydarzenie/konkurs polegający na ułożeniu jak największej ilości klocków.

@@ -1,0 +1,27 @@
+{% assign post = include.post %}
+<article class="post-card{% if include.compact %} compact{% endif %}">
+  {% if post.preview_image %}
+    {% assign preview_path = post.preview_image.path | default: post.preview_image %}
+    <a class="post-card-image" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1">
+      <img src="{{ preview_path | relative_url }}" alt="">
+    </a>
+  {% endif %}
+
+  <div>
+    <h2>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </h2>
+    <div class="post-meta">
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
+      {% if include.pinned %}<span>Przypiety</span>{% endif %}
+      {% if post.categories.size > 0 %}
+        <span>{{ post.categories | join: ", " }}</span>
+      {% endif %}
+    </div>
+    {% unless include.compact %}
+      <p>
+        {{ post.summary | default: post.excerpt | markdownify | strip_html | normalize_whitespace | truncate: 320 }}
+      </p>
+    {% endunless %}
+  </div>
+</article>

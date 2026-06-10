@@ -9,7 +9,6 @@ image:
     object_fit_contain: true
 preview_image:
     path: /assets/posts/2024-01-14-aukcja-duch-kijowa/1705245627734.png
-comments: false
 ---
 Postanowiłem wystawić na aukcję WOŚP jeden z moich klockowych zestawów, jest to COBI 5833 Duch Kijowa.
 To dobra okazja, żeby wesprzeć szczytny cel i dostać coś fajnego w zamian.

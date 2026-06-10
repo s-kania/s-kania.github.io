@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'pl' }}">
+  {% include head.html %}
+  <body>
+    <a class="skip-link" href="#main-content">Przejdz do tresci</a>
+    <div class="site-shell">
+      {% include sidebar.html %}
+      <main id="main-content" class="site-main">
+        {{ content }}
+      </main>
+    </div>
+    {% include footer.html %}
+  </body>
+</html>

@@ -1,0 +1,9 @@
+---
+layout: page
+---
+
+<div class="post-list compact">
+  {% for post in page.posts %}
+    {% include post-card.html post=post compact=true %}
+  {% endfor %}
+</div>

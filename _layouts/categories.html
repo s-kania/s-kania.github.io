@@ -1,0 +1,16 @@
+---
+layout: page
+title: Kategorie
+---
+
+<div class="taxonomy-list">
+  {% assign categories = site.categories | sort %}
+  {% for category in categories %}
+    {% assign category_slug = category[0] | slugify %}
+    {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
+    <a class="taxonomy-item" href="{{ category_url | relative_url }}">
+      <span>{{ category[0] }}</span>
+      <strong>{{ category[1].size }}</strong>
+    </a>
+  {% endfor %}
+</div>

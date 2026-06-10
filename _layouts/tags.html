@@ -1,0 +1,16 @@
+---
+layout: page
+title: Tagi
+---
+
+<div class="taxonomy-list">
+  {% assign tags = site.tags | sort %}
+  {% for tag in tags %}
+    {% assign tag_slug = tag[0] | slugify %}
+    {% assign tag_url = "/tags/" | append: tag_slug | append: "/" %}
+    <a class="taxonomy-item" href="{{ tag_url | relative_url }}">
+      <span>{{ tag[0] }}</span>
+      <strong>{{ tag[1].size }}</strong>
+    </a>
+  {% endfor %}
+</div>

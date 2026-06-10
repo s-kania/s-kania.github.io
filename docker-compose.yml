@@ -1,0 +1,29 @@
+services:
+  site:
+    build: .
+    command: bundle exec jekyll serve --host 0.0.0.0 --livereload --drafts --force_polling
+    ports:
+      - "4000:4000"
+      - "35729:35729"
+    volumes:
+      - .:/srv/jekyll
+      - bundle:/usr/local/bundle
+
+  build:
+    build: .
+    command: bundle exec jekyll build
+    environment:
+      JEKYLL_ENV: production
+    volumes:
+      - .:/srv/jekyll
+      - bundle:/usr/local/bundle
+
+  test:
+    build: .
+    command: /bin/sh -lc "JEKYLL_ENV=production bundle exec jekyll build && bundle exec htmlproofer _site --disable-external --allow-hash-href"
+    volumes:
+      - .:/srv/jekyll
+      - bundle:/usr/local/bundle
+
+volumes:
+  bundle:
