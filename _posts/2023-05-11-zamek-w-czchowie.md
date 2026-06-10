@@ -3,7 +3,6 @@ title: Zamek w Czchowie opanowany przez Black Falcons - Galeria
 author: rybeusz
 date: 2023-05-11 0:28:00 +0100
 categories: [Galerie]
-tags: [castle, black falcons, galeria, zamki, machiny]
 image: /assets/posts/2023-05-11/IMG_4015.JPEG
 preview_image:
     path: /assets/posts/2023-05-11/IMG_4005.JPEG

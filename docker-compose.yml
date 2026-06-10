@@ -11,7 +11,7 @@ services:
 
   build:
     build: .
-    command: bundle exec jekyll build
+    command: /bin/sh -lc "bundle exec jekyll clean && bundle exec jekyll build"
     environment:
       JEKYLL_ENV: production
     volumes:
@@ -20,7 +20,7 @@ services:
 
   test:
     build: .
-    command: /bin/sh -lc "JEKYLL_ENV=production bundle exec jekyll build && bundle exec htmlproofer _site --disable-external --allow-hash-href"
+    command: /bin/sh -lc "bundle exec jekyll clean && JEKYLL_ENV=production bundle exec jekyll build && bundle exec htmlproofer _site --disable-external --allow-hash-href"
     volumes:
       - .:/srv/jekyll
       - bundle:/usr/local/bundle

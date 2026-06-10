@@ -72,12 +72,10 @@ exclude:
   - .playwright-cli
 
 jekyll-archives:
-  enabled: [categories, tags]
+  enabled: [categories]
   layouts:
     category: archive
-    tag: archive
   permalinks:
-    tag: /tags/:name/
     category: /categories/:name/
 
 plugins:

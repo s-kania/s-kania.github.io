@@ -3,7 +3,6 @@ title: Aukcja charytatywna zestawu COBI 5833 Duch Kijowa
 author: rybeusz
 date: 2024-01-14 12:00:00 +0100
 categories: [Inne]
-tags: [cobi]
 image:
     path: /assets/posts/2024-01-14-aukcja-duch-kijowa/1705245627734.png
     object_fit_contain: true

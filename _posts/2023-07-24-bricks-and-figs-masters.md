@@ -3,7 +3,6 @@ title: Układaliśmy retro zestawy w muzeum Bricks&Figs!
 author: rybeusz
 date: 2023-07-24 12:00:00 +0100
 categories: [Ciekawostki]
-tags: [lego, muzeum, ciekawostki]
 image: /assets/posts/2023-07-24/preview.png
 preview_image:
     path: /assets/posts/2023-07-24/previewmini.png

@@ -43,17 +43,6 @@ layout: default
       </div>
     {% endif %}
 
-    {% if page.tags.size > 0 %}
-      <div class="taxonomy-row">
-        <span>Tagi:</span>
-        {% for tag in page.tags %}
-          {% assign tag_slug = tag | slugify %}
-          {% assign tag_url = "/tags/" | append: tag_slug | append: "/" %}
-          <a href="{{ tag_url | relative_url }}">{{ tag }}</a>
-        {% endfor %}
-      </div>
-    {% endif %}
-
     <nav class="post-nav" aria-label="Nawigacja miedzy wpisami">
       {% if page.previous %}
         <a href="{{ page.previous.url | relative_url }}">Starszy: {{ page.previous.title }}</a>
