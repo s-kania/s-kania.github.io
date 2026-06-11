@@ -73,17 +73,26 @@ layout: default
           <span class="window-control close" role="button" aria-label="Zamknij okno kategorii" tabindex="0"></span>
         </span>
       </h2>
-      <div class="category-stack">
-        {% assign categories = site.categories | sort %}
-        {% for category in categories limit:5 %}
-          {% assign category_slug = category[0] | slugify %}
-          {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
-          <a href="{{ category_url | relative_url }}">
-            <span class="folder-icon">{% include icon.html name="folder" %}</span>
-            <span>{{ category[0] | upcase }}</span>
-            <strong>{{ category[1].size }}</strong>
-          </a>
-        {% endfor %}
+      <div class="category-body">
+        <div class="category-stack" id="category-stack">
+          {% assign categories = site.categories | sort %}
+          {% for category in categories limit:5 %}
+            {% assign category_slug = category[0] | slugify %}
+            {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
+            <a href="{{ category_url | relative_url }}">
+              <span class="folder-icon">{% include icon.html name="folder" %}</span>
+              <span>{{ category[0] | upcase }}</span>
+              <strong>{{ category[1].size }}</strong>
+            </a>
+          {% endfor %}
+        </div>
+        <div class="category-scrollbar" aria-hidden="true">
+          <button class="scroll-button scroll-up" type="button" tabindex="-1"></button>
+          <div class="scroll-track">
+            <span class="scroll-thumb"></span>
+          </div>
+          <button class="scroll-button scroll-down" type="button" tabindex="-1"></button>
+        </div>
       </div>
     </section>
 
@@ -99,6 +108,11 @@ layout: default
   (() => {
     const systemTime = document.querySelector('.system-panel .system-time');
     const categorySection = document.querySelector('.category-section');
+    const categoryStack = document.querySelector('.category-stack');
+    const categoryScrollbar = document.querySelector('.category-scrollbar');
+    const categoryScrollThumb = document.querySelector('.category-scrollbar .scroll-thumb');
+    const categoryScrollUp = document.querySelector('.category-scrollbar .scroll-up');
+    const categoryScrollDown = document.querySelector('.category-scrollbar .scroll-down');
     const closeControl = document.querySelector('.category-section .window-control.close');
 
     if (!systemTime) return;
@@ -145,6 +159,81 @@ layout: default
           runCrash();
         }
       });
+    }
+
+    if (categoryStack && categoryScrollbar && categoryScrollThumb) {
+      const getCategoryScrollMetrics = () => {
+        const track = categoryScrollbar.querySelector('.scroll-track');
+        const maxScroll = categoryStack.scrollHeight - categoryStack.clientHeight;
+        const trackHeight = track.clientHeight;
+        const thumbHeight = maxScroll <= 1
+          ? trackHeight
+          : Math.max(24, Math.round((categoryStack.clientHeight / categoryStack.scrollHeight) * trackHeight));
+
+        return {
+          maxScroll,
+          thumbHeight,
+          trackHeight,
+          thumbRange: Math.max(0, trackHeight - thumbHeight)
+        };
+      };
+
+      const syncCategoryScrollbar = () => {
+        const { maxScroll, thumbHeight, thumbRange } = getCategoryScrollMetrics();
+        categoryScrollbar.classList.toggle('is-hidden', maxScroll <= 1);
+        categoryScrollbar.classList.toggle('is-at-top', categoryStack.scrollTop <= 1);
+        categoryScrollbar.classList.toggle('is-at-bottom', categoryStack.scrollTop >= maxScroll - 1);
+
+        if (maxScroll <= 1) {
+          categoryScrollThumb.style.height = '100%';
+          categoryScrollThumb.style.transform = 'translateY(0)';
+          return;
+        }
+
+        const thumbTop = Math.round((categoryStack.scrollTop / maxScroll) * thumbRange);
+
+        categoryScrollThumb.style.height = `${thumbHeight}px`;
+        categoryScrollThumb.style.transform = `translateY(${thumbTop}px)`;
+      };
+
+      let dragStartY = 0;
+      let dragStartScrollTop = 0;
+
+      categoryScrollThumb.addEventListener('pointerdown', (event) => {
+        const { maxScroll, thumbRange } = getCategoryScrollMetrics();
+        if (maxScroll <= 1 || thumbRange <= 0) return;
+
+        event.preventDefault();
+        dragStartY = event.clientY;
+        dragStartScrollTop = categoryStack.scrollTop;
+        categoryScrollThumb.classList.add('is-dragging');
+        categoryScrollThumb.setPointerCapture(event.pointerId);
+      });
+
+      categoryScrollThumb.addEventListener('pointermove', (event) => {
+        if (!categoryScrollThumb.classList.contains('is-dragging')) return;
+
+        const { maxScroll, thumbRange } = getCategoryScrollMetrics();
+        const dragDelta = event.clientY - dragStartY;
+        categoryStack.scrollTop = dragStartScrollTop + (dragDelta / thumbRange) * maxScroll;
+      });
+
+      const endThumbDrag = (event) => {
+        if (!categoryScrollThumb.classList.contains('is-dragging')) return;
+
+        categoryScrollThumb.classList.remove('is-dragging');
+        if (categoryScrollThumb.hasPointerCapture(event.pointerId)) {
+          categoryScrollThumb.releasePointerCapture(event.pointerId);
+        }
+      };
+
+      categoryScrollThumb.addEventListener('pointerup', endThumbDrag);
+      categoryScrollThumb.addEventListener('pointercancel', endThumbDrag);
+      categoryStack.addEventListener('scroll', syncCategoryScrollbar);
+      window.addEventListener('resize', syncCategoryScrollbar);
+      categoryScrollUp?.addEventListener('click', () => categoryStack.scrollBy({ top: -42, behavior: 'smooth' }));
+      categoryScrollDown?.addEventListener('click', () => categoryStack.scrollBy({ top: 42, behavior: 'smooth' }));
+      requestAnimationFrame(syncCategoryScrollbar);
     }
   })();
 </script>
