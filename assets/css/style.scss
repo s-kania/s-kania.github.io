@@ -153,9 +153,9 @@ img {
 .home-hero {
   align-items: start;
   display: grid;
-  gap: 3.8rem;
+  gap: 2.25rem;
   grid-template-columns: minmax(0, 1fr) 24.4rem;
-  margin-bottom: 2.15rem;
+  margin-bottom: 2.25rem;
 }
 
 .home-hero h1 {
@@ -337,6 +337,8 @@ img {
 }
 
 .home-terminal {
+  align-content: start;
+  align-items: start;
   display: grid;
   gap: 1.75rem;
 }
@@ -359,12 +361,13 @@ img {
 .quick-icons a {
   align-items: center;
   border: 1px solid var(--hairline);
-  display: flex;
+  display: grid;
   font-size: 0.74rem;
   font-weight: 900;
   height: 3.625rem;
-  justify-content: center;
+  line-height: 1;
   overflow: hidden;
+  place-items: center;
   text-transform: uppercase;
 }
 
@@ -411,7 +414,9 @@ img {
 }
 
 .system-panel {
+  background: rgba(232, 229, 220, 0.56);
   border: 1px solid var(--hairline);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.38);
   padding: 0.9rem 1rem;
 }
 
@@ -420,8 +425,18 @@ img {
   margin: 0.25rem 0;
 }
 
+.system-panel p:first-child {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.system-panel p:last-child {
+  font-weight: 500;
+}
+
 .system-panel span {
-  float: right;
+  margin-left: auto;
 }
 
 .page,
@@ -789,6 +804,8 @@ img {
   }
 
   .layout-home .home-terminal {
+    align-content: start;
+    align-items: start;
     gap: clamp(0.75rem, 1.45vh, 1.1rem);
   }
 
@@ -973,11 +990,20 @@ img {
   }
 
   .topbar {
-    grid-template-columns: 1fr;
+    align-items: start;
+    grid-template-columns: minmax(0, 1fr) max-content;
+  }
+
+  .system-brand {
+    grid-column: 1 / -1;
   }
 
   .top-nav {
     justify-content: flex-start;
+  }
+
+  .version-indicator {
+    justify-self: end;
   }
 
   .home-hero,
@@ -1006,6 +1032,15 @@ img {
 
   .top-nav {
     gap: 0.75rem 1rem;
+  }
+
+  .top-nav a,
+  .version-indicator {
+    font-size: 0.68rem;
+  }
+
+  .top-nav {
+    gap: 0.5rem;
   }
 
   .home-hero {
