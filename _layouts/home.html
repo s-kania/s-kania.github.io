@@ -70,7 +70,7 @@ layout: default
         <span class="window-controls">
           <span class="window-control minimize"></span>
           <a class="window-control maximize" href="{{ '/categories/' | relative_url }}" aria-label="Kategorie"></a>
-          <span class="window-control close"></span>
+          <span class="window-control close" role="button" aria-label="Zamknij okno kategorii" tabindex="0"></span>
         </span>
       </h2>
       <div class="category-stack">
@@ -98,6 +98,9 @@ layout: default
 <script>
   (() => {
     const systemTime = document.querySelector('.system-panel .system-time');
+    const categorySection = document.querySelector('.category-section');
+    const closeControl = document.querySelector('.category-section .window-control.close');
+
     if (!systemTime) return;
 
     const formatter = new Intl.DateTimeFormat('pl-PL', {
@@ -113,5 +116,35 @@ layout: default
 
     tick();
     setInterval(tick, 1000);
+
+    if (categorySection && closeControl) {
+      const runCrash = () => {
+        categorySection.classList.remove('is-crash');
+        requestAnimationFrame(() => {
+          categorySection.classList.add('is-crash');
+        });
+      };
+
+      const endCrash = () => {
+        categorySection.classList.remove('is-crash');
+      };
+
+      categorySection.addEventListener('animationend', (event) => {
+        if (event.target === categorySection && event.animationName === 'categoryWindowCrash') {
+          endCrash();
+        }
+      });
+
+      closeControl.addEventListener('click', () => {
+        runCrash();
+      });
+
+      closeControl.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          runCrash();
+        }
+      });
+    }
   })();
 </script>
