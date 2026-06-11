@@ -409,7 +409,7 @@ img {
 .category-stack {
   display: grid;
   gap: 0.25rem;
-  padding: 0.65rem 0.75rem 0;
+  padding: 0.65rem 0.75rem;
 }
 
 .category-stack a {
@@ -424,11 +424,6 @@ img {
 .category-stack a:last-child {
   border-bottom: 0;
   padding-bottom: 0.62rem;
-}
-
-.layout-home .category-stack a:last-child {
-  padding-bottom: clamp(0.34rem, 0.82vh, 0.52rem);
-  padding-top: clamp(0.34rem, 0.82vh, 0.52rem);
 }
 
 .category-section {
@@ -1054,7 +1049,7 @@ img {
     align-content: stretch;
     align-items: stretch;
     gap: clamp(0.75rem, 1.45vh, 1.1rem);
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto minmax(0, 1fr);
     min-height: 0;
   }
 
@@ -1069,7 +1064,7 @@ img {
   }
 
   .layout-home .category-section {
-    align-self: stretch;
+    align-self: start;
     display: flex;
     flex-direction: column;
     min-height: 0;
@@ -1083,7 +1078,7 @@ img {
   .layout-home .category-stack {
     align-content: start;
     gap: clamp(0.18rem, 0.55vh, 0.38rem);
-    padding: clamp(0.46rem, 0.9vh, 0.7rem) clamp(0.55rem, 0.85vw, 0.75rem) 0;
+    padding: clamp(0.46rem, 0.9vh, 0.7rem) clamp(0.55rem, 0.85vw, 0.75rem);
   }
 
   .layout-home .system-panel {
@@ -1234,7 +1229,7 @@ img {
 
   .layout-home .category-stack {
     gap: 0.18rem;
-    padding: 0.42rem 0.55rem 0;
+    padding: 0.42rem 0.55rem;
   }
 
   .layout-home .category-stack a:last-child {
