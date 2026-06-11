@@ -1,41 +1,21 @@
-<aside class="sidebar">
-  <a class="brand" href="{{ '/' | relative_url }}">
-    {% if site.avatar %}
-      <img src="{{ site.avatar | relative_url }}" alt="">
-    {% endif %}
-    <span class="brand-title">{{ site.title }}</span>
-    <span class="brand-subtitle">{{ site.tagline }}</span>
+<header class="topbar">
+  <a class="system-brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}">
+    <span class="brand-glyph">>_</span>
+    <span>bf_blog.sys</span>
   </a>
 
-  <nav class="site-nav" aria-label="Glowne">
-    <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}aria-current="page"{% endif %}>Blog</a>
+  <nav class="top-nav" aria-label="Glowne">
+    <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}aria-current="page"{% endif %}>STRONA GŁÓWNA</a>
     {% assign tabs = site.tabs | sort: "order" %}
     {% for tab in tabs %}
       {% unless tab.hidden %}
         {% assign tab_key = tab.url | remove: "/" %}
         <a href="{{ tab.url | relative_url }}" {% if tab.url == page.url %}aria-current="page"{% endif %}>
-          {{ site.data.locales[site.lang].tabs[tab_key] | default: tab.title | default: tab_key }}
+          {{ site.data.locales[site.lang].tabs[tab_key] | default: tab.title | default: tab_key | upcase }}
         </a>
       {% endunless %}
     {% endfor %}
   </nav>
 
-  <nav class="social-links" aria-label="Kontakt">
-    {% for entry in site.data.contact %}
-      {% case entry.type %}
-        {% when 'email' %}
-          {% assign url = 'mailto:' | append: site.social.email %}
-        {% when 'rss' %}
-          {% assign url = '/feed.xml' | relative_url %}
-        {% else %}
-          {% assign url = entry.url %}
-      {% endcase %}
-
-      {% if url %}
-        <a href="{{ url }}" {% unless entry.noblank %}target="_blank" rel="noopener noreferrer"{% endunless %}>
-          {{ entry.type }}
-        </a>
-      {% endif %}
-    {% endfor %}
-  </nav>
-</aside>
+  <span class="version-indicator">v1.0.0</span>
+</header>

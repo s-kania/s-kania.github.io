@@ -4,15 +4,19 @@ layout: default
 
 <article class="post">
   <header class="post-header">
+    <div class="terminal-label">POST_{{ page.date | date: "%Y%m%d" }}.MD</div>
     <h1>{{ page.title }}</h1>
     <div class="post-meta">
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d.%m.%Y" }}</time>
       {% if page.last_modified_at %}
-        <span>Aktualizacja: {{ page.last_modified_at | date: "%d.%m.%Y" }}</span>
+        <span>UPDATED {{ page.last_modified_at | date: "%d.%m.%Y" }}</span>
+      {% endif %}
+      {% if page.categories.size > 0 %}
+        <span>{{ page.categories | join: " / " }}</span>
       {% endif %}
       {% if page.author %}
         {% assign author = site.data.authors[page.author] %}
-        <span>Autor: {{ author.name | default: page.author }}</span>
+        <span>{{ author.name | default: page.author }}</span>
       {% endif %}
     </div>
 
@@ -27,31 +31,37 @@ layout: default
     {% endif %}
   </header>
 
-  <div class="content">
-    {{ content }}
+  <div class="post-layout">
+    <div class="content">
+      {{ content }}
+    </div>
+
+    <aside class="post-side">
+      {% if page.categories.size > 0 %}
+        <section class="terminal-section">
+          <h2>KATEGORIE</h2>
+          <div class="terminal-links">
+            {% for category in page.categories %}
+              {% assign category_slug = category | slugify %}
+              {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
+              <a href="{{ category_url | relative_url }}">&gt; {{ category }}</a>
+            {% endfor %}
+          </div>
+        </section>
+      {% endif %}
+
+      <nav class="post-nav" aria-label="Nawigacja miedzy wpisami">
+        {% if page.previous %}
+          <a href="{{ page.previous.url | relative_url }}">STARSZY -> {{ page.previous.title }}</a>
+        {% endif %}
+        {% if page.next %}
+          <a href="{{ page.next.url | relative_url }}">NOWSZY -> {{ page.next.title }}</a>
+        {% endif %}
+      </nav>
+    </aside>
   </div>
 
   <footer class="post-footer">
-    {% if page.categories.size > 0 %}
-      <div class="taxonomy-row">
-        <span>Kategorie:</span>
-        {% for category in page.categories %}
-          {% assign category_slug = category | slugify %}
-          {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
-          <a href="{{ category_url | relative_url }}">{{ category }}</a>
-        {% endfor %}
-      </div>
-    {% endif %}
-
-    <nav class="post-nav" aria-label="Nawigacja miedzy wpisami">
-      {% if page.previous %}
-        <a href="{{ page.previous.url | relative_url }}">Starszy: {{ page.previous.title }}</a>
-      {% endif %}
-      {% if page.next %}
-        <a href="{{ page.next.url | relative_url }}">Nowszy: {{ page.next.title }}</a>
-      {% endif %}
-    </nav>
-
     {% include newsletter.html %}
   </footer>
 </article>

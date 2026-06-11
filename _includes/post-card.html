@@ -1,27 +1,34 @@
 {% assign post = include.post %}
-<article class="post-card{% if include.compact %} compact{% endif %}">
-  {% if post.preview_image %}
-    {% assign preview_path = post.preview_image.path | default: post.preview_image %}
-    <a class="post-card-image" href="{{ post.url | relative_url }}" aria-hidden="true" tabindex="-1">
-      <img src="{{ preview_path | relative_url }}" alt="">
-    </a>
-  {% endif %}
+{% assign post_number = include.number | default: 1 %}
+{% assign card_category = post.categories | first | default: "notatki" %}
+{% assign preview = post.preview_image.path | default: post.preview_image | default: post.image.path | default: post.image %}
 
-  <div>
+<article class="post-card{% if include.featured %} featured{% endif %}{% if include.featured and preview == nil %} no-preview{% endif %}{% if include.compact %} compact{% endif %}">
+  <div class="card-copy">
+    <div class="card-kicker">
+      <span>{{ card_category | slugify | replace: "-", "_" | upcase }}_{{ post_number | prepend: "0" | slice: -2, 2 }}.ART</span>
+      {% unless include.featured %}
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
+      {% endunless %}
+    </div>
     <h2>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     </h2>
-    <div class="post-meta">
-      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
-      {% if include.pinned %}<span>Przypiety</span>{% endif %}
-      {% if post.categories.size > 0 %}
-        <span>{{ post.categories | join: ", " }}</span>
+    {% unless include.compact %}
+      <p>{{ post.summary | default: post.excerpt | markdownify | strip_html | normalize_whitespace }}</p>
+    {% endunless %}
+    <a class="read-more" href="{{ post.url | relative_url }}">CZYTAJ DALEJ -></a>
+  </div>
+
+  {% if include.featured %}
+    <div class="card-art">
+      {% if preview %}
+        <img src="{{ preview | relative_url }}" alt="">
+      {% else %}
+        <span>{{ post_number | prepend: "0" | slice: -2, 2 }}</span>
       {% endif %}
     </div>
-    {% unless include.compact %}
-      <p>
-        {{ post.summary | default: post.excerpt | markdownify | strip_html | normalize_whitespace | truncate: 320 }}
-      </p>
-    {% endunless %}
-  </div>
+  {% else %}
+    <span class="card-number">{{ post_number | prepend: "0" | slice: -2, 2 }}</span>
+  {% endif %}
 </article>

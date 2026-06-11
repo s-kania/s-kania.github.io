@@ -2,20 +2,85 @@
 layout: default
 ---
 
-<section class="home-intro">
+{% assign posts = site.posts | where_exp: "post", "post.hidden != true" %}
+{% assign featured = posts[0] %}
+
+<section class="home-hero">
   <h1>{{ site.title }}</h1>
-  <p>{{ site.description }}</p>
+  <div class="hero-aside">
+    <p>Notatki z małych gier, prostych systemów i rzeczy zbudowanych z klocków.</p>
+    <p class="prompt-line">&gt; devlog / klocki / notatki</p>
+  </div>
 </section>
 
-<section class="post-list" aria-label="Najnowsze wpisy">
-  {% assign pinned_posts = site.posts | where: "pin", true %}
-  {% assign regular_posts = site.posts | where_exp: "post", "post.pin != true and post.hidden != true" %}
+<div class="home-grid">
+  <section class="home-feed" aria-label="Najnowsze wpisy">
+    {% if featured %}
+      {% include post-card.html post=featured number=1 featured=true %}
+    {% endif %}
 
-  {% for post in pinned_posts %}
-    {% include post-card.html post=post pinned=true %}
-  {% endfor %}
+    <div class="post-card-grid">
+      {% for post in posts offset:1 limit:2 %}
+        {% assign card_number = forloop.index | plus: 1 %}
+        {% include post-card.html post=post number=card_number %}
+      {% endfor %}
+    </div>
+  </section>
 
-  {% for post in regular_posts %}
-    {% include post-card.html post=post %}
-  {% endfor %}
-</section>
+  <aside class="home-terminal" aria-label="Panel boczny">
+    <section class="terminal-section">
+      <h2>SZYBKI DOSTEP</h2>
+      <div class="quick-icons">
+        {% for entry in site.data.contact %}
+          {% case entry.type %}
+            {% when 'email' %}
+              {% assign url = 'mailto:' | append: site.social.email %}
+              {% assign label = 'mail' %}
+            {% when 'rss' %}
+              {% assign url = '/feed.xml' | relative_url %}
+              {% assign label = 'rss' %}
+            {% when 'instagram' %}
+              {% assign url = entry.url %}
+              {% assign label = 'ig' %}
+            {% when 'youtube' %}
+              {% assign url = entry.url %}
+              {% assign label = 'yt' %}
+            {% else %}
+              {% assign url = entry.url %}
+              {% assign label = entry.type %}
+          {% endcase %}
+          {% if url %}
+            <a href="{{ url }}" {% unless entry.noblank %}target="_blank" rel="noopener noreferrer"{% endunless %}>{{ label }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <nav class="terminal-links" aria-label="Skroty">
+        <a href="{{ '/about/' | relative_url }}">&gt; ./about_me.txt</a>
+        <a href="{{ '/categories/' | relative_url }}">&gt; ./categories</a>
+        <a href="{{ '/archives/' | relative_url }}">&gt; ./archive</a>
+      </nav>
+    </section>
+
+    <section class="terminal-section">
+      <h2>KATEGORIE</h2>
+      <div class="category-stack">
+        {% assign categories = site.categories | sort %}
+        {% for category in categories limit:5 %}
+          {% assign category_slug = category[0] | slugify %}
+          {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
+          <a href="{{ category_url | relative_url }}">
+            <span class="folder-icon"></span>
+            <span>{{ category[0] | upcase }}</span>
+            <strong>{{ category[1].size }}</strong>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="system-panel">
+      <p>&gt; SYSTEM: OK <span>{{ 'now' | date: "%H:%M:%S" }}</span></p>
+      <p>BF_BLOG v1.0.0</p>
+      <p>&copy; {{ 'now' | date: "%Y" }} Brick Fiction</p>
+    </section>
+  </aside>
+</div>
