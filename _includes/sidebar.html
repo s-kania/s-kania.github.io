@@ -10,9 +10,11 @@
     {% for tab in tabs %}
       {% unless tab.hidden %}
         {% assign tab_key = tab.url | remove: "/" %}
-        <a href="{{ tab.url | relative_url }}" {% if tab.url == page.url %}aria-current="page"{% endif %}>
-          {{ site.data.locales[site.lang].tabs[tab_key] | default: tab.title | default: tab_key | upcase }}
-        </a>
+        {% unless tab.url == '/categories/' %}
+          <a href="{{ tab.url | relative_url }}" {% if tab.url == page.url %}aria-current="page"{% endif %}>
+            {{ site.data.locales[site.lang].tabs[tab_key] | default: tab.title | default: tab_key | upcase }}
+          </a>
+        {% endunless %}
       {% endunless %}
     {% endfor %}
   </nav>

@@ -460,6 +460,9 @@ img {
 .window-control {
   display: block;
   height: 0.72rem;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
   position: relative;
   width: 0.72rem;
 }
