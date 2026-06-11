@@ -88,9 +88,30 @@ layout: default
     </section>
 
     <section class="system-panel">
-      <p>&gt; SYSTEM: OK <span>{{ 'now' | date: "%H:%M:%S" }}</span></p>
+      <p>&gt; SYSTEM: OK <span class="system-time">{{ 'now' | date: "%H:%M:%S" }}</span></p>
       <p>BF_BLOG v1.0.0</p>
       <p>&copy; {{ 'now' | date: "%Y" }} Brick Fiction</p>
     </section>
   </aside>
 </div>
+
+<script>
+  (() => {
+    const systemTime = document.querySelector('.system-panel .system-time');
+    if (!systemTime) return;
+
+    const formatter = new Intl.DateTimeFormat('pl-PL', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    });
+
+    const tick = () => {
+      systemTime.textContent = formatter.format(new Date());
+    };
+
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
