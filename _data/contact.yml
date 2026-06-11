@@ -1,8 +1,10 @@
 -
   type: instagram
+  handle: '@brick.fiction'
   url: 'https://www.instagram.com/brick.fiction/'
 -
   type: youtube
+  handle: '@brickfiction'
   url: 'https://www.youtube.com/@brickfiction'
 -
   type: email

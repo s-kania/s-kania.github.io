@@ -347,28 +347,52 @@ img {
   border-bottom: 1.5px solid var(--hairline);
   font-size: 1rem;
   font-weight: 950;
-  margin: 0 0 1.2rem;
+  margin: 0;
   padding-bottom: 0.65rem;
 }
 
 .quick-icons {
   display: grid;
-  gap: 1.15rem;
-  grid-template-columns: repeat(4, 3.625rem);
   margin-bottom: 1.2rem;
+  padding-top: 0.35rem;
 }
 
 .quick-icons a {
   align-items: center;
-  border: 1px solid var(--hairline);
+  border-bottom: 1px dotted var(--soft-line);
   display: grid;
-  font-size: 0.74rem;
-  font-weight: 900;
-  height: 3.625rem;
-  line-height: 1;
+  gap: 1.25rem;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  min-height: 3.15rem;
   overflow: hidden;
-  place-items: center;
-  text-transform: uppercase;
+  padding: 0.35rem 0;
+  text-decoration: none;
+}
+
+.ui-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.quick-icons .ui-icon {
+  height: 1.85rem;
+  justify-self: center;
+  stroke-width: 2.35;
+  width: 1.85rem;
+}
+
+.quick-icons .brand-icon {
+  fill: currentColor;
+  stroke: none;
+}
+
+.quick-icons span {
+  font-weight: 900;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .terminal-links {
@@ -395,22 +419,16 @@ img {
 }
 
 .folder-icon {
-  border: 1.5px solid var(--ink);
-  display: inline-block;
-  height: 0.72rem;
-  position: relative;
-  width: 1.05rem;
+  display: grid;
+  height: 1.1rem;
+  place-items: center;
+  width: 1.2rem;
 }
 
-.folder-icon::before {
-  border-left: 1.5px solid var(--ink);
-  border-top: 1.5px solid var(--ink);
-  content: "";
-  height: 0.25rem;
-  left: 0.1rem;
-  position: absolute;
-  top: -0.32rem;
-  width: 0.45rem;
+.folder-icon .ui-icon {
+  height: 1.1rem;
+  stroke-width: 2.2;
+  width: 1.2rem;
 }
 
 .system-panel {
@@ -810,7 +828,7 @@ img {
   }
 
   .layout-home .terminal-section h2 {
-    margin-bottom: clamp(0.55rem, 1.3vh, 0.9rem);
+    margin-bottom: 0;
     padding-bottom: 0.5rem;
   }
 
@@ -933,18 +951,22 @@ img {
   }
 
   .layout-home .terminal-section h2 {
-    margin-bottom: 0.8rem;
     padding-bottom: 0.45rem;
   }
 
   .layout-home .quick-icons {
-    gap: 0.8rem;
-    grid-template-columns: repeat(4, 3.1rem);
     margin-bottom: 0.8rem;
+    padding-top: 0.2rem;
   }
 
   .layout-home .quick-icons a {
-    height: 3.1rem;
+    min-height: 2.35rem;
+    padding: 0.2rem 0;
+  }
+
+  .layout-home .quick-icons .ui-icon {
+    height: 1.45rem;
+    width: 1.45rem;
   }
 
   .layout-home .terminal-links a,

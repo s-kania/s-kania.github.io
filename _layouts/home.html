@@ -36,29 +36,32 @@ layout: default
             {% when 'email' %}
               {% assign url = 'mailto:' | append: site.social.email %}
               {% assign label = 'mail' %}
+              {% assign link_text = site.social.email %}
             {% when 'rss' %}
               {% assign url = '/feed.xml' | relative_url %}
               {% assign label = 'rss' %}
+              {% assign link_text = '/feed.xml' %}
             {% when 'instagram' %}
               {% assign url = entry.url %}
               {% assign label = 'ig' %}
+              {% assign link_text = entry.handle %}
             {% when 'youtube' %}
               {% assign url = entry.url %}
               {% assign label = 'yt' %}
+              {% assign link_text = entry.handle %}
             {% else %}
               {% assign url = entry.url %}
               {% assign label = entry.type %}
+              {% assign link_text = entry.type %}
           {% endcase %}
           {% if url %}
-            <a href="{{ url }}" {% unless entry.noblank %}target="_blank" rel="noopener noreferrer"{% endunless %}>{{ label }}</a>
+            <a href="{{ url }}" aria-label="{{ label }}" {% unless entry.noblank %}target="_blank" rel="noopener noreferrer"{% endunless %}>
+              {% include icon.html name=label %}
+              <span>{{ link_text }}</span>
+            </a>
           {% endif %}
         {% endfor %}
       </div>
-      <nav class="terminal-links" aria-label="Skroty">
-        <a href="{{ '/about/' | relative_url }}">&gt; ./about_me.txt</a>
-        <a href="{{ '/categories/' | relative_url }}">&gt; ./categories</a>
-        <a href="{{ '/archives/' | relative_url }}">&gt; ./archive</a>
-      </nav>
     </section>
 
     <section class="terminal-section">
@@ -69,7 +72,7 @@ layout: default
           {% assign category_slug = category[0] | slugify %}
           {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
           <a href="{{ category_url | relative_url }}">
-            <span class="folder-icon"></span>
+            <span class="folder-icon">{% include icon.html name="folder" %}</span>
             <span>{{ category[0] | upcase }}</span>
             <strong>{{ category[1].size }}</strong>
           </a>
