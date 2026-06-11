@@ -341,12 +341,13 @@ img {
   align-items: start;
   display: grid;
   gap: 1.75rem;
+  grid-template-rows: auto auto auto;
 }
 
 .terminal-section h2 {
   border-bottom: 1.5px solid var(--hairline);
-  font-size: 1rem;
-  font-weight: 950;
+  font-size: 0.9rem;
+  font-weight: 850;
   margin: 0;
   padding-bottom: 0.65rem;
 }
@@ -407,6 +408,8 @@ img {
 
 .category-stack {
   display: grid;
+  gap: 0.25rem;
+  padding: 0.65rem 0.75rem 0;
 }
 
 .category-stack a {
@@ -415,7 +418,88 @@ img {
   display: grid;
   gap: 0.85rem;
   grid-template-columns: 1.2rem 1fr max-content;
-  padding: 0.45rem 0;
+  padding: 0.62rem 0;
+}
+
+.category-stack a:last-child {
+  border-bottom: 0;
+  padding-bottom: 0.62rem;
+}
+
+.layout-home .category-stack a:last-child {
+  padding-bottom: clamp(0.34rem, 0.82vh, 0.52rem);
+  padding-top: clamp(0.34rem, 0.82vh, 0.52rem);
+}
+
+.category-section {
+  background: rgba(232, 229, 220, 0.42);
+  border: 1px solid var(--hairline);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.38),
+    2px 2px 0 rgba(0, 0, 0, 0.12);
+  padding: 0;
+  width: 100%;
+}
+
+.category-section h2 {
+  align-items: center;
+  background: rgba(232, 229, 220, 0.56);
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.55rem 0.7rem 0.5rem;
+}
+
+.window-controls {
+  align-items: center;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(3, 0.72rem);
+}
+
+.window-control {
+  display: block;
+  height: 0.72rem;
+  position: relative;
+  width: 0.72rem;
+}
+
+.window-control::before,
+.window-control::after {
+  content: "";
+  position: absolute;
+}
+
+.window-control.minimize::before {
+  border-top: 1.5px solid currentColor;
+  left: 0.06rem;
+  right: 0.06rem;
+  top: 0.48rem;
+}
+
+.window-control.maximize::before {
+  border: 1.5px solid currentColor;
+  height: 0.52rem;
+  left: 0.06rem;
+  top: 0.04rem;
+  width: 0.52rem;
+}
+
+.window-control.close::before,
+.window-control.close::after {
+  background: currentColor;
+  height: 0.86rem;
+  left: 0.35rem;
+  top: -0.06rem;
+  width: 1.5px;
+}
+
+.window-control.close::before {
+  transform: rotate(45deg);
+}
+
+.window-control.close::after {
+  transform: rotate(-45deg);
 }
 
 .folder-icon {
@@ -435,7 +519,9 @@ img {
   background: rgba(232, 229, 220, 0.56);
   border: 1px solid var(--hairline);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.38);
+  align-self: end;
   padding: 0.9rem 1rem;
+  width: 100%;
 }
 
 .system-panel p {
@@ -822,9 +908,11 @@ img {
   }
 
   .layout-home .home-terminal {
-    align-content: start;
-    align-items: start;
+    align-content: stretch;
+    align-items: stretch;
     gap: clamp(0.75rem, 1.45vh, 1.1rem);
+    grid-template-rows: auto auto auto;
+    min-height: 0;
   }
 
   .layout-home .terminal-section h2 {
@@ -832,10 +920,27 @@ img {
     padding-bottom: 0.5rem;
   }
 
-  .layout-home .terminal-links a,
   .layout-home .category-stack a {
-    padding-bottom: clamp(0.22rem, 0.62vh, 0.36rem);
-    padding-top: clamp(0.22rem, 0.62vh, 0.36rem);
+    padding-bottom: clamp(0.34rem, 0.82vh, 0.52rem);
+    padding-top: clamp(0.34rem, 0.82vh, 0.52rem);
+  }
+
+  .layout-home .category-section {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .layout-home .category-section h2 {
+    padding: clamp(0.45rem, 0.85vh, 0.62rem) clamp(0.6rem, 0.9vw, 0.8rem);
+  }
+
+  .layout-home .category-stack {
+    align-content: start;
+    gap: clamp(0.18rem, 0.55vh, 0.38rem);
+    padding: clamp(0.46rem, 0.9vh, 0.7rem) clamp(0.55rem, 0.85vw, 0.75rem) 0;
   }
 
   .layout-home .system-panel {
@@ -969,12 +1074,29 @@ img {
     width: 1.45rem;
   }
 
-  .layout-home .terminal-links a,
   .layout-home .category-stack a {
     font-size: 0.84rem;
     line-height: 1.2;
-    padding-bottom: 0.18rem;
-    padding-top: 0.18rem;
+    padding-bottom: 0.36rem;
+    padding-top: 0.36rem;
+  }
+
+  .layout-home .category-section {
+    padding: 0;
+  }
+
+  .layout-home .category-section h2 {
+    padding: 0.42rem 0.6rem;
+  }
+
+  .layout-home .category-stack {
+    gap: 0.18rem;
+    padding: 0.42rem 0.55rem 0;
+  }
+
+  .layout-home .category-stack a:last-child {
+    padding-bottom: 0.36rem;
+    padding-top: 0.36rem;
   }
 
   .layout-home .system-panel {

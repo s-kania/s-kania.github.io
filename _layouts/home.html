@@ -64,8 +64,15 @@ layout: default
       </div>
     </section>
 
-    <section class="terminal-section">
-      <h2>KATEGORIE</h2>
+    <section class="terminal-section category-section">
+      <h2>
+        KATEGORIE
+        <span class="window-controls" aria-hidden="true">
+          <span class="window-control minimize"></span>
+          <span class="window-control maximize"></span>
+          <span class="window-control close"></span>
+        </span>
+      </h2>
       <div class="category-stack">
         {% assign categories = site.categories | sort %}
         {% for category in categories limit:5 %}
