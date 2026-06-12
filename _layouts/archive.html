@@ -1,9 +1,32 @@
 ---
-layout: page
+layout: default
 ---
 
-<div class="post-list compact">
-  {% for post in page.posts %}
-    {% include post-card.html post=post compact=true %}
-  {% endfor %}
-</div>
+<article class="explorer-page">
+  <section class="explorer-window" aria-labelledby="archive-title">
+    <header class="explorer-titlebar">
+      <h1 id="archive-title">BF_EXPLORER</h1>
+      <div class="window-controls">
+        <span class="window-control minimize"></span>
+        <a class="window-control close" href="{{ '/' | relative_url }}" aria-label="Strona glowna"></a>
+      </div>
+    </header>
+
+    <div class="explorer-toolbar">
+      <span>&gt;</span>
+      <span>brick://</span><a href="{{ '/' | relative_url }}">home</a><span>/</span><a href="{{ '/categories/' | relative_url }}">kategorie</a><span>/{{ page.title | default: page.name | slugify }}</span>
+    </div>
+
+    <div class="explorer-list" aria-label="Lista wpisow">
+      {% for post in page.posts %}
+        {% assign post_category = post.categories | first | default: page.title %}
+        <a class="explorer-row explorer-row-file" href="{{ post.url | relative_url }}">
+          <span class="file-icon" aria-hidden="true"></span>
+          <span class="explorer-name">{{ post.title }}</span>
+          <time class="explorer-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
+          <strong class="explorer-code">{{ post_category | slugify | replace: "-", "_" | upcase }}_{{ forloop.index | prepend: "0" | slice: -2, 2 }}.ART</strong>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</article>

@@ -1,16 +1,34 @@
 ---
-layout: page
+layout: default
 title: Kategorie
 ---
 
-<div class="taxonomy-list">
-  {% assign categories = site.categories | sort %}
-  {% for category in categories %}
-    {% assign category_slug = category[0] | slugify %}
-    {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
-    <a class="taxonomy-item" href="{{ category_url | relative_url }}">
-      <span>{{ category[0] }}</span>
-      <strong>{{ category[1].size }}</strong>
-    </a>
-  {% endfor %}
-</div>
+<article class="explorer-page">
+  <section class="explorer-window" aria-labelledby="categories-title">
+    <header class="explorer-titlebar">
+      <h1 id="categories-title">BF_EXPLORER</h1>
+      <div class="window-controls">
+        <span class="window-control minimize"></span>
+        <a class="window-control close" href="{{ '/' | relative_url }}" aria-label="Strona glowna"></a>
+      </div>
+    </header>
+
+    <div class="explorer-toolbar">
+      <span>&gt;</span>
+      <span>brick://</span><a href="{{ '/' | relative_url }}">home</a><span>/</span><a href="{{ '/categories/' | relative_url }}">kategorie</a>
+    </div>
+
+    <div class="explorer-list" aria-label="Lista kategorii">
+      {% assign categories = site.categories | sort %}
+      {% for category in categories %}
+        {% assign category_slug = category[0] | slugify %}
+        {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
+        <a class="explorer-row explorer-row-folder" href="{{ category_url | relative_url }}">
+          <span class="folder-icon" aria-hidden="true"></span>
+          <span class="explorer-name">{{ category[0] | upcase }}</span>
+          <strong class="explorer-count">{{ category[1].size }}</strong>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</article>
