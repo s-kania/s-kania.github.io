@@ -1,0 +1,80 @@
+<section class="terminal-section browser-section">
+  <div class="browser-tabs-bar">
+    <span class="browser-label">BF_BROWSER</span>
+
+    <div class="browser-tabs" role="tablist" aria-label="Mini przegladarka">
+      {% for tab in site.data.home_browser %}
+        <button
+          class="browser-tab{% if forloop.first %} is-active{% endif %}"
+          id="browser-tab-{{ tab.id }}"
+          type="button"
+          role="tab"
+          aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+          aria-controls="browser-panel-{{ tab.id }}"
+          data-browser-tab="{{ tab.id }}"
+          data-browser-address="{{ tab.address }}"
+        >
+          {{ tab.label }}
+        </button>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="browser-panels">
+    <div class="browser-transition" aria-hidden="true">
+      <span></span>
+    </div>
+
+    {% for tab in site.data.home_browser %}
+      <div
+        class="browser-panel{% if forloop.first %} is-active{% endif %}"
+        id="browser-panel-{{ tab.id }}"
+        role="tabpanel"
+        aria-labelledby="browser-tab-{{ tab.id }}"
+        data-browser-panel="{{ tab.id }}"
+        {% unless forloop.first %}hidden{% endunless %}
+      >
+        {% if tab.type == 'contacts' %}
+          <div class="quick-icons">
+            {% for entry in site.data.contact %}
+              {% case entry.type %}
+                {% when 'email' %}
+                  {% assign url = 'mailto:' | append: site.social.email %}
+                  {% assign label = 'mail' %}
+                  {% assign link_text = site.social.email %}
+                {% when 'rss' %}
+                  {% assign url = '/feed.xml' | relative_url %}
+                  {% assign label = 'rss' %}
+                  {% assign link_text = '/feed.xml' %}
+                {% when 'instagram' %}
+                  {% assign url = entry.url %}
+                  {% assign label = 'ig' %}
+                  {% assign link_text = entry.handle %}
+                {% when 'youtube' %}
+                  {% assign url = entry.url %}
+                  {% assign label = 'yt' %}
+                  {% assign link_text = entry.handle %}
+                {% else %}
+                  {% assign url = entry.url %}
+                  {% assign label = entry.type %}
+                  {% assign link_text = entry.type %}
+              {% endcase %}
+              {% if url %}
+                <a href="{{ url }}" aria-label="{{ label }}" {% unless entry.noblank %}target="_blank" rel="noopener noreferrer"{% endunless %}>
+                  {% include icon.html name=label %}
+                  <span>{{ link_text }}</span>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="browser-note">
+            <p class="browser-note-title">{{ tab.title }}</p>
+            <p>{{ tab.body }}</p>
+            <a class="browser-cta" href="{{ tab.url | relative_url }}">{{ tab.cta }}</a>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>

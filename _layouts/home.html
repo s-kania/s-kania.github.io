@@ -28,41 +28,7 @@ layout: default
   </section>
 
   <aside class="home-terminal" aria-label="Panel boczny">
-    <section class="terminal-section">
-      <h2>SZYBKI DOSTEP</h2>
-      <div class="quick-icons">
-        {% for entry in site.data.contact %}
-          {% case entry.type %}
-            {% when 'email' %}
-              {% assign url = 'mailto:' | append: site.social.email %}
-              {% assign label = 'mail' %}
-              {% assign link_text = site.social.email %}
-            {% when 'rss' %}
-              {% assign url = '/feed.xml' | relative_url %}
-              {% assign label = 'rss' %}
-              {% assign link_text = '/feed.xml' %}
-            {% when 'instagram' %}
-              {% assign url = entry.url %}
-              {% assign label = 'ig' %}
-              {% assign link_text = entry.handle %}
-            {% when 'youtube' %}
-              {% assign url = entry.url %}
-              {% assign label = 'yt' %}
-              {% assign link_text = entry.handle %}
-            {% else %}
-              {% assign url = entry.url %}
-              {% assign label = entry.type %}
-              {% assign link_text = entry.type %}
-          {% endcase %}
-          {% if url %}
-            <a href="{{ url }}" aria-label="{{ label }}" {% unless entry.noblank %}target="_blank" rel="noopener noreferrer"{% endunless %}>
-              {% include icon.html name=label %}
-              <span>{{ link_text }}</span>
-            </a>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </section>
+    {% include home-browser.html %}
 
     <section class="terminal-section category-section">
       <h2>
@@ -114,6 +80,10 @@ layout: default
     const categoryScrollUp = document.querySelector('.category-scrollbar .scroll-up');
     const categoryScrollDown = document.querySelector('.category-scrollbar .scroll-down');
     const closeControl = document.querySelector('.category-section .window-control.close');
+    const browserTabs = document.querySelectorAll('.browser-tab');
+    const browserPanels = document.querySelectorAll('.browser-panel');
+    const browserPanelShell = document.querySelector('.browser-panels');
+    const browserTransitionText = document.querySelector('.browser-transition span');
 
     if (!systemTime) return;
 
@@ -130,6 +100,114 @@ layout: default
 
     tick();
     setInterval(tick, 1000);
+
+    if (browserPanelShell && browserTransitionText && browserTabs.length && browserPanels.length) {
+      let isBrowserTransitioning = false;
+      let activeBrowserTab = document.querySelector('.browser-tab.is-active')?.dataset.browserTab || browserTabs[0].dataset.browserTab;
+
+      const wait = (duration) => new Promise((resolve) => {
+        window.setTimeout(resolve, duration);
+      });
+      const loadingProgressDuration = 1000;
+
+      const typeBrowserLine = async (text, delay = 24, indent = '') => {
+        if (browserTransitionText.textContent) {
+          browserTransitionText.textContent += '\n';
+        }
+
+        browserTransitionText.textContent += indent;
+
+        for (const character of text) {
+          browserTransitionText.textContent += character;
+          await wait(delay);
+        }
+      };
+
+      const updateBrowserLoadingProgress = async (duration) => {
+        if (browserTransitionText.textContent) {
+          browserTransitionText.textContent += '\n';
+        }
+
+        const prefix = '    > loading ';
+        const steps = 100;
+
+        for (let step = 1; step <= steps; step += 1) {
+          const progress = `${prefix}${step}%`;
+          browserTransitionText.textContent = browserTransitionText.textContent.replace(
+            new RegExp(`${prefix}\\d+%$`),
+            progress
+          );
+
+          if (!browserTransitionText.textContent.endsWith(progress)) {
+            browserTransitionText.textContent += progress;
+          }
+
+          if (step < steps) {
+            await wait(duration / steps);
+          }
+        }
+      };
+
+      const activateBrowserTabControl = (target) => {
+        browserTabs.forEach((item) => {
+          const isActive = item.dataset.browserTab === target;
+          item.classList.toggle('is-active', isActive);
+          item.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+      };
+
+      const activateBrowserPanel = (target) => {
+        browserPanels.forEach((panel) => {
+          const isActive = panel.dataset.browserPanel === target;
+          panel.classList.toggle('is-active', isActive);
+          panel.hidden = !isActive;
+
+          if (isActive) {
+            panel.classList.add('is-entering');
+          }
+        });
+
+        activeBrowserTab = target;
+      };
+
+      const activateBrowserTab = (target) => {
+        activateBrowserTabControl(target);
+        activateBrowserPanel(target);
+      };
+
+      browserTabs.forEach((tab) => {
+        tab.addEventListener('click', async () => {
+          const target = tab.dataset.browserTab;
+          if (isBrowserTransitioning || target === activeBrowserTab) return;
+
+          isBrowserTransitioning = true;
+          activateBrowserTabControl(target);
+          tab.classList.add('is-loading-target');
+          browserTransitionText.textContent = '';
+          browserPanelShell.classList.add('is-scanning');
+
+          await wait(420);
+          browserPanelShell.classList.remove('is-scanning');
+          browserPanelShell.classList.add('is-cleared');
+          browserPanelShell.classList.add('is-loading');
+
+          await wait(120);
+          await typeBrowserLine(`> load --adress ${tab.dataset.browserAddress}`, 22);
+          await wait(130);
+          await updateBrowserLoadingProgress(loadingProgressDuration);
+          await typeBrowserLine('> loaded', 28, '    ');
+          await wait(360);
+          browserPanelShell.classList.remove('is-loading');
+          browserPanelShell.classList.remove('is-cleared');
+          activateBrowserPanel(target);
+
+          await wait(170);
+          browserPanels.forEach((panel) => panel.classList.remove('is-entering'));
+          tab.classList.remove('is-loading-target');
+          isBrowserTransitioning = false;
+        });
+      });
+    }
 
     if (categorySection && closeControl) {
       const runCrash = () => {

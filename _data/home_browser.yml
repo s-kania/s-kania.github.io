@@ -1,0 +1,18 @@
+- id: links
+  label: LINKI
+  address: brick://linki
+  type: contacts
+- id: about
+  label: O MNIE
+  address: brick://o-mnie
+  title: Kim tu nadaje?
+  body: Krotki raport o autorze, klockach, grach i tym, dlaczego ten blog w ogole istnieje.
+  cta: Otworz profil
+  url: /about/
+- id: archives
+  label: ARCHIWUM
+  address: brick://archiwum
+  title: Stare wpisy, nadal zywe
+  body: Magazyn poprzednich notatek. Kurz wirtualny, tresc prawdziwa, sortowanie bez litosci.
+  cta: Przejdz do archiwum
+  url: /archives/
