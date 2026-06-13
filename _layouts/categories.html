@@ -24,7 +24,7 @@ title: Kategorie
         {% assign category_slug = category[0] | slugify %}
         {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
         <a class="explorer-row explorer-row-folder" href="{{ category_url | relative_url }}">
-          <span class="folder-icon" aria-hidden="true"></span>
+          <span class="folder-icon" aria-hidden="true">{% include icon.html name="folder" %}</span>
           <span class="explorer-name">{{ category[0] | upcase }}</span>
           <strong class="explorer-count">{{ category[1].size }}</strong>
         </a>
