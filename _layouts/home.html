@@ -42,7 +42,7 @@ layout: default
       <div class="category-body">
         <div class="category-stack" id="category-stack">
           {% assign categories = site.categories | sort %}
-          {% for category in categories limit:5 %}
+          {% for category in categories %}
             {% assign category_slug = category[0] | slugify %}
             {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
             <a href="{{ category_url | relative_url }}">
