@@ -1,7 +1,8 @@
 {% assign post = include.post %}
 {% assign post_number = include.number | default: 1 %}
 {% assign card_category = post.categories | first | default: "notatki" %}
-{% assign preview = post.preview_image.path | default: post.preview_image | default: post.image.path | default: post.image %}
+{% assign preview = post.image.path | default: post.image %}
+{% assign image_position = post.image_position | default: "center" %}
 {% assign reading_source = post.content | markdownify | strip_html | normalize_whitespace %}
 {% assign word_count = reading_source | split: " " | size %}
 {% assign reading_minutes = word_count | divided_by: 200 %}
@@ -27,7 +28,7 @@
     </div>
 
     {% if include.featured %}
-      <div class="card-art">
+      <div class="card-art" style="--image-position: {{ image_position | escape }};">
         {% if preview %}
           <img src="{{ preview | relative_url }}" alt="">
         {% else %}
