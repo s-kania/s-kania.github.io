@@ -2359,6 +2359,56 @@ img {
   }
 }
 
+@media (min-width: 901px) and (max-width: 1180px) {
+  .layout-home .home-terminal {
+    align-items: start;
+    gap: 1rem;
+    grid-template-areas:
+      "categories browser"
+      "categories system";
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: max-content max-content;
+  }
+
+  .layout-home .browser-section {
+    align-self: start;
+    grid-area: browser;
+  }
+
+  .layout-home .category-section {
+    align-self: stretch;
+    contain: size;
+    display: flex;
+    flex-direction: column;
+    grid-area: categories;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .layout-home .category-body {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .layout-home .category-stack {
+    max-height: none;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .layout-home .system-panel {
+    align-self: start;
+    font-size: var(--home-panel-label-size);
+    grid-area: system;
+    line-height: 1.35;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .layout-home .system-panel p {
+    margin: 0.12rem 0;
+  }
+}
+
 @media (max-width: 900px) {
   .site-frame {
     padding: 1.25rem;
