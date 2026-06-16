@@ -84,6 +84,10 @@ layout: default
     const browserPanels = document.querySelectorAll('.browser-panel');
     const browserPanelShell = document.querySelector('.browser-panels');
     const browserTransitionText = document.querySelector('.browser-transition span');
+    const featuredCopy = document.querySelector('.post-card.featured .card-copy');
+    const featuredTitle = document.querySelector('.post-card.featured .card-copy h2');
+    const featuredMeta = document.querySelector('.post-card.featured .card-meta');
+    const featuredSummary = document.querySelector('.post-card.featured .card-copy p');
 
     if (!systemTime) return;
 
@@ -100,6 +104,62 @@ layout: default
 
     tick();
     setInterval(tick, 1000);
+
+    const syncFeaturedCopyScale = () => {
+      if (!featuredCopy || !featuredTitle || !featuredMeta || !featuredSummary) return;
+
+      if (!window.matchMedia('(min-width: 901px)').matches) {
+        featuredCopy.style.removeProperty('--featured-title-size');
+        featuredCopy.style.removeProperty('--featured-summary-size');
+        featuredCopy.style.removeProperty('--featured-summary-lines');
+        return;
+      }
+
+      const copyStyle = window.getComputedStyle(featuredCopy);
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+      const rowGap = parseFloat(copyStyle.rowGap) || 0;
+      const verticalPadding =
+        (parseFloat(copyStyle.paddingTop) || 0) +
+        (parseFloat(copyStyle.paddingBottom) || 0);
+      const availableWidth = featuredCopy.clientWidth -
+        (parseFloat(copyStyle.paddingLeft) || 0) -
+        (parseFloat(copyStyle.paddingRight) || 0);
+      const maxTitleSize = clamp(Math.min(availableWidth * 0.092, featuredCopy.clientHeight * 0.28), 38, 66);
+      const minTitleSize = clamp(Math.min(availableWidth * 0.056, featuredCopy.clientHeight * 0.18), 25, 38);
+      const maxSummarySize = clamp(availableWidth * 0.025, 15, 19);
+      const minSummarySize = clamp(availableWidth * 0.019, 13, 15.5);
+      const minSummaryLines = featuredCopy.clientHeight < 230 ? 2 : 3;
+      let best = null;
+
+      for (let titleSize = maxTitleSize; titleSize >= minTitleSize; titleSize -= 1) {
+        const summarySize = clamp(titleSize * 0.36, minSummarySize, maxSummarySize);
+
+        featuredCopy.style.setProperty('--featured-title-size', `${titleSize}px`);
+        featuredCopy.style.setProperty('--featured-summary-size', `${summarySize}px`);
+
+        const summaryStyle = window.getComputedStyle(featuredSummary);
+        const lineHeight = parseFloat(summaryStyle.lineHeight) || summarySize * 1.38;
+        const fixedContentHeight =
+          featuredTitle.getBoundingClientRect().height +
+          featuredMeta.getBoundingClientRect().height +
+          (rowGap * 2);
+        const availableHeight = featuredCopy.clientHeight - verticalPadding - fixedContentHeight;
+        const lines = Math.max(1, Math.floor(availableHeight / lineHeight));
+
+        best = { titleSize, summarySize, lines };
+        if (lines >= minSummaryLines) break;
+      }
+
+      if (!best) return;
+
+      featuredCopy.style.setProperty('--featured-title-size', `${best.titleSize}px`);
+      featuredCopy.style.setProperty('--featured-summary-size', `${best.summarySize}px`);
+      featuredCopy.style.setProperty('--featured-summary-lines', best.lines);
+    };
+
+    syncFeaturedCopyScale();
+    window.addEventListener('resize', syncFeaturedCopyScale);
+    document.fonts?.ready.then(syncFeaturedCopyScale);
 
     if (browserPanelShell && browserTransitionText && browserTabs.length && browserPanels.length) {
       let isBrowserTransitioning = false;
