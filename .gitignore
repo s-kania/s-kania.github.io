@@ -1,6 +1,8 @@
 # hidden files
 .*
 !.git*
+!.agents/
+!.agents/**
 !.editorconfig
 !.nojekyll
 !.husky
@@ -21,3 +23,5 @@ package-lock.json
 
 node_modules
 .env
+output/playwright/.runtime/
+output/playwright/responsive/

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Responsive Screenshots"
+  short_description: "Capture the project's standard responsive screenshot set."
+  default_prompt: "Zrob screenshoty responsywnosci dla obecnej iteracji."
