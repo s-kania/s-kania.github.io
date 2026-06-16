@@ -1910,6 +1910,90 @@ img {
     min-height: 0;
   }
 
+  .layout-home .post-card.featured .post-card-link {
+    --card-pad-x: 1.65rem;
+  }
+
+  @media (min-width: 1920px) {
+    .layout-home .post-card.featured .card-copy h2 {
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 1441px) and (min-height: 901px) {
+    .layout-home .post-card:not(.featured) .card-meta {
+      font-size: 0.8rem;
+      margin-bottom: 0.72rem;
+    }
+
+    .layout-home .post-card:not(.featured) .card-copy h2 {
+      font-size: 1.5rem;
+      line-height: 1.12;
+      margin-bottom: 0.72rem;
+      max-width: 20ch;
+    }
+
+    .layout-home .post-card:not(.featured) .card-copy p {
+      font-size: 0.98rem;
+      line-height: 1.44;
+    }
+  }
+
+  @media (min-width: 1800px) and (min-height: 901px) {
+    .layout-home .post-card:not(.featured) .card-meta {
+      font-size: 0.84rem;
+      margin-bottom: 0.82rem;
+    }
+
+    .layout-home .post-card:not(.featured) .card-copy h2 {
+      font-size: 1.82rem;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+
+    .layout-home .post-card:not(.featured) .card-copy p {
+      font-size: 1.1rem;
+      line-height: 1.44;
+      -webkit-line-clamp: 3;
+    }
+  }
+
+  @media (min-width: 1920px) and (min-height: 901px) {
+    .layout-home .post-card.featured .card-meta {
+      font-size: 0.84rem;
+    }
+
+    .layout-home .post-card.featured .card-copy p {
+      font-size: 1.1rem;
+      line-height: 1.44;
+      -webkit-line-clamp: 3;
+    }
+  }
+
+  @media (min-width: 2000px) and (min-height: 901px) {
+    .layout-home .post-card:not(.featured) .card-meta {
+      font-size: 0.88rem;
+    }
+
+    .layout-home .post-card.featured .card-meta {
+      font-size: 0.88rem;
+    }
+
+    .layout-home .post-card:not(.featured) .card-copy h2 {
+      font-size: 2.12rem;
+    }
+
+    .layout-home .post-card:not(.featured) .card-copy p {
+      font-size: 1.2rem;
+      -webkit-line-clamp: 4;
+    }
+
+    .layout-home .post-card.featured .card-copy p {
+      font-size: 1.2rem;
+      -webkit-line-clamp: 4;
+    }
+  }
+
   .layout-home .home-terminal {
     align-content: stretch;
     align-items: stretch;
