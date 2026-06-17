@@ -1,11 +1,13 @@
 ---
 name: responsive-screenshots
-description: Capture this project's standard responsive screenshot set after layout, CSS, homepage, card, header, or visual changes. Use when the user asks for responsive screenshots, screeny responsywnosci, viewport checks, visual iteration snapshots, or proof of how the site looks across mobile, tablet, desktop, and breakpoint sizes.
+description: Capture this project's standard responsive screenshot set after layout, CSS, homepage, post, category, archive, page, header, card, or visual changes. Use when the user asks for responsive screenshots, screeny responsywnosci, viewport checks, page-specific screenshots, visual iteration snapshots, or proof of how the site looks across mobile, tablet, desktop, and breakpoint sizes.
 ---
 
 # Responsive Screenshots
 
 Use this project-local skill to create the same responsive screenshot set after each visual iteration. Do not invent viewport sizes unless the user explicitly asks for extra ones.
+
+When the user asks for a non-homepage surface, use the page targets listed in [PAGES.md](PAGES.md). If unsure which target covers the requested surface, run `--list-pages`.
 
 ## Output Contract
 
@@ -15,10 +17,12 @@ Always save artifacts under:
 output/playwright/responsive/<YYYYMMDD-HHMMSS>-<label>/
 ```
 
-Each run must contain:
+Each single-page run must contain:
 
 - one PNG per standard viewport
 - `manifest.json` with viewport metadata and layout metrics
+
+Each multi-page run must contain one folder per page target, each with one PNG per standard viewport.
 
 Use a short lowercase label, for example `logo-fix`, `featured-card`, or `after-spacing-change`.
 
@@ -61,17 +65,37 @@ These include common mobile/tablet sizes plus this site's important CSS boundari
    node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --label <label>
    ```
 
-   The script prepares a Playwright runtime and Chromium under `output/playwright/.runtime` if needed, starts a temporary static server for `_site`, captures the standard viewport set, writes `manifest.json`, and stops the server.
+   The script prepares a Playwright runtime and Chromium under `output/playwright/.runtime` if needed, starts a temporary static server for `_site`, captures the standard viewport set for the homepage, writes `manifest.json`, and stops the server.
 
-3. If the user provides an already-running URL, use:
+3. To capture another page target, use:
+
+   ```bash
+   node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --page post-piraci-4 --label <label>
+   ```
+
+   Useful selectors:
+
+   ```bash
+   node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --page categories --label categories
+   node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --page category-devlog --label category-devlog
+   node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --page home,post-piraci-4,categories --label key-pages
+   node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --page all --label all-pages
+   node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --path /posts/piraci-4/ --label custom-path
+   node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --list-pages
+   ```
+
+4. If the user provides an already-running URL, use:
 
    ```bash
    node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --url http://localhost:4000 --label <label> --no-build
    ```
 
-4. After capture, report:
+   With `--page`, the `--url` value is treated as the site base URL. Without `--page`, the exact URL is captured for backwards compatibility.
+
+5. After capture, report:
 
    - artifact folder path
+   - target page ids captured
    - count of PNG files
    - any nonzero `horizontalOverflowPx`
    - any nonzero `titleAsideOverlapPx` on non-stacked hero layouts

@@ -27,11 +27,51 @@ const VIEWPORTS = [
   ["desktop-2120x1252", 2120, 1252],
 ];
 
+const PAGE_TARGETS = [
+  { id: "home", path: "/", description: "Homepage with hero, post cards, browser, categories, and system panels." },
+  { id: "archives", path: "/archives/", description: "Archive tab." },
+  { id: "categories", path: "/categories/", description: "Categories index tab." },
+  { id: "about", path: "/about/", description: "About page tab." },
+  { id: "privacy-policy", path: "/privacy-policy/", description: "Hidden privacy policy page." },
+
+  { id: "category-ciekawostki", path: "/categories/ciekawostki/", description: "Category archive: Ciekawostki." },
+  { id: "category-devlog", path: "/categories/devlog/", description: "Category archive: Devlog." },
+  { id: "category-galerie", path: "/categories/galerie/", description: "Category archive: Galerie." },
+  { id: "category-inne", path: "/categories/inne/", description: "Category archive: Inne." },
+  { id: "category-piraci", path: "/categories/piraci/", description: "Category archive: Piraci." },
+  { id: "category-poradniki", path: "/categories/poradniki/", description: "Category archive: Poradniki." },
+  { id: "category-recenzje", path: "/categories/recenzje/", description: "Category archive: Recenzje." },
+
+  { id: "post-piraci-4", path: "/posts/piraci-4/", description: "Latest post; devlog post with featured image." },
+  { id: "post-aukcja-duch-kijowa", path: "/posts/aukcja-duch-kijowa/", description: "Post with image and short text." },
+  { id: "post-klockowe-ciekawostki-3", path: "/posts/klockowe-ciekawostki-3/", description: "Long post with images." },
+  { id: "post-piraci-3", path: "/posts/piraci-3/", description: "Devlog post with YouTube embed." },
+  { id: "post-klockowe-ciekawostki-2", path: "/posts/klockowe-ciekawostki-2/", description: "Post with object-fit image metadata." },
+  { id: "post-piraci-2", path: "/posts/piraci-2/", description: "Devlog post with YouTube embed." },
+  { id: "post-bricks-and-figs-masters", path: "/posts/bricks-and-figs-masters/", description: "Long gallery/event post." },
+  { id: "post-piraci-1", path: "/posts/piraci-1/", description: "Piraci devlog post." },
+  { id: "post-astronauci-w-stratosferze", path: "/posts/astronauci-w-stratosferze/", description: "Post page." },
+  { id: "post-fiat-500-galeria", path: "/posts/fiat-500-galeria/", description: "Gallery post." },
+  { id: "post-zamek-w-czchowie", path: "/posts/zamek-w-czchowie/", description: "Post page." },
+  { id: "post-recenzja-jagdpanther", path: "/posts/recenzja-jagdpanther/", description: "Review post." },
+  { id: "post-wizyta-w-bricks-and-figs", path: "/posts/wizyta-w-bricks-and-figs/", description: "Long post with image gallery." },
+  { id: "post-cashback", path: "/posts/cashback/", description: "Guide post." },
+  { id: "post-klockowe-ciekawostki-1", path: "/posts/klockowe-ciekawostki-1/", description: "Ciekawostki post." },
+  { id: "post-ciekawostki", path: "/posts/ciekawostki/", description: "Post page." },
+  { id: "post-klockowe-urodziny", path: "/posts/klockowe-urodziny-i-marzenia-o-tworzeniu-gier/", description: "First post; long text without post image." },
+];
+
+const PAGE_TARGETS_BY_ID = new Map(PAGE_TARGETS.map((target) => [target.id, target]));
+
 function parseArgs(argv) {
   const args = {
     build: true,
+    customPaths: [],
     label: "iteration",
+    listPages: false,
     outputBase: "output/playwright/responsive",
+    pageIds: [],
+    pageOptionUsed: false,
     port: 4173,
     runtimeDir: "output/playwright/.runtime",
     url: null,
@@ -44,6 +84,15 @@ function parseArgs(argv) {
     if (arg === "--label") {
       args.label = next;
       index += 1;
+    } else if (arg === "--page" || arg === "--pages") {
+      args.pageOptionUsed = true;
+      args.pageIds.push(...splitCsvArg(next, arg));
+      index += 1;
+    } else if (arg === "--path") {
+      args.customPaths.push(next);
+      index += 1;
+    } else if (arg === "--list-pages") {
+      args.listPages = true;
     } else if (arg === "--output-base") {
       args.outputBase = next;
       index += 1;
@@ -74,15 +123,30 @@ function parseArgs(argv) {
 function printHelp() {
   console.log(`Usage:
   npx --yes --package playwright node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --label <label>
+  node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --page post-piraci-4 --label post-check
+  node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --page home,post-piraci-4,categories --label multi-page
+  node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --page all --label all-pages
+  node .agents/skills/responsive-screenshots/scripts/capture_responsive_screenshots.mjs --path /posts/piraci-4/ --label custom-path
 
 Options:
   --label <label>          Folder suffix. Default: iteration
+  --page <id[,id]>         Named page target. Repeatable. Default: home. Use all for every known page.
+  --path <path>            Custom site path, for example /posts/piraci-4/. Repeatable.
+  --list-pages             Print known page targets and exit.
   --url <url>              Capture an existing running site instead of _site
   --no-build               Skip docker compose build
   --port <port>            First port to try for the temporary _site server
   --output-base <path>     Default: output/playwright/responsive
   --runtime-dir <path>     Default: output/playwright/.runtime
 `);
+}
+
+function splitCsvArg(value, argName) {
+  if (!value) throw new Error(`${argName} requires a value`);
+  return String(value)
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
 }
 
 function slugify(value) {
@@ -92,6 +156,78 @@ function slugify(value) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 80) || "iteration";
+}
+
+function normalizeSitePath(value) {
+  if (!value) throw new Error("--path requires a value");
+  if (/^https?:\/\//i.test(value)) return value;
+
+  const withLeadingSlash = value.startsWith("/") ? value : `/${value}`;
+  return withLeadingSlash.endsWith("/") ? withLeadingSlash : `${withLeadingSlash}/`;
+}
+
+function pageTargetListText() {
+  const longestId = Math.max(...PAGE_TARGETS.map((target) => target.id.length));
+  return PAGE_TARGETS
+    .map((target) => `${target.id.padEnd(longestId)}  ${target.path.padEnd(55)}  ${target.description}`)
+    .join("\n");
+}
+
+function printPageTargets() {
+  console.log("Known responsive screenshot page targets:");
+  console.log(pageTargetListText());
+}
+
+function resolveCaptureTargets(args) {
+  if (args.customPaths.length > 0) {
+    return args.customPaths.map((customPath, index) => {
+      const normalizedPath = normalizeSitePath(customPath);
+      const id = /^https?:\/\//i.test(normalizedPath)
+        ? `url-${index + 1}`
+        : `path-${slugify(normalizedPath)}`;
+      return {
+        id,
+        path: /^https?:\/\//i.test(normalizedPath) ? null : normalizedPath,
+        url: /^https?:\/\//i.test(normalizedPath) ? normalizedPath : null,
+        description: `Custom path: ${customPath}`,
+      };
+    });
+  }
+
+  if (args.url && !args.pageOptionUsed) {
+    return [{
+      id: "custom-url",
+      path: null,
+      url: args.url,
+      description: `Exact URL: ${args.url}`,
+    }];
+  }
+
+  const requestedIds = args.pageOptionUsed ? args.pageIds : ["home"];
+  const expandedIds = requestedIds.includes("all")
+    ? PAGE_TARGETS.map((target) => target.id)
+    : requestedIds;
+
+  const seen = new Set();
+  return expandedIds
+    .filter((id) => {
+      if (seen.has(id)) return false;
+      seen.add(id);
+      return true;
+    })
+    .map((id) => {
+      const target = PAGE_TARGETS_BY_ID.get(id);
+      if (!target) {
+        const available = PAGE_TARGETS.map((item) => item.id).join(", ");
+        throw new Error(`Unknown page target "${id}". Use --list-pages. Available: ${available}`);
+      }
+      return target;
+    });
+}
+
+function resolveTargetUrl(baseUrl, target) {
+  if (target.url) return target.url;
+  return new URL(target.path, baseUrl).toString();
 }
 
 function timestamp() {
@@ -224,12 +360,13 @@ async function stopServer(child) {
   });
 }
 
-async function capture({ playwright, url, outputDir }) {
+async function capture({ playwright, baseUrl, targets, outputDir }) {
   const { chromium } = playwright;
   const browser = await chromium.launch();
   const page = await browser.newPage();
   const consoleEntries = [];
   const viewports = [];
+  const useTargetSubdirectories = targets.length > 1 || !["home", "custom-url"].includes(targets[0]?.id);
 
   page.on("console", (message) => {
     if (["error", "warning"].includes(message.type())) {
@@ -241,54 +378,72 @@ async function capture({ playwright, url, outputDir }) {
   });
 
   try {
-    await page.goto(url, { waitUntil: "domcontentloaded" });
+    for (const target of targets) {
+      const targetUrl = resolveTargetUrl(baseUrl, target);
+      const targetOutputDir = useTargetSubdirectories
+        ? path.join(outputDir, target.id)
+        : outputDir;
 
-    for (const [name, width, height] of VIEWPORTS) {
-      await page.setViewportSize({ width, height });
-      await page.waitForTimeout(250);
+      await mkdir(targetOutputDir, { recursive: true });
+      await page.goto(targetUrl, { waitUntil: "domcontentloaded" });
 
-      const file = `${name}.png`;
-      await page.screenshot({
-        fullPage: true,
-        path: path.join(outputDir, file),
-      });
+      for (const [name, width, height] of VIEWPORTS) {
+        await page.setViewportSize({ width, height });
+        await page.waitForTimeout(250);
 
-      const metrics = await page.evaluate(() => {
-        const title = document.querySelector(".home-hero h1");
-        const aside = document.querySelector(".hero-aside");
-        const horizontalOverflowPx = Math.max(0, document.documentElement.scrollWidth - window.innerWidth);
+        const file = `${name}.png`;
+        const relativeFile = useTargetSubdirectories ? path.join(target.id, file) : file;
+        await page.screenshot({
+          fullPage: true,
+          path: path.join(targetOutputDir, file),
+        });
 
-        if (!title || !aside) {
+        const metrics = await page.evaluate(() => {
+          const title = document.querySelector(".home-hero h1");
+          const aside = document.querySelector(".hero-aside");
+          const horizontalOverflowPx = Math.max(0, document.documentElement.scrollWidth - window.innerWidth);
+
+          if (!title || !aside) {
+            return {
+              horizontalOverflowPx,
+              titleAsideOverlapPx: null,
+              heroIsStacked: null,
+            };
+          }
+
+          const range = document.createRange();
+          range.selectNodeContents(title);
+          const textBox = range.getBoundingClientRect();
+          const titleBox = title.getBoundingClientRect();
+          const asideBox = aside.getBoundingClientRect();
+          const verticalOverlap = Math.max(0, Math.min(textBox.bottom, asideBox.bottom) - Math.max(textBox.top, asideBox.top));
+          const heroIsStacked = verticalOverlap === 0;
+          const titleAsideOverlapPx = heroIsStacked ? 0 : Math.max(0, Math.round(textBox.right - asideBox.left));
+
           return {
+            titleFontSize: getComputedStyle(title).fontSize,
+            titleBoxWidth: Math.round(titleBox.width),
+            titleTextWidth: Math.round(textBox.width),
+            titleInternalOverflowPx: Math.max(0, Math.round(textBox.width - titleBox.width)),
+            gapToAsidePx: heroIsStacked ? null : Math.round(asideBox.left - textBox.right),
+            titleAsideOverlapPx,
+            heroIsStacked,
             horizontalOverflowPx,
-            titleAsideOverlapPx: null,
-            heroIsStacked: null,
           };
-        }
+        });
 
-        const range = document.createRange();
-        range.selectNodeContents(title);
-        const textBox = range.getBoundingClientRect();
-        const titleBox = title.getBoundingClientRect();
-        const asideBox = aside.getBoundingClientRect();
-        const verticalOverlap = Math.max(0, Math.min(textBox.bottom, asideBox.bottom) - Math.max(textBox.top, asideBox.top));
-        const heroIsStacked = verticalOverlap === 0;
-        const titleAsideOverlapPx = heroIsStacked ? 0 : Math.max(0, Math.round(textBox.right - asideBox.left));
-
-        return {
-          titleFontSize: getComputedStyle(title).fontSize,
-          titleBoxWidth: Math.round(titleBox.width),
-          titleTextWidth: Math.round(textBox.width),
-          titleInternalOverflowPx: Math.max(0, Math.round(textBox.width - titleBox.width)),
-          gapToAsidePx: heroIsStacked ? null : Math.round(asideBox.left - textBox.right),
-          titleAsideOverlapPx,
-          heroIsStacked,
-          horizontalOverflowPx,
-        };
-      });
-
-      viewports.push({ name, width, height, file, metrics });
-      console.log(`[responsive-screenshots] ${name} -> ${file}`);
+        viewports.push({
+          targetId: target.id,
+          targetPath: target.path,
+          targetUrl,
+          name,
+          width,
+          height,
+          file: relativeFile,
+          metrics,
+        });
+        console.log(`[responsive-screenshots] ${target.id} ${name} -> ${relativeFile}`);
+      }
     }
   } finally {
     await browser.close();
@@ -299,9 +454,16 @@ async function capture({ playwright, url, outputDir }) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+
+  if (args.listPages) {
+    printPageTargets();
+    return;
+  }
+
+  const targets = resolveCaptureTargets(args);
   const outputDir = path.resolve(args.outputBase, `${timestamp()}-${args.label}`);
   let server = null;
-  let targetUrl = args.url;
+  let baseUrl = args.url;
 
   if (args.build) runBuild();
 
@@ -310,17 +472,23 @@ async function main() {
   try {
     const playwright = await ensurePlaywright(args.runtimeDir);
 
-    if (!targetUrl) {
+    if (!baseUrl) {
       const port = await findFreePort(args.port);
       server = await startStaticServer(port);
-      targetUrl = `http://127.0.0.1:${port}/`;
+      baseUrl = `http://127.0.0.1:${port}/`;
     }
 
-    const result = await capture({ playwright, url: targetUrl, outputDir });
+    const result = await capture({ playwright, baseUrl, targets, outputDir });
     const manifest = {
       createdAt: new Date().toISOString(),
-      source: targetUrl,
+      source: baseUrl,
       outputDir,
+      targets: targets.map((target) => ({
+        id: target.id,
+        path: target.path,
+        url: resolveTargetUrl(baseUrl, target),
+        description: target.description,
+      })),
       viewports: result.viewports,
       consoleEntries: result.consoleEntries,
     };
@@ -331,6 +499,7 @@ async function main() {
     const titleOverlap = result.viewports.filter((item) => item.metrics?.titleAsideOverlapPx > 0);
 
     console.log(`[responsive-screenshots] Output: ${outputDir}`);
+    console.log(`[responsive-screenshots] Targets: ${targets.map((target) => target.id).join(", ")}`);
     console.log(`[responsive-screenshots] PNG files: ${result.viewports.length}`);
     console.log(`[responsive-screenshots] Horizontal overflow cases: ${horizontalOverflow.length}`);
     console.log(`[responsive-screenshots] Title/aside overlap cases: ${titleOverlap.length}`);
