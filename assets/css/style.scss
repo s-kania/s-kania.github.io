@@ -2453,6 +2453,113 @@ img {
   }
 }
 
+@media (min-width: 561px) and (max-width: 900px) {
+  .layout-home .home-hero {
+    gap: 2rem;
+    grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+  }
+
+  .layout-home .home-hero h1 {
+    font-size: clamp(4.8rem, 11vw, 7rem);
+  }
+
+  .layout-home .hero-aside {
+    padding-top: 0.35rem;
+  }
+
+  .layout-home .post-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .layout-home .post-card.featured .post-card-link {
+    --card-pad-x: clamp(1.5rem, 3.2vw, 2rem);
+    --card-pad-y: 0.95rem;
+    align-items: stretch;
+    gap: 0;
+    grid-template-columns: minmax(0, 0.55fr) minmax(0, 0.45fr);
+    min-block-size: 16.5rem;
+    padding: 0;
+  }
+
+  .layout-home .post-card.featured .card-copy {
+    align-content: start;
+    align-self: stretch;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    padding: var(--card-pad-y) var(--card-pad-x);
+  }
+
+  .layout-home .post-card.featured .card-copy h2 {
+    font-size: 2rem;
+    max-width: 18ch;
+  }
+
+  .layout-home .post-card.featured .card-copy p {
+    font-size: 0.9rem;
+    line-height: 1.38;
+    max-width: 100%;
+    -webkit-line-clamp: 3;
+  }
+
+  .layout-home .post-card.featured .card-art {
+    align-self: stretch;
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .layout-home .post-card.featured .card-art img {
+    height: 100%;
+  }
+
+  .layout-home .home-terminal {
+    align-items: start;
+    gap: 1rem;
+    grid-template-areas:
+      "categories browser"
+      "categories system";
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: max-content max-content;
+  }
+
+  .layout-home .browser-section {
+    align-self: start;
+    grid-area: browser;
+  }
+
+  .layout-home .category-section {
+    align-self: stretch;
+    contain: size;
+    display: flex;
+    flex-direction: column;
+    grid-area: categories;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .layout-home .category-body {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .layout-home .category-stack {
+    max-height: none;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .layout-home .system-panel {
+    align-self: start;
+    font-size: var(--home-panel-label-size);
+    grid-area: system;
+    line-height: 1.35;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .layout-home .system-panel p {
+    margin: 0.12rem 0;
+  }
+}
+
 @media (max-width: 560px) {
   body.layout-home {
     --home-top-space: 2.75rem;
