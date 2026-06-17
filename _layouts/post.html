@@ -5,20 +5,6 @@ layout: default
 <article class="post">
   <header class="post-header">
     <div class="terminal-label">POST_{{ page.date | date: "%Y%m%d" }}.MD</div>
-    <h1>{{ page.title }}</h1>
-    <div class="post-meta">
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d.%m.%Y" }}</time>
-      {% if page.last_modified_at %}
-        <span>UPDATED {{ page.last_modified_at | date: "%d.%m.%Y" }}</span>
-      {% endif %}
-      {% if page.categories.size > 0 %}
-        <span>{{ page.categories | join: " / " }}</span>
-      {% endif %}
-      {% if page.author %}
-        {% assign author = site.data.authors[page.author] %}
-        <span>{{ author.name | default: page.author }}</span>
-      {% endif %}
-    </div>
 
     {% if page.image %}
       {% assign image_path = page.image.path | default: page.image %}
@@ -29,39 +15,23 @@ layout: default
         {% endif %}
       </figure>
     {% endif %}
+
+    <h1>{{ page.title }}</h1>
+
+    <div class="post-meta">
+      <span>Data powstania: <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d.%m.%Y" }}</time></span>
+      {% if page.last_modified_at %}
+        <span>Data aktualizacji: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%d.%m.%Y" }}</time></span>
+      {% endif %}
+      {% if page.categories.size > 0 %}
+        <span>Kategorie: {{ page.categories | join: " / " }}</span>
+      {% endif %}
+    </div>
   </header>
 
   <div class="post-layout">
     <div class="content">
       {{ content }}
     </div>
-
-    <aside class="post-side">
-      {% if page.categories.size > 0 %}
-        <section class="terminal-section">
-          <h2>KATEGORIE</h2>
-          <div class="terminal-links">
-            {% for category in page.categories %}
-              {% assign category_slug = category | slugify %}
-              {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
-              <a href="{{ category_url | relative_url }}">&gt; {{ category }}</a>
-            {% endfor %}
-          </div>
-        </section>
-      {% endif %}
-
-      <nav class="post-nav" aria-label="Nawigacja miedzy wpisami">
-        {% if page.previous %}
-          <a href="{{ page.previous.url | relative_url }}">STARSZY -> {{ page.previous.title }}</a>
-        {% endif %}
-        {% if page.next %}
-          <a href="{{ page.next.url | relative_url }}">NOWSZY -> {{ page.next.title }}</a>
-        {% endif %}
-      </nav>
-    </aside>
   </div>
-
-  <footer class="post-footer">
-    {% include newsletter.html %}
-  </footer>
 </article>

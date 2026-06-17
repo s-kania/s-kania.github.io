@@ -426,6 +426,12 @@ img {
   image-rendering: auto;
 }
 
+.layout-post .hero-image img,
+.layout-post .content img,
+.layout-post .images-gallery img {
+  filter: none;
+}
+
 .card-art img {
   border: 0;
   height: 100%;
@@ -1440,12 +1446,13 @@ img {
 }
 
 .hero-image {
-  border: 1.5px solid var(--hairline);
-  margin: 2rem 0 0;
-  padding: 1rem;
+  border: 0;
+  margin: 1rem 0 1.65rem;
+  padding: 0;
 }
 
 .hero-image img {
+  border-radius: 6px;
   max-height: 34rem;
   object-fit: cover;
   width: 100%;
@@ -1457,9 +1464,9 @@ img {
 
 .post-layout {
   align-items: start;
-  display: grid;
-  gap: 3rem;
-  grid-template-columns: minmax(0, var(--measure)) minmax(16rem, 22rem);
+  display: block;
+  margin: 0 auto;
+  max-width: var(--measure);
 }
 
 .content {
@@ -1526,6 +1533,12 @@ img {
   border: 1.5px solid var(--hairline);
   margin: 1rem 0;
   width: 100%;
+}
+
+.layout-post .content img,
+.layout-post .images-gallery img {
+  border: 0;
+  border-radius: 6px;
 }
 
 .images-gallery {
@@ -2073,12 +2086,13 @@ img {
 }
 
 .site-footer {
+  align-items: center;
   border-top: 1px dashed var(--soft-line);
   display: flex;
   font-size: 0.9rem;
   font-weight: 800;
   gap: 1rem;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: auto;
   padding: 0.65rem 0;
 }
@@ -2591,8 +2605,7 @@ img {
 }
 
 @media (max-width: 1180px) {
-  .home-grid,
-  .post-layout {
+  .home-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2603,8 +2616,7 @@ img {
     overflow: visible;
   }
 
-  .home-terminal,
-  .post-side {
+  .home-terminal {
     position: static;
   }
 
@@ -2848,6 +2860,28 @@ img {
 
   .site-frame {
     padding: 1rem 1rem 0;
+  }
+
+  .layout-post .post-header {
+    padding-bottom: 0.82rem;
+  }
+
+  .layout-post .post-meta {
+    column-gap: 0.75rem;
+    font-size: 0.72rem;
+    line-height: 1.22;
+    margin-top: 1.45rem;
+    row-gap: 0.34rem;
+  }
+
+  .site-footer {
+    font-size: 0.58rem;
+    gap: 0.35rem;
+    white-space: nowrap;
+  }
+
+  .site-footer p {
+    white-space: nowrap;
   }
 
   .explorer-titlebar,
