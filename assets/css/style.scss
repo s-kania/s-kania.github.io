@@ -2494,10 +2494,11 @@ img {
   }
 
   .layout-home .post-card.featured .card-copy p {
+    align-self: start;
     font-size: 0.9rem;
     line-height: 1.38;
     max-width: 100%;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
   }
 
   .layout-home .post-card.featured .card-art {
@@ -2557,6 +2558,12 @@ img {
 
   .layout-home .system-panel p {
     margin: 0.12rem 0;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 900px) {
+  .layout-home .post-card.featured .card-copy h2 {
+    font-size: 2.15rem;
   }
 }
 
