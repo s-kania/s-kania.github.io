@@ -1700,7 +1700,7 @@ img {
 }
 
 .explorer-row-file {
-  grid-template-columns: 1.2rem minmax(0, 1fr) max-content max-content;
+  grid-template-columns: 1.2rem minmax(0, 1fr) max-content;
 }
 
 .explorer-row:hover,
@@ -1716,10 +1716,16 @@ img {
   overflow-wrap: anywhere;
 }
 
-.explorer-count,
-.explorer-code {
+.explorer-count {
   font-size: 0.9rem;
   font-weight: 900;
+}
+
+.explorer-code {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 .explorer-date {
@@ -1727,6 +1733,23 @@ img {
   font-size: 0.82rem;
   font-weight: 800;
   white-space: nowrap;
+}
+
+.explorer-meta {
+  align-items: center;
+  display: flex;
+  gap: 0.85rem;
+  justify-content: flex-end;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.explorer-meta .explorer-date {
+  order: 2;
+}
+
+.explorer-meta .explorer-code {
+  order: 1;
 }
 
 .file-icon {
@@ -1747,6 +1770,237 @@ img {
   right: -1.5px;
   top: -1.5px;
   width: 0.28rem;
+}
+
+@media (min-width: 1441px) {
+  .layout-archive .explorer-page,
+  .layout-categories .explorer-page {
+    max-width: 1120px;
+  }
+
+  .layout-archive .explorer-titlebar,
+  .layout-categories .explorer-titlebar {
+    height: 2.82rem;
+    padding: 0.64rem 1rem 0.56rem;
+  }
+
+  .layout-archive .explorer-titlebar h1,
+  .layout-categories .explorer-titlebar h1 {
+    font-size: 0.98rem;
+  }
+
+  .layout-archive .explorer-toolbar,
+  .layout-categories .explorer-toolbar {
+    font-size: 0.96rem;
+    min-height: 2.6rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .layout-archive .explorer-list,
+  .layout-categories .explorer-list {
+    padding: 0.28rem 0.9rem;
+  }
+
+  .layout-archive .explorer-row,
+  .layout-categories .explorer-row {
+    gap: 1rem;
+    padding: 0.72rem 0;
+  }
+
+  .layout-archive .explorer-row-file,
+  .layout-categories .explorer-row-file {
+    grid-template-columns: 1.35rem minmax(0, 1fr) max-content;
+  }
+
+  .layout-archive .explorer-row-folder,
+  .layout-categories .explorer-row-folder {
+    grid-template-columns: 1.35rem minmax(0, 1fr) max-content;
+  }
+
+  .layout-archive .explorer-name,
+  .layout-categories .explorer-name {
+    font-size: 1.08rem;
+  }
+
+  .layout-archive .explorer-count,
+  .layout-categories .explorer-count {
+    font-size: 0.96rem;
+  }
+
+  .layout-archive .explorer-code,
+  .layout-archive .explorer-date,
+  .layout-categories .explorer-code,
+  .layout-categories .explorer-date {
+    font-size: 0.88rem;
+  }
+
+  .layout-archive .explorer-row .folder-icon,
+  .layout-archive .explorer-row .folder-icon .ui-icon,
+  .layout-categories .explorer-row .folder-icon,
+  .layout-categories .explorer-row .folder-icon .ui-icon {
+    height: 1.18rem;
+    width: 1.3rem;
+  }
+
+  .layout-archive .file-icon,
+  .layout-categories .file-icon {
+    height: 1.2rem;
+    width: 0.96rem;
+  }
+}
+
+@media (min-width: 1800px) {
+  .layout-archive .explorer-page,
+  .layout-categories .explorer-page {
+    max-width: 1280px;
+  }
+
+  .layout-archive .explorer-titlebar,
+  .layout-categories .explorer-titlebar {
+    height: 3rem;
+    padding: 0.7rem 1.1rem 0.62rem;
+  }
+
+  .layout-archive .explorer-titlebar h1,
+  .layout-categories .explorer-titlebar h1 {
+    font-size: 1.02rem;
+  }
+
+  .layout-archive .explorer-toolbar,
+  .layout-categories .explorer-toolbar {
+    font-size: 1.02rem;
+    min-height: 2.85rem;
+    padding: 0.56rem 1.1rem;
+  }
+
+  .layout-archive .explorer-list,
+  .layout-categories .explorer-list {
+    padding: 0.34rem 1rem;
+  }
+
+  .layout-archive .explorer-row,
+  .layout-categories .explorer-row {
+    gap: 1.1rem;
+    padding: 0.82rem 0;
+  }
+
+  .layout-archive .explorer-row-file,
+  .layout-categories .explorer-row-file {
+    grid-template-columns: 1.45rem minmax(0, 1fr) max-content;
+  }
+
+  .layout-archive .explorer-row-folder,
+  .layout-categories .explorer-row-folder {
+    grid-template-columns: 1.45rem minmax(0, 1fr) max-content;
+  }
+
+  .layout-archive .explorer-name,
+  .layout-categories .explorer-name {
+    font-size: 1.16rem;
+  }
+
+  .layout-archive .explorer-count,
+  .layout-categories .explorer-count {
+    font-size: 1.04rem;
+  }
+
+  .layout-archive .explorer-code,
+  .layout-archive .explorer-date,
+  .layout-categories .explorer-code,
+  .layout-categories .explorer-date {
+    font-size: 0.94rem;
+  }
+
+  .layout-archive .explorer-row .folder-icon,
+  .layout-archive .explorer-row .folder-icon .ui-icon,
+  .layout-categories .explorer-row .folder-icon,
+  .layout-categories .explorer-row .folder-icon .ui-icon {
+    height: 1.25rem;
+    width: 1.36rem;
+  }
+
+  .layout-archive .file-icon,
+  .layout-categories .file-icon {
+    height: 1.27rem;
+    width: 0.99rem;
+  }
+}
+
+@media (min-width: 2000px) {
+  .layout-archive .explorer-page,
+  .layout-categories .explorer-page {
+    max-width: 1360px;
+  }
+
+  .layout-archive .explorer-titlebar,
+  .layout-categories .explorer-titlebar {
+    height: 3.12rem;
+    padding: 0.74rem 1.15rem 0.66rem;
+  }
+
+  .layout-archive .explorer-titlebar h1,
+  .layout-categories .explorer-titlebar h1 {
+    font-size: 1.06rem;
+  }
+
+  .layout-archive .explorer-toolbar,
+  .layout-categories .explorer-toolbar {
+    font-size: 1.06rem;
+    min-height: 3rem;
+    padding: 0.6rem 1.15rem;
+  }
+
+  .layout-archive .explorer-list,
+  .layout-categories .explorer-list {
+    padding: 0.38rem 1.05rem;
+  }
+
+  .layout-archive .explorer-row,
+  .layout-categories .explorer-row {
+    gap: 1.18rem;
+    padding: 0.9rem 0;
+  }
+
+  .layout-archive .explorer-row-file,
+  .layout-categories .explorer-row-file {
+    grid-template-columns: 1.55rem minmax(0, 1fr) max-content;
+  }
+
+  .layout-archive .explorer-row-folder,
+  .layout-categories .explorer-row-folder {
+    grid-template-columns: 1.55rem minmax(0, 1fr) max-content;
+  }
+
+  .layout-archive .explorer-name,
+  .layout-categories .explorer-name {
+    font-size: 1.22rem;
+  }
+
+  .layout-archive .explorer-count,
+  .layout-categories .explorer-count {
+    font-size: 1.1rem;
+  }
+
+  .layout-archive .explorer-code,
+  .layout-archive .explorer-date,
+  .layout-categories .explorer-code,
+  .layout-categories .explorer-date {
+    font-size: 0.98rem;
+  }
+
+  .layout-archive .explorer-row .folder-icon,
+  .layout-archive .explorer-row .folder-icon .ui-icon,
+  .layout-categories .explorer-row .folder-icon,
+  .layout-categories .explorer-row .folder-icon .ui-icon {
+    height: 1.32rem;
+    width: 1.42rem;
+  }
+
+  .layout-archive .file-icon,
+  .layout-categories .file-icon {
+    height: 1.35rem;
+    width: 1.08rem;
+  }
 }
 
 .archive-list h2 {
@@ -2445,15 +2699,30 @@ img {
   }
 
   .explorer-row-file {
-    grid-template-columns: 1.25rem minmax(0, 1fr) max-content;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
   }
 
-  .explorer-row-file .explorer-code {
+  .explorer-row-file .explorer-name,
+  .explorer-row-file .explorer-meta {
     grid-column: 2 / -1;
   }
 }
 
 @media (min-width: 561px) and (max-width: 900px) {
+  .explorer-row-file {
+    grid-template-columns: 1.25rem minmax(0, 1fr) max-content;
+  }
+
+  .explorer-row-file .explorer-name,
+  .explorer-row-file .explorer-meta {
+    grid-column: auto;
+  }
+
+  .explorer-row-file .explorer-meta {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
   .layout-home .home-hero {
     gap: 2rem;
     grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
@@ -2587,6 +2856,19 @@ img {
     padding-right: 0.7rem;
   }
 
+  .explorer-toolbar {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .explorer-toolbar > * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
   .explorer-list {
     padding: 0 0.7rem;
   }
@@ -2605,17 +2887,22 @@ img {
     grid-template-columns: 1.45rem minmax(0, 1fr);
   }
 
-  .explorer-name {
-    font-size: 1.14rem;
+  .explorer-row-file .explorer-name {
+    font-size: 1.02rem;
+    line-height: 1.28;
   }
 
-  .explorer-count,
-  .explorer-code {
+  .explorer-count {
     font-size: 1rem;
   }
 
+  .explorer-code {
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
   .explorer-date {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
   }
 
   .explorer-row .folder-icon,
@@ -2625,13 +2912,37 @@ img {
   }
 
   .file-icon {
-    height: 1.32rem;
-    width: 1.06rem;
+    height: 1.12rem;
+    width: 0.9rem;
   }
 
-  .explorer-row-file .explorer-date,
-  .explorer-row-file .explorer-code {
+  .explorer-row-file .file-icon {
+    align-self: start;
+    margin-top: 0.12rem;
+  }
+
+  .explorer-row-file .explorer-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.22rem;
     grid-column: 2 / -1;
+    justify-content: flex-start;
+    line-height: 1.2;
+  }
+
+  .explorer-row-file .explorer-code,
+  .explorer-row-file .explorer-date {
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  .explorer-row-file .explorer-code {
+    order: 1;
+  }
+
+  .explorer-row-file .explorer-date {
+    order: 2;
   }
 
   .top-nav {
