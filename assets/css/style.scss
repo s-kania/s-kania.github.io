@@ -1468,6 +1468,45 @@ img {
   margin-bottom: 0.8rem;
 }
 
+.post-path {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  gap: 0;
+  line-height: 1.35;
+  margin: 0 0 0.45rem;
+  overflow-wrap: anywhere;
+}
+
+.post-path > span:first-child {
+  color: var(--accent);
+  font-weight: 900;
+  margin-right: 0.55rem;
+}
+
+.post-path a {
+  color: inherit;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.post-path a:hover,
+.post-path a:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.post-path-current {
+  color: var(--accent);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 .post-meta {
   display: flex;
   flex-wrap: wrap;

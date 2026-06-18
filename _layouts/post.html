@@ -4,7 +4,10 @@ layout: default
 
 <article class="post">
   <header class="post-header">
-    <div class="terminal-label">POST_{{ page.date | date: "%Y%m%d" }}.MD</div>
+    <nav class="post-path" aria-label="Sciezka wpisu">
+      <span aria-hidden="true">&gt;</span>
+      <span>brick://</span><a href="{{ '/' | relative_url }}">home</a><span>/posts/</span><span class="post-path-current">POST_{{ page.date | date: "%Y%m%d" }}.md</span>
+    </nav>
 
     {% if page.image %}
       {% assign image_path = page.image.path | default: page.image %}
