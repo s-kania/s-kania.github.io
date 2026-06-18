@@ -1496,6 +1496,7 @@ img {
 
 .post-path a:hover,
 .post-path a:focus-visible {
+  color: var(--accent);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
@@ -2084,6 +2085,150 @@ img {
 
   .layout-archive .file-icon,
   .layout-categories .file-icon {
+    height: 1.35rem;
+    width: 1.08rem;
+  }
+}
+
+@media (min-width: 1441px) {
+  .layout-posts .explorer-page {
+    max-width: 1120px;
+  }
+
+  .layout-posts .explorer-titlebar {
+    height: 2.82rem;
+    padding: 0.64rem 1rem 0.56rem;
+  }
+
+  .layout-posts .explorer-titlebar h1 {
+    font-size: 0.98rem;
+  }
+
+  .layout-posts .explorer-toolbar {
+    font-size: 0.96rem;
+    min-height: 2.6rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .layout-posts .explorer-list {
+    padding: 0.28rem 0.9rem;
+  }
+
+  .layout-posts .explorer-row {
+    gap: 1rem;
+    padding: 0.72rem 0;
+  }
+
+  .layout-posts .explorer-row-file {
+    grid-template-columns: 1.35rem minmax(0, 1fr) max-content;
+  }
+
+  .layout-posts .explorer-name {
+    font-size: 1.08rem;
+  }
+
+  .layout-posts .explorer-code,
+  .layout-posts .explorer-date {
+    font-size: 0.88rem;
+  }
+
+  .layout-posts .file-icon {
+    height: 1.2rem;
+    width: 0.96rem;
+  }
+}
+
+@media (min-width: 1800px) {
+  .layout-posts .explorer-page {
+    max-width: 1280px;
+  }
+
+  .layout-posts .explorer-titlebar {
+    height: 3rem;
+    padding: 0.7rem 1.1rem 0.62rem;
+  }
+
+  .layout-posts .explorer-titlebar h1 {
+    font-size: 1.02rem;
+  }
+
+  .layout-posts .explorer-toolbar {
+    font-size: 1.02rem;
+    min-height: 2.85rem;
+    padding: 0.56rem 1.1rem;
+  }
+
+  .layout-posts .explorer-list {
+    padding: 0.34rem 1rem;
+  }
+
+  .layout-posts .explorer-row {
+    gap: 1.1rem;
+    padding: 0.82rem 0;
+  }
+
+  .layout-posts .explorer-row-file {
+    grid-template-columns: 1.45rem minmax(0, 1fr) max-content;
+  }
+
+  .layout-posts .explorer-name {
+    font-size: 1.16rem;
+  }
+
+  .layout-posts .explorer-code,
+  .layout-posts .explorer-date {
+    font-size: 0.94rem;
+  }
+
+  .layout-posts .file-icon {
+    height: 1.27rem;
+    width: 0.99rem;
+  }
+}
+
+@media (min-width: 2000px) {
+  .layout-posts .explorer-page {
+    max-width: 1360px;
+  }
+
+  .layout-posts .explorer-titlebar {
+    height: 3.12rem;
+    padding: 0.74rem 1.15rem 0.66rem;
+  }
+
+  .layout-posts .explorer-titlebar h1 {
+    font-size: 1.06rem;
+  }
+
+  .layout-posts .explorer-toolbar {
+    font-size: 1.06rem;
+    min-height: 3rem;
+    padding: 0.6rem 1.15rem;
+  }
+
+  .layout-posts .explorer-list {
+    padding: 0.38rem 1.05rem;
+  }
+
+  .layout-posts .explorer-row {
+    gap: 1.18rem;
+    padding: 0.9rem 0;
+  }
+
+  .layout-posts .explorer-row-file {
+    grid-template-columns: 1.55rem minmax(0, 1fr) max-content;
+  }
+
+  .layout-posts .explorer-name {
+    font-size: 1.22rem;
+  }
+
+  .layout-posts .explorer-code,
+  .layout-posts .explorer-date {
+    font-size: 0.98rem;
+  }
+
+  .layout-posts .file-icon {
     height: 1.35rem;
     width: 1.08rem;
   }

@@ -13,6 +13,7 @@ Use `--page all` for every listed target, or `--path /some/url/` for an ad hoc r
 | id | path | when to use |
 | --- | --- | --- |
 | `home` | `/` | Homepage: hero, post cards, BF_BROWSER, categories, system panel. |
+| `posts` | `/posts/` | Posts index explorer. |
 | `archives` | `/archives/` | Archive tab. |
 | `categories` | `/categories/` | Categories index tab. |
 | `about` | `/about/` | About page. |
@@ -57,7 +58,8 @@ Use `--page all` for every listed target, or `--path /some/url/` for an ad hoc r
 | command target | use |
 | --- | --- |
 | `--page home` | Homepage-only visual iteration. |
+| `--page posts` | Posts index explorer. |
 | `--page post-piraci-4` | Current/latest post layout. |
-| `--page categories,category-devlog,archives` | Navigation and listing pages. |
-| `--page home,post-piraci-4,categories,category-devlog,archives` | Fast broad regression pass. |
+| `--page posts,categories,category-devlog,archives` | Navigation and listing pages. |
+| `--page home,post-piraci-4,posts,categories,category-devlog,archives` | Fast broad regression pass. |
 | `--page all` | Full site route pass. This creates many screenshots. |

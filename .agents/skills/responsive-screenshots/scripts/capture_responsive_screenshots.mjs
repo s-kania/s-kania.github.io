@@ -29,6 +29,7 @@ const VIEWPORTS = [
 
 const PAGE_TARGETS = [
   { id: "home", path: "/", description: "Homepage with hero, post cards, browser, categories, and system panels." },
+  { id: "posts", path: "/posts/", description: "Posts index explorer." },
   { id: "archives", path: "/archives/", description: "Archive tab." },
   { id: "categories", path: "/categories/", description: "Categories index tab." },
   { id: "about", path: "/about/", description: "About page tab." },

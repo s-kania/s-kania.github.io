@@ -6,7 +6,7 @@ layout: default
   <header class="post-header">
     <nav class="post-path" aria-label="Sciezka wpisu">
       <span aria-hidden="true">&gt;</span>
-      <span>brick://</span><a href="{{ '/' | relative_url }}">home</a><span>/posts/</span><span class="post-path-current">POST_{{ page.date | date: "%Y%m%d" }}.md</span>
+      <span>brick://</span><a href="{{ '/' | relative_url }}">home</a><span>/</span><a href="{{ '/posts/' | relative_url }}">posts</a><span>/</span><span class="post-path-current">POST_{{ page.date | date: "%Y%m%d" }}.md</span>
     </nav>
 
     {% if page.image %}

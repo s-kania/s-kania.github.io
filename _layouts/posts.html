@@ -1,0 +1,34 @@
+---
+layout: default
+---
+
+<article class="explorer-page">
+  <section class="explorer-window" aria-labelledby="posts-title">
+    <header class="explorer-titlebar">
+      <h1 id="posts-title">BF_EXPLORER</h1>
+      <div class="window-controls">
+        <span class="window-control minimize"></span>
+        <a class="window-control close" href="{{ '/' | relative_url }}" aria-label="Strona glowna"></a>
+      </div>
+    </header>
+
+    <div class="explorer-toolbar">
+      <span>&gt;</span>
+      <span>brick://</span><a href="{{ '/' | relative_url }}">home</a><span>/posts</span>
+    </div>
+
+    <div class="explorer-list" aria-label="Lista wpisow">
+      {% assign posts = site.posts | where_exp: "post", "post.hidden != true" %}
+      {% for post in posts %}
+        <a class="explorer-row explorer-row-file" href="{{ post.url | relative_url }}">
+          <span class="file-icon" aria-hidden="true"></span>
+          <span class="explorer-name">{{ post.title }}</span>
+          <span class="explorer-meta">
+            <span class="explorer-code">POST_{{ post.date | date: "%Y%m%d" }}.MD</span>
+            <time class="explorer-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</article>
