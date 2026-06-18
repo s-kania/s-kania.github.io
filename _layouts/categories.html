@@ -18,17 +18,20 @@ title: Kategorie
       <span>brick://</span><a href="{{ '/' | relative_url }}">home</a><span>/</span><a href="{{ '/categories/' | relative_url }}">kategorie</a>
     </div>
 
-    <div class="explorer-list" aria-label="Lista kategorii">
-      {% assign categories = site.categories | sort %}
-      {% for category in categories %}
-        {% assign category_slug = category[0] | slugify %}
-        {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
-        <a class="explorer-row explorer-row-folder" href="{{ category_url | relative_url }}">
-          <span class="folder-icon" aria-hidden="true">{% include icon.html name="folder" %}</span>
-          <span class="explorer-name">{{ category[0] | upcase }}</span>
-          <strong class="explorer-count">{{ category[1].size }}</strong>
-        </a>
-      {% endfor %}
+    <div class="explorer-body">
+      <div class="explorer-list" aria-label="Lista kategorii">
+        {% assign categories = site.categories | sort %}
+        {% for category in categories %}
+          {% assign category_slug = category[0] | slugify %}
+          {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
+          <a class="explorer-row explorer-row-folder" href="{{ category_url | relative_url }}">
+            <span class="folder-icon" aria-hidden="true">{% include icon.html name="folder" %}</span>
+            <span class="explorer-name">{{ category[0] | upcase }}</span>
+            <strong class="explorer-count">{{ category[1].size }}</strong>
+          </a>
+        {% endfor %}
+      </div>
+      {% include explorer-scrollbar.html %}
     </div>
   </section>
 </article>

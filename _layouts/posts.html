@@ -17,18 +17,21 @@ layout: default
       <span>brick://</span><a href="{{ '/' | relative_url }}">home</a><span>/posts</span>
     </div>
 
-    <div class="explorer-list" aria-label="Lista wpisow">
-      {% assign posts = site.posts | where_exp: "post", "post.hidden != true" %}
-      {% for post in posts %}
-        <a class="explorer-row explorer-row-file" href="{{ post.url | relative_url }}">
-          <span class="file-icon" aria-hidden="true"></span>
-          <span class="explorer-name">{{ post.title }}</span>
-          <span class="explorer-meta">
-            <span class="explorer-code">POST_{{ post.date | date: "%Y%m%d" }}.MD</span>
-            <time class="explorer-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
-          </span>
-        </a>
-      {% endfor %}
+    <div class="explorer-body">
+      <div class="explorer-list" aria-label="Lista wpisow">
+        {% assign posts = site.posts | where_exp: "post", "post.hidden != true" %}
+        {% for post in posts %}
+          <a class="explorer-row explorer-row-file" href="{{ post.url | relative_url }}">
+            <span class="file-icon" aria-hidden="true"></span>
+            <span class="explorer-name">{{ post.title }}</span>
+            <span class="explorer-meta">
+              <span class="explorer-code">POST_{{ post.date | date: "%Y%m%d" }}.MD</span>
+              <time class="explorer-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
+            </span>
+          </a>
+        {% endfor %}
+      </div>
+      {% include explorer-scrollbar.html %}
     </div>
   </section>
 </article>

@@ -17,19 +17,22 @@ layout: default
       <span>brick://</span><a href="{{ '/' | relative_url }}">home</a><span>/</span><a href="{{ '/categories/' | relative_url }}">kategorie</a><span>/{{ page.title | default: page.name | slugify }}</span>
     </div>
 
-    <div class="explorer-list" aria-label="Lista wpisow">
-      {% for post in page.posts %}
-        {% assign post_category = post.categories | first | default: page.title %}
-        {% assign archive_number = forloop.rindex | prepend: "0" | slice: -2, 2 %}
-        <a class="explorer-row explorer-row-file" href="{{ post.url | relative_url }}">
-          <span class="file-icon" aria-hidden="true"></span>
-          <span class="explorer-name">{{ post.title }}</span>
-          <span class="explorer-meta">
-            <span class="explorer-code">{{ post_category | slugify | replace: "-", "_" | upcase }}_{{ archive_number }}.ART</span>
-            <time class="explorer-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
-          </span>
-        </a>
-      {% endfor %}
+    <div class="explorer-body">
+      <div class="explorer-list" aria-label="Lista wpisow">
+        {% for post in page.posts %}
+          {% assign post_category = post.categories | first | default: page.title %}
+          {% assign archive_number = forloop.rindex | prepend: "0" | slice: -2, 2 %}
+          <a class="explorer-row explorer-row-file" href="{{ post.url | relative_url }}">
+            <span class="file-icon" aria-hidden="true"></span>
+            <span class="explorer-name">{{ post.title }}</span>
+            <span class="explorer-meta">
+              <span class="explorer-code">{{ post_category | slugify | replace: "-", "_" | upcase }}_{{ archive_number }}.ART</span>
+              <time class="explorer-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
+            </span>
+          </a>
+        {% endfor %}
+      </div>
+      {% include explorer-scrollbar.html %}
     </div>
   </section>
 </article>
