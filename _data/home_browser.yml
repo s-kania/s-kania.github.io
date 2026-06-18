@@ -5,14 +5,14 @@
 - id: about
   label: O MNIE
   address: brick://o-mnie
-  title: Kim tu nadaje?
-  body: Krotki raport o autorze, klockach, grach i tym, dlaczego ten blog w ogole istnieje.
-  cta: Otworz profil
+  title: Kim jestem? O czym ten blog?
+  body: Krótki raport o autorze, tworzonych grach, klockach lego, grach i tym, dlaczego ten blog w ogóle istnieje.
+  cta: Otwórz profil pilota
   url: /about/
 - id: archives
   label: ARCHIWUM
   address: brick://archiwum
-  title: Stare wpisy, nadal zywe
-  body: Magazyn poprzednich notatek. Kurz wirtualny, tresc prawdziwa, sortowanie bez litosci.
-  cta: Przejdz do archiwum
+  title: Stare wpisy, nadal żywe.
+  body: Oś czasu poprzednich wpisów na blogu. Pełno tu wirtualnego kurzu. Alergicy powinni uważać.
+  cta: Otwórz archiwum
   url: /archives/

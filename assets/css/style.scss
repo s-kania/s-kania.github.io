@@ -2301,23 +2301,99 @@ img {
   }
 }
 
-.archive-list h2 {
-  border-bottom: 1.5px solid var(--hairline);
-  font-size: 1.3rem;
-  margin-top: 2rem;
-  padding-bottom: 0.4rem;
+.layout-archives .page {
+  max-width: 1040px;
 }
 
-.archive-item {
+.layout-archives .page-header {
+  border-bottom: 0;
+  margin-bottom: 2.35rem;
+  padding-bottom: 0;
+}
+
+.layout-archives .content {
+  font-family: var(--mono);
+}
+
+.archive-timeline {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.archive-year {
+  display: grid;
+  gap: 1.85rem;
+  grid-template-columns: 6rem minmax(0, 1fr);
+}
+
+.archive-year h2 {
+  border: 0;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 1.12rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 0;
+  padding: 0.9rem 0 0;
+}
+
+.archive-year-list {
+  --archive-axis-offset: 1.35rem;
+  border-left: 1px solid var(--hairline);
+  display: grid;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--archive-axis-offset);
+}
+
+.archive-entry {
+  align-items: baseline;
+  border-bottom: 1px dotted var(--soft-line);
   display: grid;
   gap: 1rem;
-  grid-template-columns: 5rem minmax(0, 1fr);
-  padding: 0.45rem 0;
+  grid-template-columns: 4.4rem minmax(0, 1fr);
+  padding: 0.8rem 0;
+  position: relative;
 }
 
-.archive-item time {
+.archive-entry:last-child {
+  border-bottom: 0;
+}
+
+.archive-entry::before {
+  background: var(--bg);
+  border: 1.5px solid var(--accent);
+  content: "";
+  height: 0.35rem;
+  left: calc(var(--archive-axis-offset) * -1);
+  position: absolute;
+  top: 1.22rem;
+  transform: translateX(-50%);
+  width: 0.35rem;
+}
+
+.archive-entry-date {
   color: var(--muted);
+  font-size: 0.9rem;
   font-weight: 900;
+  line-height: 1.25;
+}
+
+.archive-entry-title {
+  color: var(--ink);
+  font-size: 1.03rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.archive-entry-title:hover,
+.archive-entry-title:focus-visible {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
 }
 
 .subscribe {
@@ -3425,9 +3501,49 @@ img {
     display: none;
   }
 
-  .images-gallery,
-  .archive-item {
+  .images-gallery {
     grid-template-columns: 1fr;
+  }
+
+  .layout-archives .page-header {
+    margin-bottom: 1.75rem;
+  }
+
+  .archive-timeline {
+    gap: 1.65rem;
+  }
+
+  .archive-year {
+    gap: 0.55rem;
+    grid-template-columns: 1fr;
+  }
+
+  .archive-year h2 {
+    font-size: 1rem;
+    padding: 0 0 0 1.15rem;
+  }
+
+  .archive-year-list {
+    --archive-axis-offset: 1.15rem;
+  }
+
+  .archive-entry {
+    gap: 0.65rem;
+    grid-template-columns: 3.55rem minmax(0, 1fr);
+    padding: 0.72rem 0;
+  }
+
+  .archive-entry::before {
+    top: 1rem;
+  }
+
+  .archive-entry-date {
+    font-size: 0.76rem;
+  }
+
+  .archive-entry-title {
+    font-size: 0.95rem;
+    line-height: 1.32;
   }
 
   .subscribe-info,
