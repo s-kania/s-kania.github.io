@@ -4,7 +4,7 @@ module HomeFeedPages
     priority :low
 
     FIRST_PAGE_COUNT = 3
-    FOLLOWING_PAGE_COUNT = 4
+    FOLLOWING_PAGE_COUNT = 6
 
     def generate(site)
       posts = site.posts.docs
