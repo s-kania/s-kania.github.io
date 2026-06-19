@@ -227,7 +227,7 @@ img {
   gap: 0.5rem;
   justify-content: space-between;
   line-height: 1;
-  margin-top: 0;
+  margin-top: clamp(0.35rem, 0.65vh, 0.5rem);
   padding: 0.36rem 0 0;
   text-transform: uppercase;
   width: 100%;
@@ -294,7 +294,7 @@ img {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   height: 100%;
-  padding: var(--card-pad-y) var(--card-pad-x) 1.3rem;
+  padding: var(--card-pad-y) var(--card-pad-x) 0 1.3rem;
   position: relative;
   text-decoration: none;
   width: 100%;
@@ -2575,9 +2575,9 @@ img {
 
   .layout-home .home-feed {
     display: grid;
-    gap: clamp(0.9rem, 1.45vh, 1.15rem);
     grid-template-rows: minmax(15rem, 1.52fr) minmax(9rem, 1fr) auto;
     min-height: 0;
+    row-gap: 0;
   }
 
   .layout-home .home-feed.home-feed-paged {
@@ -2588,6 +2588,10 @@ img {
     gap: clamp(0.9rem, 1.4vw, 1.15rem);
     margin-top: 0;
     min-height: 0;
+  }
+
+  .layout-home .home-feed:not(.home-feed-paged) .post-card-grid {
+    margin-top: clamp(0.9rem, 1.45vh, 1.15rem);
   }
 
   .layout-home .home-feed-paged .post-card-grid {
@@ -2638,7 +2642,7 @@ img {
     .layout-home .post-card:not(.featured) .card-copy p {
       font-size: 1.1rem;
       line-height: 1.44;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
     }
   }
 
@@ -2669,7 +2673,7 @@ img {
 
     .layout-home .post-card:not(.featured) .card-copy p {
       font-size: 1.2rem;
-      -webkit-line-clamp: 4;
+      -webkit-line-clamp: 2;
     }
 
     .layout-home .post-card.featured .card-copy p {
@@ -2791,8 +2795,8 @@ img {
   }
 
   .layout-home .home-feed {
-    gap: 0.8rem;
     grid-template-rows: minmax(13.5rem, 1.5fr) minmax(8.25rem, 1fr) auto;
+    row-gap: 0;
   }
 
   .layout-home .home-feed.home-feed-paged {
@@ -2801,6 +2805,10 @@ img {
 
   .layout-home .post-card-grid {
     margin-top: 0;
+  }
+
+  .layout-home .home-feed:not(.home-feed-paged) .post-card-grid {
+    margin-top: 0.8rem;
   }
 
   .layout-home .post-card.featured {
@@ -2816,7 +2824,7 @@ img {
   .layout-home .post-card .post-card-link {
     --card-pad-x: 1.45rem;
     --card-pad-y: 1rem;
-    padding: var(--card-pad-y) var(--card-pad-x);
+    padding: var(--card-pad-y) var(--card-pad-x) 0;
   }
 
   .layout-home .post-card.featured .post-card-link {
