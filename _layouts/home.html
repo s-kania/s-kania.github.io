@@ -125,6 +125,7 @@ layout: default
     const featuredTitle = document.querySelector('.post-card.featured .card-copy h2');
     const featuredMeta = document.querySelector('.post-card.featured .card-meta');
     const featuredSummary = document.querySelector('.post-card.featured .card-copy p');
+    const pagedCards = document.querySelectorAll('.home-feed-paged .post-card:not(.featured)');
 
     if (!systemTime) return;
 
@@ -197,6 +198,47 @@ layout: default
     syncFeaturedCopyScale();
     window.addEventListener('resize', syncFeaturedCopyScale);
     document.fonts?.ready.then(syncFeaturedCopyScale);
+
+    const syncPagedSummaryLines = () => {
+      if (!pagedCards.length) return;
+
+      pagedCards.forEach((card) => {
+        const summary = card.querySelector('.card-copy p');
+        if (!summary) return;
+
+        summary.style.removeProperty('display');
+        summary.style.setProperty('--summary-lines', '2');
+      });
+
+      window.requestAnimationFrame(() => {
+        pagedCards.forEach((card) => {
+          const link = card.querySelector('.post-card-link');
+          const summary = card.querySelector('.card-copy p');
+          if (!link || !summary) return;
+
+          const linkBox = link.getBoundingClientRect();
+          const summaryBox = summary.getBoundingClientRect();
+          const linkStyle = window.getComputedStyle(link);
+          const summaryStyle = window.getComputedStyle(summary);
+          const bottomPadding = parseFloat(linkStyle.paddingBottom) || 0;
+          const lineHeight = parseFloat(summaryStyle.lineHeight) || 18;
+          const bottomReserve = Math.max(bottomPadding, Math.min(10, lineHeight * 0.45));
+          const availableHeight = linkBox.bottom - summaryBox.top - bottomReserve;
+
+          if (availableHeight >= lineHeight * 1.85) {
+            summary.style.setProperty('--summary-lines', '2');
+          } else if (availableHeight >= lineHeight * 0.95) {
+            summary.style.setProperty('--summary-lines', '1');
+          } else {
+            summary.style.display = 'none';
+          }
+        });
+      });
+    };
+
+    syncPagedSummaryLines();
+    window.addEventListener('resize', syncPagedSummaryLines);
+    document.fonts?.ready.then(syncPagedSummaryLines);
 
     if (browserPanelShell && browserTransitionText && browserTabs.length && browserPanels.length) {
       let isBrowserTransitioning = false;

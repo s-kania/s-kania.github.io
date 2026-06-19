@@ -2616,7 +2616,9 @@ img {
   }
 
   .layout-home .home-feed-paged .post-card:not(.featured) .card-copy p {
+    flex-shrink: 0;
     max-width: calc(100% - 2.2rem);
+    -webkit-line-clamp: var(--summary-lines, 2);
   }
 
   .layout-home .post-card.featured .post-card-link {
@@ -2663,7 +2665,7 @@ img {
     .layout-home .post-card:not(.featured) .card-copy p {
       font-size: 1.1rem;
       line-height: 1.44;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: var(--summary-lines, 2);
     }
   }
 
@@ -2694,7 +2696,7 @@ img {
 
     .layout-home .post-card:not(.featured) .card-copy p {
       font-size: 1.2rem;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: var(--summary-lines, 2);
     }
 
     .layout-home .post-card.featured .card-copy p {
