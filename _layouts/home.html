@@ -2,8 +2,14 @@
 layout: default
 ---
 
-{% assign posts = site.posts | where_exp: "post", "post.hidden != true" %}
-{% assign featured = posts[0] %}
+{% if page.home_feed_posts %}
+  {% assign posts = page.home_feed_posts %}
+{% else %}
+  {% assign posts = site.posts | where_exp: "post", "post.hidden != true" %}
+{% endif %}
+{% assign home_feed_page = page.home_feed_page | default: 1 %}
+{% assign home_feed_total_pages = page.home_feed_total_pages | default: 1 %}
+{% assign home_feed_start_index = page.home_feed_start_index | default: 1 %}
 
 <section class="home-hero">
   <h1>{{ site.title }}</h1>
@@ -14,17 +20,48 @@ layout: default
 </section>
 
 <div class="home-grid">
-  <section class="home-feed" aria-label="Najnowsze wpisy">
-    {% if featured %}
-      {% include post-card.html post=featured number=1 featured=true %}
+  <section class="home-feed{% if home_feed_page > 1 %} home-feed-paged{% endif %}" aria-label="Najnowsze wpisy">
+    {% if home_feed_page == 1 %}
+      {% assign featured = posts[0] %}
+      {% if featured %}
+        {% include post-card.html post=featured number=1 featured=true %}
+      {% endif %}
+
+      <div class="post-card-grid">
+        {% for post in posts offset:1 limit:2 %}
+          {% assign card_number = forloop.index | plus: 1 %}
+          {% include post-card.html post=post number=card_number %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="post-card-grid">
+        {% for post in posts %}
+          {% assign card_number = home_feed_start_index | plus: forloop.index0 %}
+          {% include post-card.html post=post number=card_number %}
+        {% endfor %}
+      </div>
     {% endif %}
 
-    <div class="post-card-grid">
-      {% for post in posts offset:1 limit:2 %}
-        {% assign card_number = forloop.index | plus: 1 %}
-        {% include post-card.html post=post number=card_number %}
-      {% endfor %}
-    </div>
+    {% if home_feed_total_pages > 1 %}
+      {% assign home_feed_action_url = page.home_feed_next_url | default: "/" %}
+      {% assign home_feed_action_label = "NEXT &gt;" %}
+      {% assign home_feed_action_aria = "Następna strona" %}
+      {% unless page.home_feed_next_url %}
+        {% assign home_feed_action_label = "HOME &gt;" %}
+        {% assign home_feed_action_aria = "Pierwsza strona" %}
+      {% endunless %}
+      <nav class="home-feed-actions" aria-label="Paginacja wpisów">
+        <span class="home-feed-page-indicator">
+          BF_FEED :: PAGE <strong>{{ home_feed_page }}</strong>/<span>{{ home_feed_total_pages }}</span>
+        </span>
+        <span class="home-feed-action-list">
+          {% if page.home_feed_prev_url %}
+            <a class="home-feed-action" href="{{ page.home_feed_prev_url | relative_url }}" aria-label="Poprzednia strona">&lt; PREV</a>
+          {% endif %}
+          <a class="home-feed-action" href="{{ home_feed_action_url | relative_url }}" aria-label="{{ home_feed_action_aria }}">{{ home_feed_action_label }}</a>
+        </span>
+      </nav>
+    {% endif %}
   </section>
 
   <aside class="home-terminal" aria-label="Panel boczny">
