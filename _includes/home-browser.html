@@ -54,6 +54,10 @@
                   {% assign url = entry.url %}
                   {% assign label = 'yt' %}
                   {% assign link_text = entry.handle %}
+                {% when 'github' %}
+                  {% assign url = entry.url %}
+                  {% assign label = 'github' %}
+                  {% assign link_text = entry.handle %}
                 {% else %}
                   {% assign url = entry.url %}
                   {% assign label = entry.type %}

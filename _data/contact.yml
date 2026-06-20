@@ -7,6 +7,10 @@
   handle: '@brickfiction'
   url: 'https://www.youtube.com/@brickfiction'
 -
+  type: github
+  handle: '@s-kania'
+  url: 'https://github.com/s-kania'
+-
   type: email
   noblank: true
 -
