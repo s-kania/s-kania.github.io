@@ -11,5 +11,8 @@
       {% include footer.html %}
     </div>
     {% include explorer-scrollbar-script.html %}
+    {% if jekyll.environment == 'production' %}
+      <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f42db71d69d645688339209a0cb3bcd2"}'></script><!-- End Cloudflare Web Analytics -->
+    {% endif %}
   </body>
 </html>

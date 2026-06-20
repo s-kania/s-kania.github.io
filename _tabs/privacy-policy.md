@@ -14,7 +14,7 @@ Adres mojej strony internetowej to: https://brickfiction.pl. Jest to niezależny
 Newsletter is disabled until the MailerLite form is restored.
 1. Subskrypcja powiadomień za pomocą MailerLite jest opcjonalna i odbywa się po podaniu adresu e-mail w formularzu subskrypcyjnym. Dane te będą wykorzystywane wyłącznie do przesyłania wiadomości e-mail związanych z treściami opublikowanymi na naszej stronie. W każdej chwili można wypisać się z powiadomień. Dane te nie będą przekazywane do żadnych innych podmiotów. Link do polityki prywatności MailerLite <https://www.mailerlite.com/legal/privacy-policy>.
 {% endcomment %}
-1. Strona korzysta z prostych narzędzi analitycznych, które pomagają zrozumieć ruch na blogu i popularność wpisów. Dane analityczne są wykorzystywane wyłącznie do prowadzenia i rozwijania strony.
+1. Strona korzysta z Cloudflare Web Analytics w celu mierzenia podstawowych statystyk odwiedzin. Narzędzie nie używa plików cookies, localStorage ani fingerprintingu użytkowników. Dane służą wyłącznie do zbiorczej analizy działania strony.
 2. Zgodnie z obowiązującymi przepisami, użytkownicy mają prawo do wglądu, poprawiania i usuwania swoich danych osobowych, które są zbierane i przetwarzane przez witrynę brickfiction.pl.
 3. Na mojej stronie mogą pojawiać się osadzone treści (np. filmy, zdjęcia, artykuły itp.) z innych witryn, takich jak YouTube, Vimeo czy Twitter. Osadzone treści z innych witryn zachowują się dokładnie tak samo, jakbyś odwiedził/a bezpośrednio tę witrynę.
 4. Zwracam uwagę, że korzystanie z osadzonych treści może wiązać się z potencjalnymi zagrożeniami dla prywatności użytkowników, w tym zbieraniem danych przez zewnętrzne serwisy. Nie jestem odpowiedzialny za polityki prywatności ani praktyki innych witryn.
