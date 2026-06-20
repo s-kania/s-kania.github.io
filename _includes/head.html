@@ -9,6 +9,8 @@
   <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.style_version }}">
 
+  {% comment %}
+  Newsletter is disabled until the MailerLite form is restored.
   <script>
     (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
     .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
@@ -16,6 +18,7 @@
     (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
     ml('account', '353101');
   </script>
+  {% endcomment %}
 
   <script>
     window.trackBrickEvent = (id, parameters = {}) => {

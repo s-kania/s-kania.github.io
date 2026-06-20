@@ -32,10 +32,12 @@ wytłumaczyć zagadnienia z procesu kreowania gier, tak aby samemu lepiej je roz
 Na stronie głównej znajdziesz najnowsze wpisy.
 Jeśli jednak interesuje Cię konkretny temat, radzę przejść na stronę `Kategorie` i wybrać odpowiedni dział.
 
+{% comment %}
 ### Powiadomienia
 Pod każdym postem można zapisać się do listy powiadomień e-mail. Wybierz interesujące Cię tematy i czekaj na wieści.
 - Klocki - powiadomienia będą wysyłane gdy zbierze się kilka wpisów.
 - Tworzenie gier - dostaniesz wiadomość gdy tylko pojawi się nowy wpis z devloga :)
+{% endcomment %}
 
 ### Polityka prywatności
 Znajdziesz ją pod tym adresem -> [link](https://brickfiction.pl/privacy-policy/).
