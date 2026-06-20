@@ -14,7 +14,7 @@ Kilka dni temu odwiedziłem Zamek w Czchowie, gdzie zabrałem swoje minifigurki 
 Warownia ta znajduje się w Małopolsce i poza główną atrakcją, oferuje również park/szlak pierwszej i drugiej wojny światowej z wieloma eksponatami na świeżym powietrzu.
 ![Zdjęcie zamku](/assets/posts/2023-05-11/IMG_4070.JPG){: width="972" height="589" }
 Jeśli interesuje cię historia tego uroczego zamku, koniecznie odwiedź tę stronę ->
-<a href="https://zamkomania.pl/czchow.php" target="_blank" onclick="fetch(`https://nullitics.com/n.gif?u={{ site.nullitics_url }}:zamek-czchow`)">Zamkomania - Czchów</a>
+<a href="https://zamkomania.pl/czchow.php" target="_blank" rel="noopener" onclick="window.trackBrickEvent('zamek-czchow-click')">Zamkomania - Czchów</a>
 
 ## Galeria - minifigurki
 ---

@@ -17,17 +17,24 @@
     ml('account', '353101');
   </script>
 
+  <script>
+    window.trackBrickEvent = (id, parameters = {}) => {
+      if (!window.insights || typeof window.insights.track !== 'function') return;
+
+      window.insights.track({id, parameters});
+    };
+  </script>
+
   {% if jekyll.environment == 'production' %}
     <script src="https://getinsights.io/js/insights.js"></script>
     <script>
-      insights.init('hbiwrrma0PzP_8D4');
+      insights.init('hbiwrrma0PzP_8D4', {ignoreErrors: true});
       insights.trackPages({hash: true, search: true});
       const urlParams = new URLSearchParams(window.location.search);
       const source = urlParams.get('utm_source');
       if (source) {
-        insights.track({id: 'from-source', parameters: {source}});
+        window.trackBrickEvent('from-source', {source});
       }
     </script>
-    <script>new Image().src='https://nullitics.com/n.gif?u=' + encodeURI('{{ site.nullitics_url }}') + '&r=' + encodeURI(document.referrer) + '&d=' + screen.width;</script>
   {% endif %}
 </head>

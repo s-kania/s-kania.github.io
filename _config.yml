@@ -6,7 +6,6 @@ url: 'https://brickfiction.pl/'
 baseurl: ''
 lang: pl
 timezone: Europe/Warsaw
-nullitics_url: 'https://brickfiction.pl/'
 avatar: /assets/img/avatar.jpg
 style_version: 16
 
@@ -17,12 +16,6 @@ social:
   name: brickfiction.pl
   email: kontakt@brickfiction.pl
   links: []
-
-google_analytics:
-  id:
-  pv:
-    proxy_endpoint:
-    cache_path:
 
 kramdown:
   syntax_highlighter: rouge

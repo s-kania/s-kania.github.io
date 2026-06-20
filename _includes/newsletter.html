@@ -16,6 +16,6 @@
   document.getElementById('subscribe-button').addEventListener('click', () => {
     document.querySelector('.subscribe-info').style.display = 'none';
     document.querySelector('.subscribe-modal').style.display = 'flex';
-    fetch(`https://nullitics.com/n.gif?u={{ site.nullitics_url }}:otworz-formularz-newsletter`);
+    window.trackBrickEvent('newsletter-form-opened');
   });
 </script>
