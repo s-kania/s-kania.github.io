@@ -1499,9 +1499,11 @@ img {
   font-family: var(--sans);
   font-size: 2.65rem;
   font-weight: 950;
-  letter-spacing: -0.045em;
-  line-height: 1;
+  letter-spacing: 0;
+  line-height: 1.1;
   margin: 0;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 @media (min-width: 561px) {
