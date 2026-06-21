@@ -513,6 +513,23 @@ img {
   margin-bottom: -0.16em;
 }
 
+.post-card.featured.no-preview .card-art {
+  align-items: flex-end;
+  align-self: auto;
+  aspect-ratio: auto;
+  bottom: 0;
+  height: auto;
+  justify-content: flex-end;
+  min-height: 0;
+  position: absolute;
+  right: 0.27rem;
+  width: auto;
+}
+
+.post-card.featured.no-preview .card-art span {
+  margin-bottom: 0;
+}
+
 .card-number {
   bottom: 0;
   font-size: clamp(2.9rem, 4.1vw, 4.35rem);
@@ -632,7 +649,7 @@ img {
   }
 
   .layout-home .post-card.featured.no-preview .card-art {
-    align-self: center;
+    align-self: auto;
     height: auto;
     min-height: 0;
   }
