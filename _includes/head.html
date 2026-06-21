@@ -20,24 +20,4 @@
   </script>
   {% endcomment %}
 
-  <script>
-    window.trackBrickEvent = (id, parameters = {}) => {
-      if (!window.insights || typeof window.insights.track !== 'function') return;
-
-      window.insights.track({id, parameters});
-    };
-  </script>
-
-  {% if jekyll.environment == 'production' %}
-    <script src="https://getinsights.io/js/insights.js"></script>
-    <script>
-      insights.init('hbiwrrma0PzP_8D4', {ignoreErrors: true});
-      insights.trackPages({hash: true, search: true});
-      const urlParams = new URLSearchParams(window.location.search);
-      const source = urlParams.get('utm_source');
-      if (source) {
-        window.trackBrickEvent('from-source', {source});
-      }
-    </script>
-  {% endif %}
 </head>
