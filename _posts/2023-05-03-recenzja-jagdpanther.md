@@ -3,12 +3,10 @@ title: Recenzja zestawu COBI 2573 - Sd.Kfz. 173 JAGDPANTHER
 author: rybeusz
 date: 2023-05-03 15:00:00 +0100
 categories: [Recenzje]
-tags: [cobi, recenzja, czołgi]
 image: /assets/posts/2023-05-03/pudelko.png
 preview_image:
     path: /assets/posts/2023-05-03/pudelko.png
     alt: COBI 2573
-comments: true
 ---
 
 Gdy zobaczyłem zapowiedź tego zestawu na fanowskiej grupie, od razu wiedziałem że wpadnie on w moje ręce.

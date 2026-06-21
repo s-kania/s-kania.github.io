@@ -1,17 +1,19 @@
 # hidden files
 .*
 !.git*
+!.agents/
+!.agents/**
 !.editorconfig
 !.nojekyll
 !.husky
 !.commitlintrc.json
 !.versionrc.json
 !.stylelintrc.json
+.style
 
 # bundler cache
 _site
 vendor
-Gemfile.lock
 
 # rubygem
 *.gem
@@ -22,3 +24,5 @@ package-lock.json
 
 node_modules
 .env
+output/playwright/.runtime/
+output/playwright/responsive/

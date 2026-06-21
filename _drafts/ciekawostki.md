@@ -3,12 +3,10 @@ title: Ciekawostki
 author: rybeusz
 date: 2023-04-16 02:25:00 +0100
 categories: [Ciekawostki]
-tags: [lego, muzeum, ciekawostki]
 image: /assets/posts/2023-04-23/IMG_3795.JPEG
 preview_image:
     path: /assets/posts/2023-04-23/IMG_3795.JPEG
     alt: Minifigurki
-comments: false
 ---
 
 #### Kontrowersje

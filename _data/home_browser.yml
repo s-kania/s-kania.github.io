@@ -1,0 +1,18 @@
+- id: links
+  label: LINKI
+  address: brick://linki
+  type: contacts
+- id: about
+  label: O MNIE
+  address: brick://o-mnie
+  title: README.md
+  body: Krótko o tym, skąd wzięło się u mnie LEGO, zajawka na piracką gierkę i pomysł, żeby opisywać projekt, który idzie do przodu wolniej, niż zakładałem.
+  cta: Otwórz stronę
+  url: /about/
+- id: archives
+  label: ARCHIWUM
+  address: brick://archiwum
+  title:  Oś czasu wpisów
+  body: Dobre miejsce, żeby sprawdzić, co kiedy powstawało i jak blog zmieniał się po drodze. Kurz w pakiecie, alergicy ostrożnie.
+  cta: Otwórz archiwum
+  url: /archives/

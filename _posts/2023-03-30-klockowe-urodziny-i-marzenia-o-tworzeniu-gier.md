@@ -3,7 +3,6 @@ title: Klockowe urodziny i marzenia o tworzeniu gier
 author: rybeusz
 date: 2023-03-30 09:00:00 +0100
 categories: [Inne]
-tags: [inne, lego, indiedev, historie]
 summary:  W dzień swoich urodzin, otwieram oficjalnie tego bloga 🎉 Dlaczego i co tu będzie się działo? Zapraszam do przeczytania mojej krótkiej historii i motywacji stojącej za stworzeniem tego miejsca 🥳
 ---
 

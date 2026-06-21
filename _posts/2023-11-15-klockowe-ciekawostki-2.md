@@ -3,14 +3,12 @@ title: Kryjówka Majisto z szalonym progiem 1200 zł - Klockowe ciekawostki &#35
 author: rybeusz
 date: 2023-11-15 12:00:00 +0100
 categories: [Ciekawostki]
-tags: [lego, ciekawostki, premiery]
 image:
     path: /assets/posts/2023-11-15-klockowe-ciekawostki-2/1700083423366.png
     object_fit_contain: true
 preview_image:
     path: /assets/posts/2023-11-15-klockowe-ciekawostki-2/1700083914502.png
 alt: Kryjówka Majisto
-comments: false
 ---
 LEGO® właśnie potraktowało fanów klasycznych zestawów Castle w wyjątkowo nikczemny sposób. Od pół roku były plotki, zapowiedzi o tajemniczym zestawie dodawanym do zakupów jako gratis. Każdy z nas liczył na coś równie dobrego co zeszłoroczna [**40567 Kryjówka leśnych ludzi**](https://www.bricklink.com/v2/catalog/catalogitem.page?S=40567-1).
 

@@ -3,12 +3,10 @@ title: Relacja z wizyty w Bricks&Figs - nowym muzeum minifigurek LEGO® w Polsce
 author: rybeusz
 date: 2023-04-23 08:00:00 +0100
 categories: [Ciekawostki]
-tags: [lego, muzeum, ciekawostki]
 image: /assets/posts/2023-04-23/IMG_3795.JPEG
 preview_image:
     path: /assets/posts/2023-04-23/IMG_3795.JPEG
     alt: Minifigurki
-comments: true
 ---
 
 W Krakowie właśnie otwarto klimatyczne muzeum minifigurek LEGO® z kolekcją liczącą 12000 ludzików i masą rzadkich zestawów!

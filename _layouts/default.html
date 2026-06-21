@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'pl' }}">
+  {% include head.html %}
+  <body class="layout-{{ page.layout | default: layout.name | default: 'default' }}">
+    <a class="skip-link" href="#main-content">Przejdz do tresci</a>
+    <div class="site-frame">
+      {% include sidebar.html %}
+      <main id="main-content" class="site-main">
+        {{ content }}
+      </main>
+      {% include footer.html %}
+    </div>
+    {% include explorer-scrollbar-script.html %}
+    {% if jekyll.environment == 'production' %}
+      <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f42db71d69d645688339209a0cb3bcd2"}'></script><!-- End Cloudflare Web Analytics -->
+    {% endif %}
+  </body>
+</html>

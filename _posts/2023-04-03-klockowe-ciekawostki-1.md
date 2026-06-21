@@ -3,7 +3,6 @@ title: Klockowe ciekawostki &#35;1
 author: rybeusz
 date: 2023-04-03 09:00:00 +0100
 categories: [Ciekawostki]
-tags: [lego, cobi, ciekawostki, premiery]
 image: /assets/posts/2023-04-03/77015_alt5.webp
 preview_image:
     path: /assets/posts/2023-04-03/preview.webp

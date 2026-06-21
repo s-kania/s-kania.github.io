@@ -1,16 +1,17 @@
-<div class='subscribe'>
-  <div class='subscribe-info'>
+{% comment %}
+Newsletter is disabled until the MailerLite form is restored.
+
+<div class="subscribe">
+  <div class="subscribe-info">
     <div>
-      <span>
-        📯 Powiadomienia
-      </span>
-    <p>Subskrybuj powiadomienia o nowych wpisach/komiksach na blogu</p>
+      <span>Powiadomienia</span>
+      <p>Subskrybuj powiadomienia o nowych wpisach na blogu</p>
     </div>
-    <button id='subscribe-button' class='cactus-button'>Zapisz!</button>
+    <button id="subscribe-button" class="button">Zapisz!</button>
   </div>
-  <div class='subscribe-modal'>
-    <img src='/assets/img/subscribe.jpg' alt='Space minifigure hold a cup' class='subscribe-img'>
-    <div class='ml-embedded' data-form='Bs3IUX'></div>
+  <div class="subscribe-modal">
+    <img src="{{ '/assets/img/subscribe.jpg' | relative_url }}" alt="Space minifigure hold a cup" class="subscribe-img">
+    <div class="ml-embedded" data-form="Bs3IUX"></div>
   </div>
 </div>
 
@@ -18,6 +19,7 @@
   document.getElementById('subscribe-button').addEventListener('click', () => {
     document.querySelector('.subscribe-info').style.display = 'none';
     document.querySelector('.subscribe-modal').style.display = 'flex';
-    fetch(`https://nullitics.com/n.gif?u={{ site.nullitics_url }}:otworz-formularz-newsletter`)
+    window.trackBrickEvent('newsletter-form-opened');
   });
 </script>
+{% endcomment %}

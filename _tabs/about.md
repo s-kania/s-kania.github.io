@@ -2,53 +2,56 @@
 # the default layout is 'page'
 icon: fas fa-info-circle
 order: 4
+title: O mnie
 ---
-
 ### Wstęp
-Witaj! Cieszy mnie, że znalazłeś drogę na mój skromny blog,
-gdzie dzielę się swoją pasją do klocków i tworzenia gier!
-Nazywam się Stefan (pseudonim rybeusz) i mam nadzieję, że
-spędzisz tu trochę czasu i znajdziesz coś dla siebie.
 
-### Klocki
-Na moim blogu znajdziesz przeglądy niektórych zestawów (również MOC-ów) LEGO, Cobi i innych, luźne przemyślenia a także moje własne projekty, które mogą stanowić inspirację do tworzenia Twoich unikatowych dzieł z klocków :) Ale to nie wszystko!
+Nazywam się Stefan. Po godzinach dłubię przy grze o piratach, układam klocki i wrzucam tu notatki z tego, co akurat udało się popchnąć do przodu. Raz jest to kawałek kodu, innym razem zdjęcia LEGO albo wpis o tym, że coś miało być proste, a oczywiście nie było.
 
-Znajdziesz tu również fotografie klocków z których czasami tworzę komiksy.
-W niektórych z nich może być toporny humor gdyż w głowie mam twórczość Bartosza Walaszka (czyli niewiele).
-Przygotowuję je w wolnym czasie i są one dla mnie sposobem na wypoczynek i ekspresję myśli.
+### Piracka gierka
 
-Nie jest to jednak typowy blog z newsami ze świata klocków. Tych już trochę jest :)
+Robię własną grę o piratach. Powoli, po godzinach, ale na serio.
 
-### Indiedev
-Jeśli chcesz dowiedzieć się więcej o tworzeniu gier, to świetnie trafiłeś!
-Ja także pracuję nad moją własną grą i dzielę się tutaj moimi odkryciami, wskazówkami i trikami.
+Punktem wyjścia był Seafight - stare MMO akcji. Lubiłem tam prosty loop: wypłynąć, zebrać błyskotki, powalczyć, kupić nowe armaty. Wystarczył statek, mapa i kilku graczy na horyzoncie, żeby nagle znikały godziny.
 
-> _„Jeżeli nie potrafisz czegoś prosto wyjaśnić – to znaczy, że niewystarczająco to rozumiesz.”_ – Albert Einstein
+Dzieciństwo skradła mi też gra Sea Dogs. To była już inna bajka: pływanie od portu do portu, fabuła, abordaże i ten surowy klimat starej pirackiej przygody. Ta gra została mi mocno w głowie.
 
-To zdanie zainspirowało mnie do stworzenia tego miejsca. Wrzucając tu wpisy będę starał się
-wytłumaczyć zagadnienia z procesu kreowania gier, tak aby samemu lepiej je rozumieć. Czyli z korzyścią dla wszystkich.
+Dużo czasu spędziłem też przy Tropico 2: Pirate Cove. Tam piraci byli pokazani z innej strony. Wyspa, załoga, ekonomia, porwania, całe zaplecze tej zabawy. Lubiłem, że klimat nie kończył się na walce statków, tylko trzeba było jeszcze ogarnąć bazę i ludzi, którzy mieli na nią pracować.
 
-### Społeczność i komentarze
-Zapraszam również do komentowania moich tekstów i kontaktu. Można to robić pod każdym wpisem lub przez dowolnego klienta Matrix (działają także w przeglądarkach). Wszystkie posty są dostępne w przestrzeni którą utworzyłem -> [link](https://matrix.to/#/#brick-fiction:matrix.org). Każdy wpis na blogu to osobny pokój.
+Nie chcę robić kopii tamtych gier. Bardziej próbuję wyciągnąć z nich to, co najlepsze: morski klimat, rozwój statku, walkę, eksplorację i ten moment, kiedy płyniesz gdzieś dalej, bo może za ekranem jest coś ciekawego.
 
-Czym w ogóle jest ten cały Matrix? Nie, nie chodzi tu o film :)
+Najbardziej zależy mi na tym, żeby ta gra miała własny klimat. Żeby nie była tylko zbiorem systemów, statystyk i ikonek, ale czymś, do czego chce się wrócić wieczorem i popłynąć jeszcze kawałek dalej.
 
-> Matrix to protokół do bezpiecznej, zdecentralizowanej komunikacji, który umożliwia komunikację tekstową, głosową i wideo przez internet. Jest to system open-source, co oznacza, że jego kod źródłowy jest publicznie dostępny i może być zmodyfikowany przez każdego dewelopera. Matrix pozwala na tworzenie niezależnych, interoperacyjnych sieci komunikacyjnych, które mogą ze sobą współpracować. Dzięki temu użytkownicy mogą korzystać z różnych aplikacji i usług, a jednocześnie komunikować się ze sobą w czasie rzeczywistym.
+Tę grę tworzę już długo, najwięcej czasu schodzi na rzeczy, których później prawie nie widać: zachowanie statków, hierarchiczny pathfinding, niewidoczne systemy. Ale właśnie z takich drobiazgów robi się później feeling gry.
 
-### Jak się poruszać po blogu?
-Na stronie głównej znajdziesz najnowsze wpisy.
-Jeśli jednak interesuje Cię konkretny temat, radzę przejść na stronę `Kategorie` i wybrać odpowiedni dział.
+### Skąd LEGO
+
+Klocki wzięły się u mnie z dzieciństwa. Nie od wielkiej kolekcji katalogowych zestawów, tylko od pudełka starych części, z którego dało się zbudować statek piracki, arenę gladiatorów albo cokolwiek akurat siedziało w głowie.
+
+Najbardziej został ze mną klimat piratów. Kapitan, małpka, statek składany z tego, co było pod ręką. To chyba wystarczyło, żeby temat wracał po latach.
+
+Dzisiaj LEGO i COBI traktuję bardziej jak spokojny reset po pracy. Układam, robię zdjęcia, czasem opisuję zestaw albo wrzucam relację z jakiegoś klockowego miejsca.
+
+### Po co ten blog
+
+Ten blog jest moim publicznym notatnikiem. Projekt idzie wolniej, niż zakładałem, więc przynajmniej niech zostaje po nim ślad: decyzje, błędy, małe sukcesy i rzeczy, które musiałem zrobić drugi raz, bo pierwszy pomysł był średni.
+
+Nie obiecuję regularnego kalendarza. Wrzucam wpisy wtedy, kiedy mam co pokazać albo kiedy potrzebuję sobie coś poukładać w głowie. Gry, klocki, zdjęcia, czasem techniczne pierdololo.
+
+{% comment %}
 
 ### Powiadomienia
-Pod każdym postem można zapisać się do listy powiadomień e-mail. Wybierz interesujące Cię tematy i czekaj na wieści 📰
+
+Pod każdym postem można zapisać się do listy powiadomień e-mail. Wybierz interesujące Cię tematy i czekaj na wieści.
+
 - Klocki - powiadomienia będą wysyłane gdy zbierze się kilka wpisów.
-- Komiksy i Tworzenie gier - dostaniesz wiadomość gdy tylko pojawi się nowy wpis lub komiks :)
+- Tworzenie gier - dostaniesz wiadomość gdy tylko pojawi się nowy wpis z devloga :)
+  {% endcomment %}
 
 ### Polityka prywatności
-Znajdziesz ją pod tym adresem -> [link](https://brickfiction.pl/privacy-policy/).
+
+Polityka jest tutaj: [link](https://brickfiction.pl/privacy-policy/).
 
 ### Kontakt
+
 Email: kontakt@brickfiction.pl
-
-Po lewej stronie strony na samym spodzie znajdziesz również linki do moich social-mediów.
-

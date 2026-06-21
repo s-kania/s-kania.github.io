@@ -5,14 +5,12 @@
 layout:
   post: Post
   category: Kategoria
-  tag: Tag
 
 # The tabs of sidebar
 tabs:
   # format: <filename_without_extension>: <value>
   home: Blog
   categories: Kategorie
-  tags: Tagi
   archives: Archiwum
   about: O mnie
   privacy-policy: Polityka prywatności
@@ -25,7 +23,6 @@ search:
 
 panel:
   lastmod: Ostatnio zaktualizowane
-  trending_tags: Popularne tagi
   toc: Spis treści
 
 copyright:

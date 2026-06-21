@@ -1,0 +1,4 @@
+interface:
+  display_name: "Responsive Screenshots"
+  short_description: "Capture standard responsive screenshots for selected project pages."
+  default_prompt: "Zrob screenshoty responsywnosci dla wybranej strony obecnej iteracji."

@@ -1,0 +1,96 @@
+<script>
+  (() => {
+    const explorerBodies = [...document.querySelectorAll('.explorer-body')];
+    if (!explorerBodies.length) return;
+
+    const syncHandlers = [];
+
+    explorerBodies.forEach((body) => {
+      const list = body.querySelector('.explorer-list');
+      const scrollbar = body.querySelector('.explorer-scrollbar');
+      const thumb = scrollbar?.querySelector('.scroll-thumb');
+      const scrollUp = scrollbar?.querySelector('.scroll-up');
+      const scrollDown = scrollbar?.querySelector('.scroll-down');
+
+      if (!list || !scrollbar || !thumb) return;
+
+      const getScrollMetrics = () => {
+        const track = scrollbar.querySelector('.scroll-track');
+        const maxScroll = list.scrollHeight - list.clientHeight;
+        const trackHeight = track.clientHeight;
+        const thumbHeight = maxScroll <= 1
+          ? trackHeight
+          : Math.max(24, Math.round((list.clientHeight / list.scrollHeight) * trackHeight));
+
+        return {
+          maxScroll,
+          thumbHeight,
+          trackHeight,
+          thumbRange: Math.max(0, trackHeight - thumbHeight)
+        };
+      };
+
+      const syncScrollbar = () => {
+        const { maxScroll, thumbHeight, thumbRange } = getScrollMetrics();
+        scrollbar.classList.toggle('is-hidden', maxScroll <= 1);
+        scrollbar.classList.toggle('is-at-top', list.scrollTop <= 1);
+        scrollbar.classList.toggle('is-at-bottom', list.scrollTop >= maxScroll - 1);
+
+        if (maxScroll <= 1) {
+          thumb.style.height = '100%';
+          thumb.style.transform = 'translateY(0)';
+          return;
+        }
+
+        const thumbTop = Math.round((list.scrollTop / maxScroll) * thumbRange);
+
+        thumb.style.height = `${thumbHeight}px`;
+        thumb.style.transform = `translateY(${thumbTop}px)`;
+      };
+
+      let dragStartY = 0;
+      let dragStartScrollTop = 0;
+
+      thumb.addEventListener('pointerdown', (event) => {
+        const { maxScroll, thumbRange } = getScrollMetrics();
+        if (maxScroll <= 1 || thumbRange <= 0) return;
+
+        event.preventDefault();
+        dragStartY = event.clientY;
+        dragStartScrollTop = list.scrollTop;
+        thumb.classList.add('is-dragging');
+        thumb.setPointerCapture(event.pointerId);
+      });
+
+      thumb.addEventListener('pointermove', (event) => {
+        if (!thumb.classList.contains('is-dragging')) return;
+
+        const { maxScroll, thumbRange } = getScrollMetrics();
+        const dragDelta = event.clientY - dragStartY;
+        list.scrollTop = dragStartScrollTop + (dragDelta / thumbRange) * maxScroll;
+      });
+
+      const endThumbDrag = (event) => {
+        if (!thumb.classList.contains('is-dragging')) return;
+
+        thumb.classList.remove('is-dragging');
+        if (thumb.hasPointerCapture(event.pointerId)) {
+          thumb.releasePointerCapture(event.pointerId);
+        }
+      };
+
+      thumb.addEventListener('pointerup', endThumbDrag);
+      thumb.addEventListener('pointercancel', endThumbDrag);
+      list.addEventListener('scroll', syncScrollbar);
+      scrollUp?.addEventListener('click', () => list.scrollBy({ top: -42, behavior: 'smooth' }));
+      scrollDown?.addEventListener('click', () => list.scrollBy({ top: 42, behavior: 'smooth' }));
+      syncHandlers.push(syncScrollbar);
+    });
+
+    const syncAll = () => syncHandlers.forEach((syncScrollbar) => syncScrollbar());
+
+    window.addEventListener('resize', syncAll);
+    window.addEventListener('load', syncAll);
+    requestAnimationFrame(syncAll);
+  })();
+</script>

@@ -1,100 +1,456 @@
 ---
-layout: page
-# The Home page layout
+layout: default
 ---
 
-{% assign pinned = site.posts | where: "pin", "true" %}
-{% assign default = site.posts | where_exp: "item", "item.pin != true and item.hidden != true" %}
-
-{% assign posts = "" | split: "" %}
-
-<!-- Get pinned posts -->
-
-{% assign offset = paginator.page | minus: 1 | times: paginator.per_page %}
-{% assign pinned_num = pinned.size | minus: offset %}
-
-{% if pinned_num > 0 %}
-  {% for i in (offset..pinned.size) limit: pinned_num %}
-    {% assign posts = posts | push: pinned[i] %}
-  {% endfor %}
+{% if page.home_feed_posts %}
+  {% assign posts = page.home_feed_posts %}
 {% else %}
-  {% assign pinned_num = 0 %}
+  {% assign posts = site.posts | where_exp: "post", "post.hidden != true" %}
 {% endif %}
+{% assign home_feed_page = page.home_feed_page | default: 1 %}
+{% assign home_feed_total_pages = page.home_feed_total_pages | default: 1 %}
+{% assign home_feed_start_index = page.home_feed_start_index | default: 1 %}
 
-<!-- Get default posts -->
+<section class="home-hero">
+  <h1>{{ site.title }}</h1>
+  <div class="hero-aside">
+    <p>Notatki z robienia gier, układania klocków LEGO i walki z własnymi pomysłami.</p>
+    <p class="prompt-line">&gt; indiedev / gry / lego </p>
+  </div>
+</section>
 
-{% assign default_beg = offset | minus: pinned.size %}
-
-{% if default_beg < 0 %}
-  {% assign default_beg = 0 %}
-{% endif %}
-
-{% assign default_num = paginator.posts | size | minus: pinned_num  %}
-{% assign default_end = default_beg | plus: default_num | minus: 1 %}
-
-{% if default_num > 0 %}
-  {% for i in (default_beg..default_end) %}
-    {% assign posts = posts | push: default[i] %}
-  {% endfor %}
-{% endif %}
-
-<div id="post-list">
-
-{% for post in posts %}
-
-  <div class="post-preview">
-
-    <h1>
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    </h1>
-
-    <div class="post-content post-content-home {% if post.preview_image %}post-preview-image-wrapper{% endif %}">
-      {% if post.preview_image %}
-        {% capture alt %}alt="{{ post.preview_image.alt | default: "Preview Image" }}"{% endcapture %}
-        <img src="{{ post.preview_image.path | relative_url }}" {{ alt }} class="post-featured-image">
+<div class="home-grid">
+  <section class="home-feed{% if home_feed_page > 1 %} home-feed-paged{% endif %}" aria-label="Najnowsze wpisy">
+    {% if home_feed_page == 1 %}
+      {% assign featured = posts[0] %}
+      {% if featured %}
+        {% include post-card.html post=featured number=1 featured=true %}
       {% endif %}
-      <p>
-        {% assign final_content = post.summary | default: post.content %}
-        {% include no-linenos.html content=final_content %}
-        {{ content | markdownify | strip_html | truncate: 360 | escape }}
-      </p>
-    </div>
 
-    <div class="post-meta text-muted d-flex">
-      <div class="mr-auto">
+      <div class="post-card-grid">
+        {% for post in posts offset:1 limit:2 %}
+          {% assign card_number = forloop.index | plus: 1 %}
+          {% include post-card.html post=post number=card_number %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="post-card-grid">
+        {% for post in posts %}
+          {% assign card_number = home_feed_start_index | plus: forloop.index0 %}
+          {% include post-card.html post=post number=card_number %}
+        {% endfor %}
+      </div>
+    {% endif %}
 
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        {% include datetime.html date=post.date %}
+    {% if home_feed_total_pages > 1 %}
+      {% assign home_feed_action_url = page.home_feed_next_url | default: "/" %}
+      {% assign home_feed_action_label = "NEXT &gt;" %}
+      {% assign home_feed_action_aria = "Następna strona" %}
+      {% unless page.home_feed_next_url %}
+        {% assign home_feed_action_label = "HOME &gt;" %}
+        {% assign home_feed_action_aria = "Pierwsza strona" %}
+      {% endunless %}
+      <nav class="home-feed-actions" aria-label="Paginacja wpisów">
+        <span class="home-feed-page-indicator">
+          BF_FEED :: PAGE <strong>{{ home_feed_page }}</strong>/<span>{{ home_feed_total_pages }}</span>
+        </span>
+        <span class="home-feed-action-list">
+          {% if page.home_feed_prev_url %}
+            <a class="home-feed-action" href="{{ page.home_feed_prev_url | relative_url }}" aria-label="Poprzednia strona">&lt; PREV</a>
+          {% endif %}
+          <a class="home-feed-action" href="{{ home_feed_action_url | relative_url }}" aria-label="{{ home_feed_action_aria }}">{{ home_feed_action_label }}</a>
+        </span>
+      </nav>
+    {% endif %}
+  </section>
 
-        <!-- categories -->
-        {% if post.categories.size > 0 %}
-          <i class="far fa-folder-open fa-fw"></i>
-          <span>
-          {% for category in post.categories %}
-            {{ category }}
-            {%- unless forloop.last -%},{%- endunless -%}
+  <aside class="home-terminal" aria-label="Panel boczny">
+    {% include home-browser.html %}
+
+    <section class="terminal-section category-section">
+      <h2>
+        KATEGORIE
+        <span class="window-controls">
+          <span class="window-control minimize"></span>
+          <a class="window-control maximize" href="{{ '/categories/' | relative_url }}" aria-label="Kategorie"></a>
+          <span class="window-control close" role="button" aria-label="Zamknij okno kategorii" tabindex="0"></span>
+        </span>
+      </h2>
+      <div class="category-body">
+        <div class="category-stack" id="category-stack">
+          {% assign categories = site.categories | sort %}
+          {% for category in categories %}
+            {% assign category_slug = category[0] | slugify %}
+            {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
+            <a href="{{ category_url | relative_url }}">
+              <span class="folder-icon">{% include icon.html name="folder" %}</span>
+              <span>{{ category[0] | upcase }}</span>
+              <strong>{{ category[1].size }}</strong>
+            </a>
           {% endfor %}
-          </span>
-        {% endif %}
-
+        </div>
+        <div class="category-scrollbar" aria-hidden="true">
+          <button class="scroll-button scroll-up" type="button" tabindex="-1"></button>
+          <div class="scroll-track">
+            <span class="scroll-thumb"></span>
+          </div>
+          <button class="scroll-button scroll-down" type="button" tabindex="-1"></button>
+        </div>
       </div>
+    </section>
 
-      {% if post.pin %}
-      <div class="pin">
-        <i class="fas fa-thumbtack fa-fw"></i>
-        <span>{{ site.data.locales[site.lang].post.pin_prompt }}</span>
-      </div>
-      {% endif %}
+    <section class="system-panel">
+      <p>&gt; SYSTEM: OK <span class="system-time">{{ 'now' | date: "%H:%M:%S" }}</span></p>
+      <p>BF_BLOG v1.0.0</p>
+      <p>&copy; {{ 'now' | date: "%Y" }} Brick Fiction</p>
+    </section>
+  </aside>
+</div>
 
-    </div> <!-- .post-meta -->
+<script>
+  (() => {
+    const systemTime = document.querySelector('.system-panel .system-time');
+    const categorySection = document.querySelector('.category-section');
+    const categoryStack = document.querySelector('.category-stack');
+    const categoryScrollbar = document.querySelector('.category-scrollbar');
+    const categoryScrollThumb = document.querySelector('.category-scrollbar .scroll-thumb');
+    const categoryScrollUp = document.querySelector('.category-scrollbar .scroll-up');
+    const categoryScrollDown = document.querySelector('.category-scrollbar .scroll-down');
+    const closeControl = document.querySelector('.category-section .window-control.close');
+    const browserTabs = document.querySelectorAll('.browser-tab');
+    const browserPanels = document.querySelectorAll('.browser-panel');
+    const browserPanelShell = document.querySelector('.browser-panels');
+    const browserTransitionText = document.querySelector('.browser-transition span');
+    const featuredCopy = document.querySelector('.post-card.featured .card-copy');
+    const featuredTitle = document.querySelector('.post-card.featured .card-copy h2');
+    const featuredMeta = document.querySelector('.post-card.featured .card-meta');
+    const featuredSummary = document.querySelector('.post-card.featured .card-copy p');
+    const pagedCards = document.querySelectorAll('.home-feed-paged .post-card:not(.featured)');
 
-  </div> <!-- .post-review -->
+    if (!systemTime) return;
 
-{% endfor %}
+    const formatter = new Intl.DateTimeFormat('pl-PL', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    });
 
-</div> <!-- #post-list -->
+    const tick = () => {
+      systemTime.textContent = formatter.format(new Date());
+    };
 
-{% if paginator.total_pages > 1 %}
-  {% include post-paginator.html %}
-{% endif %}
+    tick();
+    setInterval(tick, 1000);
+
+    const syncFeaturedCopyScale = () => {
+      if (!featuredCopy || !featuredTitle || !featuredMeta || !featuredSummary) return;
+
+      if (!window.matchMedia('(min-width: 901px)').matches) {
+        featuredCopy.style.removeProperty('--featured-title-size');
+        featuredCopy.style.removeProperty('--featured-summary-size');
+        featuredCopy.style.removeProperty('--featured-summary-lines');
+        return;
+      }
+
+      const copyStyle = window.getComputedStyle(featuredCopy);
+      const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+      const rowGap = parseFloat(copyStyle.rowGap) || 0;
+      const verticalPadding =
+        (parseFloat(copyStyle.paddingTop) || 0) +
+        (parseFloat(copyStyle.paddingBottom) || 0);
+      const availableWidth = featuredCopy.clientWidth -
+        (parseFloat(copyStyle.paddingLeft) || 0) -
+        (parseFloat(copyStyle.paddingRight) || 0);
+      const maxTitleSize = clamp(Math.min(availableWidth * 0.092, featuredCopy.clientHeight * 0.28), 38, 66);
+      const minTitleSize = clamp(Math.min(availableWidth * 0.056, featuredCopy.clientHeight * 0.18), 25, 38);
+      const maxSummarySize = clamp(availableWidth * 0.025, 15, 19);
+      const minSummarySize = clamp(availableWidth * 0.019, 13, 15.5);
+      const minSummaryLines = featuredCopy.clientHeight < 230 ? 2 : 3;
+      let best = null;
+
+      for (let titleSize = maxTitleSize; titleSize >= minTitleSize; titleSize -= 1) {
+        const summarySize = clamp(titleSize * 0.36, minSummarySize, maxSummarySize);
+
+        featuredCopy.style.setProperty('--featured-title-size', `${titleSize}px`);
+        featuredCopy.style.setProperty('--featured-summary-size', `${summarySize}px`);
+
+        const summaryStyle = window.getComputedStyle(featuredSummary);
+        const lineHeight = parseFloat(summaryStyle.lineHeight) || summarySize * 1.38;
+        const fixedContentHeight =
+          featuredTitle.getBoundingClientRect().height +
+          featuredMeta.getBoundingClientRect().height +
+          (rowGap * 2);
+        const availableHeight = featuredCopy.clientHeight - verticalPadding - fixedContentHeight;
+        const lines = Math.max(1, Math.floor(availableHeight / lineHeight));
+
+        best = { titleSize, summarySize, lines };
+        if (lines >= minSummaryLines) break;
+      }
+
+      if (!best) return;
+
+      featuredCopy.style.setProperty('--featured-title-size', `${best.titleSize}px`);
+      featuredCopy.style.setProperty('--featured-summary-size', `${best.summarySize}px`);
+      featuredCopy.style.setProperty('--featured-summary-lines', best.lines);
+    };
+
+    syncFeaturedCopyScale();
+    window.addEventListener('resize', syncFeaturedCopyScale);
+    document.fonts?.ready.then(syncFeaturedCopyScale);
+
+    const syncPagedSummaryLines = () => {
+      if (!pagedCards.length) return;
+
+      pagedCards.forEach((card) => {
+        const summary = card.querySelector('.card-copy p');
+        if (!summary) return;
+
+        summary.style.removeProperty('display');
+        summary.style.setProperty('--summary-lines', '2');
+      });
+
+      window.requestAnimationFrame(() => {
+        pagedCards.forEach((card) => {
+          const link = card.querySelector('.post-card-link');
+          const summary = card.querySelector('.card-copy p');
+          if (!link || !summary) return;
+
+          const linkBox = link.getBoundingClientRect();
+          const summaryBox = summary.getBoundingClientRect();
+          const linkStyle = window.getComputedStyle(link);
+          const summaryStyle = window.getComputedStyle(summary);
+          const bottomPadding = parseFloat(linkStyle.paddingBottom) || 0;
+          const lineHeight = parseFloat(summaryStyle.lineHeight) || 18;
+          const bottomReserve = Math.max(bottomPadding, Math.min(10, lineHeight * 0.45));
+          const availableHeight = linkBox.bottom - summaryBox.top - bottomReserve;
+
+          if (availableHeight >= lineHeight * 1.85) {
+            summary.style.setProperty('--summary-lines', '2');
+          } else if (availableHeight >= lineHeight * 0.95) {
+            summary.style.setProperty('--summary-lines', '1');
+          } else {
+            summary.style.display = 'none';
+          }
+        });
+      });
+    };
+
+    syncPagedSummaryLines();
+    window.addEventListener('resize', syncPagedSummaryLines);
+    document.fonts?.ready.then(syncPagedSummaryLines);
+
+    if (browserPanelShell && browserTransitionText && browserTabs.length && browserPanels.length) {
+      let isBrowserTransitioning = false;
+      let activeBrowserTab = document.querySelector('.browser-tab.is-active')?.dataset.browserTab || browserTabs[0].dataset.browserTab;
+
+      const wait = (duration) => new Promise((resolve) => {
+        window.setTimeout(resolve, duration);
+      });
+      const loadingProgressDuration = 1000;
+
+      const typeBrowserLine = async (text, delay = 24, indent = '') => {
+        if (browserTransitionText.textContent) {
+          browserTransitionText.textContent += '\n';
+        }
+
+        browserTransitionText.textContent += indent;
+
+        for (const character of text) {
+          browserTransitionText.textContent += character;
+          await wait(delay);
+        }
+      };
+
+      const updateBrowserLoadingProgress = async (duration) => {
+        if (browserTransitionText.textContent) {
+          browserTransitionText.textContent += '\n';
+        }
+
+        const prefix = '    > loading ';
+        const steps = 100;
+
+        for (let step = 1; step <= steps; step += 1) {
+          const progress = `${prefix}${step}%`;
+          browserTransitionText.textContent = browserTransitionText.textContent.replace(
+            new RegExp(`${prefix}\\d+%$`),
+            progress
+          );
+
+          if (!browserTransitionText.textContent.endsWith(progress)) {
+            browserTransitionText.textContent += progress;
+          }
+
+          if (step < steps) {
+            await wait(duration / steps);
+          }
+        }
+      };
+
+      const activateBrowserTabControl = (target) => {
+        browserTabs.forEach((item) => {
+          const isActive = item.dataset.browserTab === target;
+          item.classList.toggle('is-active', isActive);
+          item.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+      };
+
+      const activateBrowserPanel = (target) => {
+        browserPanels.forEach((panel) => {
+          const isActive = panel.dataset.browserPanel === target;
+          panel.classList.toggle('is-active', isActive);
+          panel.hidden = !isActive;
+
+          if (isActive) {
+            panel.classList.add('is-entering');
+          }
+        });
+
+        activeBrowserTab = target;
+      };
+
+      const activateBrowserTab = (target) => {
+        activateBrowserTabControl(target);
+        activateBrowserPanel(target);
+      };
+
+      browserTabs.forEach((tab) => {
+        tab.addEventListener('click', async () => {
+          const target = tab.dataset.browserTab;
+          if (isBrowserTransitioning || target === activeBrowserTab) return;
+
+          isBrowserTransitioning = true;
+          activateBrowserTabControl(target);
+          tab.classList.add('is-loading-target');
+          browserTransitionText.textContent = '';
+          browserPanelShell.classList.add('is-scanning');
+
+          await wait(420);
+          browserPanelShell.classList.remove('is-scanning');
+          browserPanelShell.classList.add('is-cleared');
+          browserPanelShell.classList.add('is-loading');
+
+          await wait(120);
+          await typeBrowserLine(`> load --adress ${tab.dataset.browserAddress}`, 22);
+          await wait(130);
+          await updateBrowserLoadingProgress(loadingProgressDuration);
+          await typeBrowserLine('> loaded', 28, '    ');
+          await wait(360);
+          browserPanelShell.classList.remove('is-loading');
+          browserPanelShell.classList.remove('is-cleared');
+          activateBrowserPanel(target);
+
+          await wait(170);
+          browserPanels.forEach((panel) => panel.classList.remove('is-entering'));
+          tab.classList.remove('is-loading-target');
+          isBrowserTransitioning = false;
+        });
+      });
+    }
+
+    if (categorySection && closeControl) {
+      const runCrash = () => {
+        categorySection.classList.remove('is-crash');
+        requestAnimationFrame(() => {
+          categorySection.classList.add('is-crash');
+        });
+      };
+
+      const endCrash = () => {
+        categorySection.classList.remove('is-crash');
+      };
+
+      categorySection.addEventListener('animationend', (event) => {
+        if (event.target === categorySection && event.animationName === 'categoryWindowCrash') {
+          endCrash();
+        }
+      });
+
+      closeControl.addEventListener('click', () => {
+        runCrash();
+      });
+
+      closeControl.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          runCrash();
+        }
+      });
+    }
+
+    if (categoryStack && categoryScrollbar && categoryScrollThumb) {
+      const getCategoryScrollMetrics = () => {
+        const track = categoryScrollbar.querySelector('.scroll-track');
+        const maxScroll = categoryStack.scrollHeight - categoryStack.clientHeight;
+        const trackHeight = track.clientHeight;
+        const thumbHeight = maxScroll <= 1
+          ? trackHeight
+          : Math.max(24, Math.round((categoryStack.clientHeight / categoryStack.scrollHeight) * trackHeight));
+
+        return {
+          maxScroll,
+          thumbHeight,
+          trackHeight,
+          thumbRange: Math.max(0, trackHeight - thumbHeight)
+        };
+      };
+
+      const syncCategoryScrollbar = () => {
+        const { maxScroll, thumbHeight, thumbRange } = getCategoryScrollMetrics();
+        categoryScrollbar.classList.toggle('is-hidden', maxScroll <= 1);
+        categoryScrollbar.classList.toggle('is-at-top', categoryStack.scrollTop <= 1);
+        categoryScrollbar.classList.toggle('is-at-bottom', categoryStack.scrollTop >= maxScroll - 1);
+
+        if (maxScroll <= 1) {
+          categoryScrollThumb.style.height = '100%';
+          categoryScrollThumb.style.transform = 'translateY(0)';
+          return;
+        }
+
+        const thumbTop = Math.round((categoryStack.scrollTop / maxScroll) * thumbRange);
+
+        categoryScrollThumb.style.height = `${thumbHeight}px`;
+        categoryScrollThumb.style.transform = `translateY(${thumbTop}px)`;
+      };
+
+      let dragStartY = 0;
+      let dragStartScrollTop = 0;
+
+      categoryScrollThumb.addEventListener('pointerdown', (event) => {
+        const { maxScroll, thumbRange } = getCategoryScrollMetrics();
+        if (maxScroll <= 1 || thumbRange <= 0) return;
+
+        event.preventDefault();
+        dragStartY = event.clientY;
+        dragStartScrollTop = categoryStack.scrollTop;
+        categoryScrollThumb.classList.add('is-dragging');
+        categoryScrollThumb.setPointerCapture(event.pointerId);
+      });
+
+      categoryScrollThumb.addEventListener('pointermove', (event) => {
+        if (!categoryScrollThumb.classList.contains('is-dragging')) return;
+
+        const { maxScroll, thumbRange } = getCategoryScrollMetrics();
+        const dragDelta = event.clientY - dragStartY;
+        categoryStack.scrollTop = dragStartScrollTop + (dragDelta / thumbRange) * maxScroll;
+      });
+
+      const endThumbDrag = (event) => {
+        if (!categoryScrollThumb.classList.contains('is-dragging')) return;
+
+        categoryScrollThumb.classList.remove('is-dragging');
+        if (categoryScrollThumb.hasPointerCapture(event.pointerId)) {
+          categoryScrollThumb.releasePointerCapture(event.pointerId);
+        }
+      };
+
+      categoryScrollThumb.addEventListener('pointerup', endThumbDrag);
+      categoryScrollThumb.addEventListener('pointercancel', endThumbDrag);
+      categoryStack.addEventListener('scroll', syncCategoryScrollbar);
+      window.addEventListener('resize', syncCategoryScrollbar);
+      categoryScrollUp?.addEventListener('click', () => categoryStack.scrollBy({ top: -42, behavior: 'smooth' }));
+      categoryScrollDown?.addEventListener('click', () => categoryStack.scrollBy({ top: 42, behavior: 'smooth' }));
+      requestAnimationFrame(syncCategoryScrollbar);
+    }
+  })();
+</script>
