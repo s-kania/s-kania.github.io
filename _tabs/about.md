@@ -6,29 +6,27 @@ title: O mnie
 ---
 ### Wstęp
 
-Nazywam się Stefan. Po godzinach dłubię przy grze o piratach, układam klocki i wrzucam tu notatki z tego, co akurat udało się popchnąć do przodu.
-
-Raz jest to kawałek kodu, innym razem zdjęcia LEGO albo wpis o tym, że coś miało być proste, a oczywiście nie było.
+Nazywam się Stefan. Po godzinach dłubię przy grze o piratach, układam klocki i wrzucam tu notatki z tego, co akurat udało się popchnąć do przodu. Raz jest to kawałek kodu, innym razem zdjęcia LEGO albo wpis o tym, że coś miało być proste, a oczywiście nie było.
 
 ### Piracka gierka
 
 Robię własną grę o piratach. Powoli, po godzinach, ale na serio.
 
-Punktem wyjścia był Seafight i stare MMO akcji. Lubiłem tam prosty loop: wypłynąć, coś znaleźć, powalczyć, wrócić mocniejszym. Wystarczył statek, mapa i kilku graczy na horyzoncie, żeby nagle znikały godziny.
+Punktem wyjścia był Seafight - stare MMO akcji. Lubiłem tam prosty loop: wypłynąć, zebrać błyskotki, powalczyć, kupić nowe armaty. Wystarczył statek, mapa i kilku graczy na horyzoncie, żeby nagle znikały godziny.
 
-Dzieciństwo skradła mi też gra Sea Dogs. To była już inna bajka: pływanie od portu do portu, fabuła, abordaże i ten trochę surowy klimat starej pirackiej przygody. Nie wszystko pewnie zestarzało się idealnie, ale w głowie zostało mi mocno.
+Dzieciństwo skradła mi też gra Sea Dogs. To była już inna bajka: pływanie od portu do portu, fabuła, abordaże i ten surowy klimat starej pirackiej przygody. Ta gra została mi mocno w głowie.
 
 Dużo czasu spędziłem też przy Tropico 2: Pirate Cove. Tam piraci byli pokazani z innej strony. Wyspa, załoga, ekonomia, porwania, całe zaplecze tej zabawy. Lubiłem, że klimat nie kończył się na walce statków, tylko trzeba było jeszcze ogarnąć bazę i ludzi, którzy mieli na nią pracować.
 
-Nie chcę robić kopii tamtych gier. Bardziej próbuję wyciągnąć z nich to, co dalej siedzi mi w głowie: morski klimat, rozwój statku, walkę, eksplorację i ten moment, kiedy płyniesz gdzieś dalej, bo może za ekranem jest coś ciekawego.
+Nie chcę robić kopii tamtych gier. Bardziej próbuję wyciągnąć z nich to, co najlepsze: morski klimat, rozwój statku, walkę, eksplorację i ten moment, kiedy płyniesz gdzieś dalej, bo może za ekranem jest coś ciekawego.
 
 Najbardziej zależy mi na tym, żeby ta gra miała własny klimat. Żeby nie była tylko zbiorem systemów, statystyk i ikonek, ale czymś, do czego chce się wrócić wieczorem i popłynąć jeszcze kawałek dalej.
 
-Najwięcej czasu schodzi na rzeczy, których później prawie nie widać: zachowanie statków, tempo walki, małe decyzje w interfejsie. Ale właśnie z takich drobiazgów robi się później feeling gry.
+Tę grę tworzę już długo, najwięcej czasu schodzi na rzeczy, których później prawie nie widać: zachowanie statków, hierarchiczny pathfinding, niewidoczne systemy. Ale właśnie z takich drobiazgów robi się później feeling gry.
 
 ### Skąd LEGO
 
-Klocki wzięły się u mnie z dzieciństwa. Nie od wielkiej kolekcji katalogowych zestawów, tylko od pudełka części, z którego dało się zbudować statek piracki, arenę gladiatorów albo cokolwiek akurat siedziało w głowie.
+Klocki wzięły się u mnie z dzieciństwa. Nie od wielkiej kolekcji katalogowych zestawów, tylko od pudełka starych części, z którego dało się zbudować statek piracki, arenę gladiatorów albo cokolwiek akurat siedziało w głowie.
 
 Najbardziej został ze mną klimat piratów. Kapitan, małpka, statek składany z tego, co było pod ręką. To chyba wystarczyło, żeby temat wracał po latach.
 
