@@ -99,11 +99,43 @@ layout: default
       </div>
     </section>
 
-    <section class="system-panel">
-      <p>&gt; SYSTEM: OK <span class="system-time">{{ 'now' | date: "%H:%M:%S" }}</span></p>
-      <p>BF_BLOG v1.0.0</p>
-      <p>&copy; {{ 'now' | date: "%Y" }} Brick Fiction</p>
-    </section>
+    <div class="terminal-footer">
+      <section class="system-panel">
+        <div class="system-copy">
+          <p>&gt; SYSTEM: OK</p>
+          <p>BF_BLOG v1.0.0</p>
+          <p>&copy; {{ 'now' | date: "%Y" }} Brick Fiction</p>
+        </div>
+
+        <div class="system-controls" aria-label="Ustawienia strony">
+          <span class="system-time">{{ 'now' | date: "%H:%M:%S" }}</span>
+          <div class="system-control-row">
+            <span class="system-lang-label">Lang:</span>
+            <div class="system-lang-toggle" aria-label="Jezyk">
+              <button class="system-lang-option is-active" type="button" aria-pressed="true">PL</button>
+              <span class="system-lang-divider" aria-hidden="true">/</span>
+              <button class="system-lang-option" type="button" aria-pressed="false">ENG</button>
+            </div>
+            <button class="system-theme-toggle" type="button" aria-label="Motyw jasny" aria-pressed="false">
+              <svg class="system-theme-icon system-theme-sun" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+              <svg class="system-theme-icon system-theme-moon" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
   </aside>
 </div>
 
@@ -116,6 +148,7 @@ layout: default
     const categoryScrollThumb = document.querySelector('.category-scrollbar .scroll-thumb');
     const categoryScrollUp = document.querySelector('.category-scrollbar .scroll-up');
     const categoryScrollDown = document.querySelector('.category-scrollbar .scroll-down');
+    const themeToggle = document.querySelector('.system-theme-toggle');
     const closeControl = document.querySelector('.category-section .window-control.close');
     const browserTabs = document.querySelectorAll('.browser-tab');
     const browserPanels = document.querySelectorAll('.browser-panel');
@@ -142,6 +175,18 @@ layout: default
 
     tick();
     setInterval(tick, 1000);
+
+    if (themeToggle) {
+      const syncThemeToggle = (isDark) => {
+        themeToggle.classList.toggle('is-dark', isDark);
+        themeToggle.setAttribute('aria-pressed', String(isDark));
+        themeToggle.setAttribute('aria-label', isDark ? 'Motyw ciemny' : 'Motyw jasny');
+      };
+
+      themeToggle.addEventListener('click', () => {
+        syncThemeToggle(!themeToggle.classList.contains('is-dark'));
+      });
+    }
 
     const syncFeaturedCopyScale = () => {
       if (!featuredCopy || !featuredTitle || !featuredMeta || !featuredSummary) return;
