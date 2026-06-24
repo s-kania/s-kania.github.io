@@ -7,6 +7,7 @@ gem "webrick", "~> 1.9"
 
 gem "jekyll-archives", "~> 2.3"
 gem "jekyll-feed", "~> 0.17"
+gem "jekyll-polyglot", "~> 1.13"
 gem "jekyll-seo-tag", "~> 2.8"
 gem "jekyll-sitemap", "~> 1.4"
 

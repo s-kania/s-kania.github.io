@@ -1,0 +1,26 @@
+{% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+{% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+{% assign current_url = page.url | default: '/' %}
+{% assign pl_url = current_url | bf_lang_url: 'pl' %}
+{% assign en_url = current_url | bf_lang_url: 'en' %}
+{% assign label_class = include.label_class | default: 'system-lang-label' %}
+{% assign toggle_class = include.toggle_class | default: 'system-lang-toggle' %}
+{% assign option_class = include.option_class | default: 'system-lang-option' %}
+{% assign divider_class = include.divider_class | default: 'system-lang-divider' %}
+
+{% if include.show_label %}
+  <span class="{{ label_class }}">{{ locale.site_ui.language_label }}</span>
+{% endif %}
+<div class="{{ toggle_class }}" aria-label="{{ locale.site_ui.language_aria }}">
+  <a
+    class="{{ option_class }}{% if active_lang == 'pl' %} is-active{% endif %}"
+    {% static_href %}href="{{ pl_url }}"{% endstatic_href %}
+    {% if active_lang == 'pl' %}aria-current="page"{% endif %}
+  >{{ locale.site_ui.polish }}</a>
+  <span class="{{ divider_class }}" aria-hidden="true">/</span>
+  <a
+    class="{{ option_class }}{% if active_lang == 'en' %} is-active{% endif %}"
+    {% static_href %}href="{{ en_url }}"{% endstatic_href %}
+    {% if active_lang == 'en' %}aria-current="page"{% endif %}
+  >{{ locale.site_ui.english }}</a>
+</div>

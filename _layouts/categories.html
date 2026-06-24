@@ -3,30 +3,34 @@ layout: default
 title: Kategorie
 ---
 
+{% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+{% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+
 <article class="explorer-page">
   <section class="explorer-window" aria-labelledby="categories-title">
     <header class="explorer-titlebar">
       <h1 id="categories-title">BF_EXPLORER</h1>
       <div class="window-controls">
         <span class="window-control minimize"></span>
-        <a class="window-control close" href="{{ '/' | relative_url }}" aria-label="Strona glowna"></a>
+        <a class="window-control close" href="{{ '/' | bf_lang_url: active_lang }}" aria-label="{{ locale.explorer.close_aria }}"></a>
       </div>
     </header>
 
     <div class="explorer-toolbar">
       <span>&gt;</span>
-      <span>brick://</span><a href="{{ '/' | relative_url }}">home</a><span>/</span><a href="{{ '/categories/' | relative_url }}">kategorie</a>
+      <span>brick://</span><a href="{{ '/' | bf_lang_url: active_lang }}">{{ locale.site_ui.home }}</a><span>/</span><a href="{{ '/categories/' | bf_lang_url: active_lang }}">{{ locale.site_ui.categories }}</a>
     </div>
 
     <div class="explorer-body">
-      <div class="explorer-list" aria-label="Lista kategorii">
+      <div class="explorer-list" aria-label="{{ locale.explorer.categories_list_aria }}">
         {% assign categories = site.categories | sort %}
         {% for category in categories %}
           {% assign category_slug = category[0] | slugify %}
+          {% assign category_label = locale.category_names[category_slug] | default: category[0] %}
           {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
-          <a class="explorer-row explorer-row-folder" href="{{ category_url | relative_url }}">
+          <a class="explorer-row explorer-row-folder" href="{{ category_url | bf_lang_url: active_lang }}">
             <span class="folder-icon" aria-hidden="true">{% include icon.html name="folder" %}</span>
-            <span class="explorer-name">{{ category[0] | upcase }}</span>
+            <span class="explorer-name">{{ category_label | upcase }}</span>
             <strong class="explorer-count">{{ category[1].size }}</strong>
           </a>
         {% endfor %}

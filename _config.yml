@@ -5,6 +5,30 @@ description: >-
 url: 'https://brickfiction.pl'
 baseurl: ''
 lang: pl
+languages:
+  - pl
+  - en
+default_lang: pl
+exclude_from_localization:
+  - assets
+  - output
+  - tools
+  - node_modules
+  - .git
+  - .github
+  - .agents
+  - .playwright-cli
+  - Dockerfile
+  - docker-compose.yml
+  - Gemfile
+  - Gemfile.lock
+  - AGENTS.md
+  - README.md
+  - CHANGELOG.md
+  - LICENSE
+  - sitemap.xml
+  - feed.xml
+parallel_localization: false
 timezone: Europe/Warsaw
 avatar: /assets/img/avatar.jpg
 style_version: 17
@@ -62,6 +86,7 @@ exclude:
   - yarn.lock
   - Dockerfile
   - docker-compose.yml
+  - AGENTS.md
   - .playwright-cli
   - output
 
@@ -75,5 +100,6 @@ jekyll-archives:
 plugins:
   - jekyll-archives
   - jekyll-feed
+  - jekyll-polyglot
   - jekyll-seo-tag
   - jekyll-sitemap

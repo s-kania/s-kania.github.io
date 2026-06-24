@@ -2,10 +2,18 @@
 layout: default
 ---
 
+{% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+{% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+{% assign localized_page_title = page.title | default: site.title %}
+{% if page.collection == 'tabs' %}
+  {% assign tab_key = page.name | remove: '.md' %}
+  {% assign localized_page_title = locale.tabs[tab_key] | default: page.title | default: site.title %}
+{% endif %}
+
 <article class="page">
   {% unless page.hide_title %}
     <header class="page-header">
-      <h1>{{ page.title | default: site.title }}</h1>
+      <h1>{{ localized_page_title }}</h1>
     </header>
   {% endunless %}
 

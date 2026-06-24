@@ -3,7 +3,10 @@ layout: page
 title: Archiwum
 ---
 
-<div class="archive-timeline" aria-label="Lista wpisow w archiwum">
+{% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+{% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+
+<div class="archive-timeline" aria-label="{{ locale.explorer.archive_list_aria }}">
   {% assign current_year = "" %}
   {% for post in site.posts %}
     {% assign post_year = post.date | date: "%Y" %}
@@ -20,7 +23,7 @@ title: Archiwum
 
     <li class="archive-entry">
       <time class="archive-entry-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m" }}</time>
-      <a class="archive-entry-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <a class="archive-entry-title" href="{{ post.url | bf_lang_url: active_lang }}">{{ post.title }}</a>
     </li>
 
     {% if forloop.last %}

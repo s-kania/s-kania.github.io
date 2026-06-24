@@ -12,8 +12,9 @@ tabs:
   home: Home
   categories: Categories
   archives: Archives
+  posts: Posts
   about: About
-  privacy-policy: Polityka prywatności
+  privacy-policy: Privacy Policy
 
 # the text displayed in the search bar & search results
 search:
@@ -88,3 +89,96 @@ categories:
   post_measure:
     singular: post
     plural: posts
+
+site_ui:
+  skip_link: Skip to content
+  home: home
+  posts: posts
+  categories: categories
+  homepage: Homepage
+  settings: Site settings
+  language_label: "Lang:"
+  language_aria: Language
+  polish: PL
+  english: ENG
+
+date_time:
+  locale: en-GB
+
+theme:
+  switch_to_dark: Switch to dark theme
+  switch_to_light: Switch to light theme
+
+home:
+  hero:
+    body: Notes on making games, building LEGO sets, and wrestling with my own ideas.
+    prompt: "> indiedev / games / lego"
+  feed:
+    aria: Latest posts
+    pagination_aria: Post pagination
+    next_label: "NEXT >"
+    home_label: "HOME >"
+    prev_label: "< PREV"
+    next_aria: Next page
+    home_aria: First page
+    prev_aria: Previous page
+    page_label: PAGE
+  terminal:
+    aria: Side panel
+    categories_title: Categories
+    categories_aria: Categories
+    close_categories: Close categories window
+    system_status: "SYSTEM: OK"
+    version: "BF_BLOG v1.0.0"
+  browser:
+    aria: Mini browser
+    loaded: "> loaded"
+
+home_browser:
+  - id: links
+    label: LINKS
+    address: brick://links
+    type: contacts
+  - id: about
+    label: ABOUT
+    address: brick://about
+    title: README.md
+    body: A short note on where my LEGO thing started, a glimpse at the pirate game, and why I wanted to write about a project that is moving forward more slowly than I expected.
+    cta: Open page
+    url: /about/
+  - id: archives
+    label: ARCHIVES
+    address: brick://archives
+    title: Post timeline
+    body: A good place to check what was published when and how the blog changed along the way. Dust included! Allergy sufferers, proceed with caution.
+    cta: Open archives
+    url: /archives/
+
+post_card:
+  read_aria: "Read:"
+  default_category: notes
+  minute: MIN
+
+post_detail:
+  path_aria: Post path
+  created_at: Created
+  updated_at: Updated
+  categories: Categories
+
+explorer:
+  close_aria: Homepage
+  categories_list_aria: Category list
+  posts_list_aria: Post list
+  archive_list_aria: Archive post list
+
+footer:
+  language_switch_aria: Choose site language
+
+category_names:
+  ciekawostki: Brick Bits
+  devlog: Devlog
+  galerie: Galleries
+  inne: Misc
+  piraci: Pirates
+  poradniki: Guides
+  recenzje: Reviews

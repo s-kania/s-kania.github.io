@@ -22,7 +22,7 @@ module HomeFeedPages
 
         page = Jekyll::PageWithoutAFile.new(site, site.source, File.join('page', page_number.to_s), 'index.html')
         page.data['layout'] = 'home'
-        page.data['title'] = "Strona #{page_number}"
+        page.data['title'] = page_title(site, page_number)
         page.data['permalink'] = page_url(page_number)
 
         assign_page_data(page, posts_for_page, page_number, total_pages)
@@ -74,8 +74,28 @@ module HomeFeedPages
       page_url(page_number + 1)
     end
 
+    def page_title(site, page_number)
+      locale = locale_data(site)
+      page_label = locale.dig('home', 'feed', 'page_label') || 'PAGE'
+
+      "#{page_label} #{page_number}"
+    end
+
     def page_url(page_number)
       "/page/#{page_number}/"
+    end
+
+    def locale_data(site)
+      locales = site.data['locales'] || {}
+      locales[active_lang(site)] || locales[default_lang(site)] || {}
+    end
+
+    def active_lang(site)
+      site.config['active_lang'] || default_lang(site)
+    end
+
+    def default_lang(site)
+      site.config['default_lang'] || site.config['lang'] || 'pl'
     end
   end
 end

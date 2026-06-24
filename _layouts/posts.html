@@ -2,26 +2,29 @@
 layout: default
 ---
 
+{% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+{% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+
 <article class="explorer-page">
   <section class="explorer-window" aria-labelledby="posts-title">
     <header class="explorer-titlebar">
       <h1 id="posts-title">BF_EXPLORER</h1>
       <div class="window-controls">
         <span class="window-control minimize"></span>
-        <a class="window-control close" href="{{ '/' | relative_url }}" aria-label="Strona glowna"></a>
+        <a class="window-control close" href="{{ '/' | bf_lang_url: active_lang }}" aria-label="{{ locale.explorer.close_aria }}"></a>
       </div>
     </header>
 
     <div class="explorer-toolbar">
       <span>&gt;</span>
-      <span>brick://</span><a href="{{ '/' | relative_url }}">home</a><span>/posts</span>
+      <span>brick://</span><a href="{{ '/' | bf_lang_url: active_lang }}">{{ locale.site_ui.home }}</a><span>/{{ locale.site_ui.posts }}</span>
     </div>
 
     <div class="explorer-body">
-      <div class="explorer-list" aria-label="Lista wpisow">
+      <div class="explorer-list" aria-label="{{ locale.explorer.posts_list_aria }}">
         {% assign posts = site.posts | where_exp: "post", "post.hidden != true" %}
         {% for post in posts %}
-          <a class="explorer-row explorer-row-file" href="{{ post.url | relative_url }}">
+          <a class="explorer-row explorer-row-file" href="{{ post.url | bf_lang_url: active_lang }}">
             <span class="file-icon" aria-hidden="true"></span>
             <span class="explorer-name">{{ post.title }}</span>
             <span class="explorer-meta">

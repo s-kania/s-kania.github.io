@@ -1,9 +1,13 @@
+{% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+{% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+{% assign browser_tabs = locale.home_browser | default: site.data.home_browser %}
+
 <section class="terminal-section browser-section">
   <div class="browser-tabs-bar">
     <span class="browser-label">BF_BROWSER</span>
 
-    <div class="browser-tabs" role="tablist" aria-label="Mini przegladarka">
-      {% for tab in site.data.home_browser %}
+    <div class="browser-tabs" role="tablist" aria-label="{{ locale.home.browser.aria }}">
+      {% for tab in browser_tabs %}
         <button
           class="browser-tab{% if forloop.first %} is-active{% endif %}"
           id="browser-tab-{{ tab.id }}"
@@ -25,7 +29,7 @@
       <span></span>
     </div>
 
-    {% for tab in site.data.home_browser %}
+    {% for tab in browser_tabs %}
       <div
         class="browser-panel{% if forloop.first %} is-active{% endif %}"
         id="browser-panel-{{ tab.id }}"
@@ -43,7 +47,7 @@
                   {% assign label = 'mail' %}
                   {% assign link_text = site.social.email %}
                 {% when 'rss' %}
-                  {% assign url = '/feed.xml' | relative_url %}
+                  {% assign url = '/feed.xml' | bf_lang_url: site.default_lang %}
                   {% assign label = 'rss' %}
                   {% assign link_text = '/feed.xml' %}
                 {% when 'instagram' %}
@@ -75,7 +79,7 @@
           <div class="browser-note">
             <p class="browser-note-title">{{ tab.title }}</p>
             <p>{{ tab.body }}</p>
-            <a class="browser-cta" href="{{ tab.url | relative_url }}">{{ tab.cta }}</a>
+            <a class="browser-cta" href="{{ tab.url | bf_lang_url: active_lang }}">{{ tab.cta }}</a>
           </div>
         {% endif %}
       </div>

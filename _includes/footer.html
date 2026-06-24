@@ -1,8 +1,14 @@
+{% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+{% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+
 <footer class="site-footer">
   <p>
     &copy; {{ 'now' | date: "%Y" }} {{ site.social.name }}.
-    {% if site.data.locales[site.lang].copyright.brief %}
-      {{ site.data.locales[site.lang].copyright.brief }}
+    {% if locale.copyright.brief %}
+      {{ locale.copyright.brief }}
     {% endif %}
   </p>
+  <nav class="footer-lang" aria-label="{{ locale.footer.language_switch_aria }}">
+    {% include language-switch.html show_label=true label_class='footer-lang-label' toggle_class='footer-lang-toggle' option_class='footer-lang-option' divider_class='footer-lang-divider' %}
+  </nav>
 </footer>

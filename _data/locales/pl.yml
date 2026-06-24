@@ -12,6 +12,7 @@ tabs:
   home: Blog
   categories: Kategorie
   archives: Archiwum
+  posts: Posty
   about: O mnie
   privacy-policy: Polityka prywatności
 
@@ -90,3 +91,96 @@ categories:
   post_measure:
     singular: wpis
     plural: wpisy
+
+site_ui:
+  skip_link: Przejdz do tresci
+  home: home
+  posts: posts
+  categories: kategorie
+  homepage: Strona glowna
+  settings: Ustawienia strony
+  language_label: "Lang:"
+  language_aria: Jezyk
+  polish: PL
+  english: ENG
+
+date_time:
+  locale: pl-PL
+
+theme:
+  switch_to_dark: Przełącz na motyw ciemny
+  switch_to_light: Przełącz na motyw jasny
+
+home:
+  hero:
+    body: Notatki z robienia gier, układania klocków LEGO i walki z własnymi pomysłami.
+    prompt: "> indiedev / gry / lego"
+  feed:
+    aria: Najnowsze wpisy
+    pagination_aria: Paginacja wpisów
+    next_label: "NEXT >"
+    home_label: "HOME >"
+    prev_label: "< PREV"
+    next_aria: Następna strona
+    home_aria: Pierwsza strona
+    prev_aria: Poprzednia strona
+    page_label: PAGE
+  terminal:
+    aria: Panel boczny
+    categories_title: Kategorie
+    categories_aria: Kategorie
+    close_categories: Zamknij okno kategorii
+    system_status: "SYSTEM: OK"
+    version: "BF_BLOG v1.0.0"
+  browser:
+    aria: Mini przegladarka
+    loaded: "> loaded"
+
+home_browser:
+  - id: links
+    label: LINKI
+    address: brick://linki
+    type: contacts
+  - id: about
+    label: O MNIE
+    address: brick://o-mnie
+    title: README.md
+    body: Krótko o tym, skąd wzięło się u mnie LEGO, zajawka na piracką gierkę i pomysł, żeby opisywać projekt, który idzie do przodu wolniej, niż zakładałem.
+    cta: Otwórz stronę
+    url: /about/
+  - id: archives
+    label: ARCHIWUM
+    address: brick://archiwum
+    title: Oś czasu wpisów
+    body: Dobre miejsce, żeby sprawdzić, co kiedy powstawało i jak blog zmieniał się po drodze. Kurz w pakiecie, alergicy ostrożnie.
+    cta: Otwórz archiwum
+    url: /archives/
+
+post_card:
+  read_aria: "Czytaj:"
+  default_category: notatki
+  minute: MIN
+
+post_detail:
+  path_aria: Sciezka wpisu
+  created_at: Data powstania
+  updated_at: Data aktualizacji
+  categories: Kategorie
+
+explorer:
+  close_aria: Strona glowna
+  categories_list_aria: Lista kategorii
+  posts_list_aria: Lista wpisow
+  archive_list_aria: Lista wpisow w archiwum
+
+footer:
+  language_switch_aria: Wybierz jezyk strony
+
+category_names:
+  ciekawostki: Ciekawostki
+  devlog: Devlog
+  galerie: Galerie
+  inne: Inne
+  piraci: Piraci
+  poradniki: Poradniki
+  recenzje: Recenzje
