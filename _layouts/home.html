@@ -116,7 +116,7 @@ layout: default
               <span class="system-lang-divider" aria-hidden="true">/</span>
               <button class="system-lang-option" type="button" aria-pressed="false">ENG</button>
             </div>
-            <button class="system-theme-toggle" type="button" aria-label="Motyw jasny" aria-pressed="false">
+            <button class="system-theme-toggle" type="button" aria-label="Przełącz na motyw ciemny" aria-pressed="false">
               <svg class="system-theme-icon system-theme-sun" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="4"></circle>
                 <path d="M12 2v2"></path>
@@ -177,14 +177,29 @@ layout: default
     setInterval(tick, 1000);
 
     if (themeToggle) {
-      const syncThemeToggle = (isDark) => {
+      const themeStorageKey = 'bf-theme';
+      const normalizeTheme = (theme) => theme === 'dark' ? 'dark' : 'light';
+      const syncThemeToggle = (theme, persist = false) => {
+        const nextTheme = normalizeTheme(theme);
+        const isDark = nextTheme === 'dark';
+
+        document.documentElement.setAttribute('data-theme', nextTheme);
         themeToggle.classList.toggle('is-dark', isDark);
         themeToggle.setAttribute('aria-pressed', String(isDark));
-        themeToggle.setAttribute('aria-label', isDark ? 'Motyw ciemny' : 'Motyw jasny');
+        themeToggle.setAttribute('aria-label', isDark ? 'Przełącz na motyw jasny' : 'Przełącz na motyw ciemny');
+
+        if (persist) {
+          try {
+            localStorage.setItem(themeStorageKey, nextTheme);
+          } catch (error) {
+            // localStorage can be unavailable in private/restricted contexts.
+          }
+        }
       };
 
+      syncThemeToggle(document.documentElement.getAttribute('data-theme'));
       themeToggle.addEventListener('click', () => {
-        syncThemeToggle(!themeToggle.classList.contains('is-dark'));
+        syncThemeToggle(themeToggle.classList.contains('is-dark') ? 'light' : 'dark', true);
       });
     }
 
