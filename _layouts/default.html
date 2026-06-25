@@ -1,8 +1,10 @@
 <!doctype html>
-<html lang="{{ site.lang | default: 'pl' }}">
+{% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+{% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+<html lang="{{ active_lang }}">
   {% include head.html %}
   <body class="layout-{{ page.layout | default: layout.name | default: 'default' }}">
-    <a class="skip-link" href="#main-content">Przejdz do tresci</a>
+    <a class="skip-link" href="#main-content">{{ locale.site_ui.skip_link }}</a>
     <div class="site-frame">
       {% include sidebar.html %}
       <main id="main-content" class="site-main">

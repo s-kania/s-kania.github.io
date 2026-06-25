@@ -3,6 +3,8 @@
 icon: fas fa-info-circle
 order: 4
 title: O mnie
+lang: pl
+page_id: about
 ---
 ### Wstęp
 

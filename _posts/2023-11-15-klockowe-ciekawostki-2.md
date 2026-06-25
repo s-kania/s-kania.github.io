@@ -2,6 +2,8 @@
 title: Kryjówka Majisto z szalonym progiem 1200 zł - Klockowe ciekawostki &#35;2
 author: rybeusz
 date: 2023-11-15 12:00:00 +0100
+lang: pl
+page_id: 2023-11-15-klockowe-ciekawostki-2
 categories: [Ciekawostki]
 image:
     path: /assets/posts/2023-11-15-klockowe-ciekawostki-2/1700083423366.png

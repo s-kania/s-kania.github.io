@@ -1,19 +1,21 @@
 {% comment %}
+{% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+{% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
 <header class="topbar">
-  <a class="system-brand" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}">
+  <a class="system-brand" href="{{ '/' | bf_lang_url: active_lang }}" aria-label="{{ site.title }}">
     <span class="brand-glyph">>_</span>
     <span>bf_blog.sys</span>
   </a>
 
   <nav class="top-nav" aria-label="Glowne">
-    <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}aria-current="page"{% endif %}>STRONA GŁÓWNA</a>
+    <a href="{{ '/' | bf_lang_url: active_lang }}" {% if page.url == '/' %}aria-current="page"{% endif %}>{{ locale.tabs.home | upcase }}</a>
     {% assign tabs = site.tabs | sort: "order" %}
     {% for tab in tabs %}
       {% unless tab.hidden %}
         {% assign tab_key = tab.url | remove: "/" %}
         {% unless tab.url == '/categories/' %}
-          <a href="{{ tab.url | relative_url }}" {% if tab.url == page.url %}aria-current="page"{% endif %}>
-            {{ site.data.locales[site.lang].tabs[tab_key] | default: tab.title | default: tab_key | upcase }}
+          <a href="{{ tab.url | bf_lang_url: active_lang }}" {% if tab.url == page.url %}aria-current="page"{% endif %}>
+            {{ locale.tabs[tab_key] | default: tab.title | default: tab_key | upcase }}
           </a>
         {% endunless %}
       {% endunless %}

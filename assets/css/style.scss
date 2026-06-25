@@ -57,7 +57,7 @@
   --grid-line-y: rgba(0, 255, 42, 0.011);
   --card-bg: linear-gradient(180deg, rgba(0, 7, 0, 0.96), rgba(0, 0, 0, 0.92));
   --card-bg-hover: linear-gradient(180deg, rgba(0, 9, 0, 0.98), rgba(0, 3, 0, 0.95));
-  --watermark: rgba(0, 255, 42, 0.045);
+  --watermark: rgba(0, 255, 42, 0.09);
   --window-bg: rgba(0, 4, 0, 0.8);
   --window-title-bg: rgba(0, 8, 0, 0.86);
   --panel-surface: rgba(0, 0, 0, 0.68);
@@ -257,6 +257,12 @@ img {
 
 .hero-aside p {
   margin: 0 0 1rem;
+}
+
+@media (min-height: 721px) {
+  .layout-home .hero-aside p:not(.prompt-line) {
+    min-height: 4.05em;
+  }
 }
 
 .prompt-line {
@@ -1618,7 +1624,7 @@ img {
   background: transparent;
   border: 0;
   color: var(--theme-control-muted);
-  cursor: default;
+  cursor: pointer;
   display: inline-grid;
   font: inherit;
   font-size: 0.58rem;
@@ -1628,10 +1634,16 @@ img {
   min-width: 0;
   padding: 0;
   text-align: center;
+  text-decoration: none;
 }
 
 .system-lang-option.is-active {
   color: var(--ink);
+  cursor: default;
+}
+
+.system-lang-option:not(.is-active):hover {
+  color: var(--accent);
 }
 
 .system-lang-divider {
@@ -2749,6 +2761,7 @@ img {
   border-top: 1px dashed var(--soft-line);
   display: flex;
   font-size: 0.9rem;
+  flex-wrap: wrap;
   font-weight: 800;
   gap: 1rem;
   justify-content: center;
@@ -2763,6 +2776,48 @@ img {
 
 .site-footer p {
   margin: 0;
+}
+
+.footer-lang {
+  align-items: baseline;
+  display: inline-flex;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.footer-lang-label,
+.footer-lang-option,
+.footer-lang-divider {
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.footer-lang-label {
+  color: var(--theme-label);
+}
+
+.footer-lang-toggle {
+  align-items: baseline;
+  display: inline-flex;
+  gap: 0.28rem;
+}
+
+.footer-lang-option {
+  color: var(--theme-control-muted);
+  text-decoration: none;
+}
+
+.footer-lang-option.is-active {
+  color: var(--ink);
+}
+
+.footer-lang-option:not(.is-active):hover {
+  color: var(--accent);
+}
+
+.footer-lang-divider {
+  color: var(--theme-divider);
 }
 
 .layout-home .site-footer {

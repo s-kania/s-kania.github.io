@@ -2,6 +2,8 @@
 title: Nowy wygląd bloga i mała zapowiedź
 author: rybeusz
 date: 2026-06-21 12:00:00 +0100
+lang: pl
+page_id: 2026-06-21-nowy-wyglad-bloga-i-mala-zapowiedz
 categories: [Inne]
 summary: "Blog trochę odżył wizualnie. Od dawna chciałem, żeby miał więcej własnego charakteru i lepiej pasował do tego, co chcę tu wrzucać częściej - wpisów o tworzeniu gier."
 ---

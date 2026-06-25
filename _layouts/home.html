@@ -2,6 +2,9 @@
 layout: default
 ---
 
+{% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+{% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+
 {% if page.home_feed_posts %}
   {% assign posts = page.home_feed_posts %}
 {% else %}
@@ -14,13 +17,13 @@ layout: default
 <section class="home-hero">
   <h1>{{ site.title }}</h1>
   <div class="hero-aside">
-    <p>Notatki z robienia gier, układania klocków LEGO i walki z własnymi pomysłami.</p>
-    <p class="prompt-line">&gt; indiedev / gry / lego </p>
+    <p>{{ locale.home.hero.body }}</p>
+    <p class="prompt-line">{{ locale.home.hero.prompt }}</p>
   </div>
 </section>
 
 <div class="home-grid">
-  <section class="home-feed{% if home_feed_page > 1 %} home-feed-paged{% endif %}" aria-label="Najnowsze wpisy">
+  <section class="home-feed{% if home_feed_page > 1 %} home-feed-paged{% endif %}" aria-label="{{ locale.home.feed.aria }}">
     {% if home_feed_page == 1 %}
       {% assign featured = posts[0] %}
       {% if featured %}
@@ -44,36 +47,36 @@ layout: default
 
     {% if home_feed_total_pages > 1 %}
       {% assign home_feed_action_url = page.home_feed_next_url | default: "/" %}
-      {% assign home_feed_action_label = "NEXT &gt;" %}
-      {% assign home_feed_action_aria = "Następna strona" %}
+      {% assign home_feed_action_label = locale.home.feed.next_label %}
+      {% assign home_feed_action_aria = locale.home.feed.next_aria %}
       {% unless page.home_feed_next_url %}
-        {% assign home_feed_action_label = "HOME &gt;" %}
-        {% assign home_feed_action_aria = "Pierwsza strona" %}
+        {% assign home_feed_action_label = locale.home.feed.home_label %}
+        {% assign home_feed_action_aria = locale.home.feed.home_aria %}
       {% endunless %}
-      <nav class="home-feed-actions" aria-label="Paginacja wpisów">
+      <nav class="home-feed-actions" aria-label="{{ locale.home.feed.pagination_aria }}">
         <span class="home-feed-page-indicator">
-          BF_FEED :: PAGE <strong>{{ home_feed_page }}</strong>/<span>{{ home_feed_total_pages }}</span>
+          BF_FEED :: {{ locale.home.feed.page_label }} <strong>{{ home_feed_page }}</strong>/<span>{{ home_feed_total_pages }}</span>
         </span>
         <span class="home-feed-action-list">
           {% if page.home_feed_prev_url %}
-            <a class="home-feed-action" href="{{ page.home_feed_prev_url | relative_url }}" aria-label="Poprzednia strona">&lt; PREV</a>
+            <a class="home-feed-action" href="{{ page.home_feed_prev_url | bf_lang_url: active_lang }}" aria-label="{{ locale.home.feed.prev_aria }}">{{ locale.home.feed.prev_label }}</a>
           {% endif %}
-          <a class="home-feed-action" href="{{ home_feed_action_url | relative_url }}" aria-label="{{ home_feed_action_aria }}">{{ home_feed_action_label }}</a>
+          <a class="home-feed-action" href="{{ home_feed_action_url | bf_lang_url: active_lang }}" aria-label="{{ home_feed_action_aria }}">{{ home_feed_action_label }}</a>
         </span>
       </nav>
     {% endif %}
   </section>
 
-  <aside class="home-terminal" aria-label="Panel boczny">
+  <aside class="home-terminal" aria-label="{{ locale.home.terminal.aria }}">
     {% include home-browser.html %}
 
     <section class="terminal-section category-section">
       <h2>
-        KATEGORIE
+        {{ locale.home.terminal.categories_title | upcase }}
         <span class="window-controls">
           <span class="window-control minimize"></span>
-          <a class="window-control maximize" href="{{ '/categories/' | relative_url }}" aria-label="Kategorie"></a>
-          <span class="window-control close" role="button" aria-label="Zamknij okno kategorii" tabindex="0"></span>
+          <a class="window-control maximize" href="{{ '/categories/' | bf_lang_url: active_lang }}" aria-label="{{ locale.home.terminal.categories_aria }}"></a>
+          <span class="window-control close" role="button" aria-label="{{ locale.home.terminal.close_categories }}" tabindex="0"></span>
         </span>
       </h2>
       <div class="category-body">
@@ -81,10 +84,11 @@ layout: default
           {% assign categories = site.categories | sort %}
           {% for category in categories %}
             {% assign category_slug = category[0] | slugify %}
+            {% assign category_label = locale.category_names[category_slug] | default: category[0] %}
             {% assign category_url = "/categories/" | append: category_slug | append: "/" %}
-            <a href="{{ category_url | relative_url }}">
+            <a href="{{ category_url | bf_lang_url: active_lang }}">
               <span class="folder-icon">{% include icon.html name="folder" %}</span>
-              <span>{{ category[0] | upcase }}</span>
+              <span>{{ category_label | upcase }}</span>
               <strong>{{ category[1].size }}</strong>
             </a>
           {% endfor %}
@@ -102,21 +106,23 @@ layout: default
     <div class="terminal-footer">
       <section class="system-panel">
         <div class="system-copy">
-          <p>&gt; SYSTEM: OK</p>
-          <p>BF_BLOG v1.0.0</p>
+          <p>&gt; {{ locale.home.terminal.system_status }}</p>
+          <p>{{ locale.home.terminal.version }}</p>
           <p>&copy; {{ 'now' | date: "%Y" }} Brick Fiction</p>
         </div>
 
-        <div class="system-controls" aria-label="Ustawienia strony">
+        <div class="system-controls" aria-label="{{ locale.site_ui.settings }}">
           <span class="system-time">{{ 'now' | date: "%H:%M:%S" }}</span>
           <div class="system-control-row">
-            <span class="system-lang-label">Lang:</span>
-            <div class="system-lang-toggle" aria-label="Jezyk">
-              <button class="system-lang-option is-active" type="button" aria-pressed="true">PL</button>
-              <span class="system-lang-divider" aria-hidden="true">/</span>
-              <button class="system-lang-option" type="button" aria-pressed="false">ENG</button>
-            </div>
-            <button class="system-theme-toggle" type="button" aria-label="Przełącz na motyw ciemny" aria-pressed="false">
+            {% include language-switch.html show_label=true %}
+            <button
+              class="system-theme-toggle"
+              type="button"
+              aria-label="{{ locale.theme.switch_to_dark }}"
+              aria-pressed="false"
+              data-theme-label-dark="{{ locale.theme.switch_to_dark | escape }}"
+              data-theme-label-light="{{ locale.theme.switch_to_light | escape }}"
+            >
               <svg class="system-theme-icon system-theme-sun" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="4"></circle>
                 <path d="M12 2v2"></path>
@@ -162,7 +168,7 @@ layout: default
 
     if (!systemTime) return;
 
-    const formatter = new Intl.DateTimeFormat('pl-PL', {
+    const formatter = new Intl.DateTimeFormat({{ locale.date_time.locale | jsonify }}, {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
@@ -186,7 +192,7 @@ layout: default
         document.documentElement.setAttribute('data-theme', nextTheme);
         themeToggle.classList.toggle('is-dark', isDark);
         themeToggle.setAttribute('aria-pressed', String(isDark));
-        themeToggle.setAttribute('aria-label', isDark ? 'Przełącz na motyw jasny' : 'Przełącz na motyw ciemny');
+        themeToggle.setAttribute('aria-label', isDark ? themeToggle.dataset.themeLabelLight : themeToggle.dataset.themeLabelDark);
 
         if (persist) {
           try {
@@ -308,6 +314,7 @@ layout: default
         window.setTimeout(resolve, duration);
       });
       const loadingProgressDuration = 1000;
+      const browserLoadedText = {{ locale.home.browser.loaded | jsonify }};
 
       const typeBrowserLine = async (text, delay = 24, indent = '') => {
         if (browserTransitionText.textContent) {
@@ -394,7 +401,7 @@ layout: default
           await typeBrowserLine(`> load --adress ${tab.dataset.browserAddress}`, 22);
           await wait(130);
           await updateBrowserLoadingProgress(loadingProgressDuration);
-          await typeBrowserLine('> loaded', 28, '    ');
+          await typeBrowserLine(browserLoadedText, 28, '    ');
           await wait(360);
           browserPanelShell.classList.remove('is-loading');
           browserPanelShell.classList.remove('is-cleared');

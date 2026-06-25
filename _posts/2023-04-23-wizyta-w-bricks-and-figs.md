@@ -2,6 +2,8 @@
 title: Relacja z wizyty w Bricks&Figs - nowym muzeum minifigurek LEGO® w Polsce
 author: rybeusz
 date: 2023-04-23 08:00:00 +0100
+lang: pl
+page_id: 2023-04-23-wizyta-w-bricks-and-figs
 categories: [Ciekawostki]
 image: /assets/posts/2023-04-23/IMG_3795.JPEG
 preview_image:

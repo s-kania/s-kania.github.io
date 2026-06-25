@@ -2,11 +2,14 @@
 layout: default
 ---
 
+{% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+{% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+
 <article class="post">
   <header class="post-header">
-    <nav class="post-path" aria-label="Sciezka wpisu">
+    <nav class="post-path" aria-label="{{ locale.post_detail.path_aria }}">
       <span aria-hidden="true">&gt;</span>
-      <span>brick://</span><a href="{{ '/' | relative_url }}">home</a><span>/</span><a href="{{ '/posts/' | relative_url }}">posts</a><span>/</span><span class="post-path-current">POST_{{ page.date | date: "%Y%m%d" }}.md</span>
+      <span>brick://</span><a href="{{ '/' | bf_lang_url: active_lang }}">{{ locale.site_ui.home }}</a><span>/</span><a href="{{ '/posts/' | bf_lang_url: active_lang }}">{{ locale.site_ui.posts }}</a><span>/</span><span class="post-path-current">POST_{{ page.date | date: "%Y%m%d" }}.md</span>
     </nav>
 
     {% if page.image %}
@@ -22,12 +25,17 @@ layout: default
     <h1>{{ page.title }}</h1>
 
     <div class="post-meta">
-      <span>Data powstania: <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d.%m.%Y" }}</time></span>
+      <span>{{ locale.post_detail.created_at }}: <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d.%m.%Y" }}</time></span>
       {% if page.last_modified_at %}
-        <span>Data aktualizacji: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%d.%m.%Y" }}</time></span>
+        <span>{{ locale.post_detail.updated_at }}: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%d.%m.%Y" }}</time></span>
       {% endif %}
       {% if page.categories.size > 0 %}
-        <span>Kategorie: {{ page.categories | join: " / " }}</span>
+        <span>{{ locale.post_detail.categories }}:
+          {% for category in page.categories %}
+            {% assign category_slug = category | slugify %}
+            {{ locale.category_names[category_slug] | default: category }}{% unless forloop.last %} / {% endunless %}
+          {% endfor %}
+        </span>
       {% endif %}
     </div>
   </header>

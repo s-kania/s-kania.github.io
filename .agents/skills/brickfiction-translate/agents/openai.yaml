@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brick Fiction Translation"
+  short_description: "Translate Brick Fiction posts naturally"
+  default_prompt: "Use $brickfiction-translate to translate this Brick Fiction post into natural English while preserving my voice."

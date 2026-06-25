@@ -101,6 +101,8 @@ GEM
       jekyll (>= 3.6, < 5.0)
     jekyll-feed (0.17.0)
       jekyll (>= 3.7, < 5.0)
+    jekyll-polyglot (1.13.0)
+      jekyll (>= 4.0, >= 3.0)
     jekyll-sass-converter (3.1.0)
       sass-embedded (~> 1.75)
     jekyll-seo-tag (2.9.0)
@@ -122,10 +124,6 @@ GEM
     logger (1.7.0)
     mercenary (0.4.0)
     metrics (0.15.0)
-    mini_portile2 (2.8.9)
-    nokogiri (1.19.3)
-      mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
     nokogiri (1.19.3-aarch64-linux-gnu)
       racc (~> 1.4)
     nokogiri (1.19.3-aarch64-linux-musl)
@@ -200,7 +198,6 @@ PLATFORMS
   arm-linux-musl
   arm-linux-musleabihf
   arm64-darwin
-  ruby
   x86_64-darwin
   x86_64-linux
   x86_64-linux-gnu
@@ -211,6 +208,7 @@ DEPENDENCIES
   jekyll (= 4.4.1)
   jekyll-archives (~> 2.3)
   jekyll-feed (~> 0.17)
+  jekyll-polyglot (~> 1.13)
   jekyll-seo-tag (~> 2.8)
   jekyll-sitemap (~> 1.4)
   webrick (~> 1.9)
