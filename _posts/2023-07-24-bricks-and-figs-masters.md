@@ -2,6 +2,8 @@
 title: Układaliśmy retro zestawy w muzeum Bricks&Figs!
 author: rybeusz
 date: 2023-07-24 12:00:00 +0100
+lang: pl
+page_id: 2023-07-24-bricks-and-figs-masters
 categories: [Ciekawostki]
 image: /assets/posts/2023-07-24/preview.png
 preview_image:

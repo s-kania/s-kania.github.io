@@ -2,6 +2,8 @@
 title: Klockowe ciekawostki &#35;1
 author: rybeusz
 date: 2023-04-03 09:00:00 +0100
+lang: pl
+page_id: 2023-04-03-klockowe-ciekawostki-1
 categories: [Ciekawostki]
 image: /assets/posts/2023-04-03/77015_alt5.webp
 preview_image:

@@ -2,6 +2,8 @@
 title: Recenzja zestawu COBI 2573 - Sd.Kfz. 173 JAGDPANTHER
 author: rybeusz
 date: 2023-05-03 15:00:00 +0100
+lang: pl
+page_id: 2023-05-03-recenzja-jagdpanther
 categories: [Recenzje]
 image: /assets/posts/2023-05-03/pudelko.png
 preview_image:

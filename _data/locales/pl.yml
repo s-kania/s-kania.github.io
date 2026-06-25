@@ -40,6 +40,9 @@ copyright:
     na licencji Attribution-NonCommercial-NoDerivs 2.0 Generic (CC BY-NC-ND 2.0) przez autora.
 meta: Using the :PLATFORM theme :THEME.
 
+site_meta:
+  description: Blog i recenzje klocków LEGO i nie tylko. Do tego luźne wpisy i proces tworzenia gier.
+
 not_found:
   statment: Dotarłeś do pustki. Tu nic nie ma. Sprawdź ponownie link albo naciesz się ciszą.
   

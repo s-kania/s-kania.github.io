@@ -2,6 +2,8 @@
 title: Przegląd zestawów na Rok Smoczyska - Klockowe ciekawostki &#35;3
 author: rybeusz
 date: 2023-11-21 12:00:00 +0100
+lang: pl
+page_id: 2023-11-21-klockowe-ciekawostki-3
 categories: [Ciekawostki]
 image:
     path: /assets/posts/2023-11-21-klockowe-ciekawostki-3/1700612470276.png

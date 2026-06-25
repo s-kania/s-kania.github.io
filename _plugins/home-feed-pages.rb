@@ -14,7 +14,9 @@ module HomeFeedPages
       page_groups = build_page_groups(posts)
       total_pages = page_groups.size
 
-      assign_page_data(home_page(site), page_groups[0] || [], 1, total_pages)
+      home = home_page(site)
+      assign_page_data(home, page_groups[0] || [], 1, total_pages)
+      assign_localized_page_data(site, home)
 
       page_groups.each_with_index do |posts_for_page, index|
         page_number = index + 1
@@ -24,6 +26,7 @@ module HomeFeedPages
         page.data['layout'] = 'home'
         page.data['title'] = page_title(site, page_number)
         page.data['permalink'] = page_url(page_number)
+        assign_localized_page_data(site, page)
 
         assign_page_data(page, posts_for_page, page_number, total_pages)
         site.pages << page
@@ -41,7 +44,20 @@ module HomeFeedPages
     end
 
     def home_page(site)
-      site.pages.find { |page| page.name == 'index.html' && page.dir == '/' }
+      active = active_lang(site).to_s
+
+      site.pages.find do |page|
+        page.dir == '/' &&
+          page.data['layout'] == 'home' &&
+          (page.data['lang'].nil? || page.data['lang'].to_s == active)
+      end
+    end
+
+    def assign_localized_page_data(site, page)
+      return unless page
+
+      page.data['lang'] ||= active_lang(site)
+      page.data['description'] ||= localized_site_description(site)
     end
 
     def assign_page_data(page, posts, page_number, total_pages)
@@ -88,6 +104,10 @@ module HomeFeedPages
     def locale_data(site)
       locales = site.data['locales'] || {}
       locales[active_lang(site)] || locales[default_lang(site)] || {}
+    end
+
+    def localized_site_description(site)
+      locale_data(site).dig('site_meta', 'description') || site.config['description']
     end
 
     def active_lang(site)

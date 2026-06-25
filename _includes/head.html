@@ -25,7 +25,11 @@
     })();
   </script>
   {% seo title=false %}
-  {{ I18n_Headers }}
+  {% assign current_url = page.url | default: '/' %}
+  {% assign public_url = site.url | append: site.baseurl %}
+  <link rel="alternate" hreflang="pl" href="{{ public_url }}{{ current_url | bf_lang_url: 'pl' }}">
+  <link rel="alternate" hreflang="en" href="{{ public_url }}{{ current_url | bf_lang_url: 'en' }}">
+  <link rel="alternate" hreflang="x-default" href="{{ public_url }}{{ current_url | bf_lang_url: 'pl' }}">
   {% assign page_content_lang = page.lang | default: default_lang %}
   {% if active_lang != default_lang and page_content_lang != active_lang %}
     <meta name="robots" content="noindex, follow">

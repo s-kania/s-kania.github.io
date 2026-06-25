@@ -3,6 +3,8 @@
 icon: fas fa-info-circle
 order: 5
 title: Polityka prywatnosci
+lang: pl
+page_id: privacy-policy
 hidden: true
 ---
 ### Kim jestem

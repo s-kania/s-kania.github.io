@@ -2,6 +2,8 @@
 title: LEGO® wysłało 1000 astronautów w stratosferę!
 author: rybeusz
 date: 2023-05-25 21:00:00 +0100
+lang: pl
+page_id: 2023-05-25-astronauci-w-stratosferze
 categories: [Ciekawostki]
 image: /assets/posts/2023-05-25/astro.jpg
 preview_image:
