@@ -2,7 +2,12 @@
 .*
 !.git*
 !.agents/
-!.agents/**
+.agents/**
+!.agents/skills/
+!.agents/skills/brickfiction-translate/
+!.agents/skills/brickfiction-translate/**
+!.agents/skills/responsive-screenshots/
+!.agents/skills/responsive-screenshots/**
 !.editorconfig
 !.nojekyll
 !.husky
