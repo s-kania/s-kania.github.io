@@ -1,0 +1,4 @@
+interface:
+  display_name: "White Background Cutout"
+  short_description: "Remove white image backgrounds"
+  default_prompt: "Use $white-background-cutout to remove a white product-photo background and trim transparent margins."

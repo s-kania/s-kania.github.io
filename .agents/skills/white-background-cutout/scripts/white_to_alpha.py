@@ -6,10 +6,10 @@ default. That keeps white model details inside the subject intact while still
 clearing the usual product-photo background.
 
 Examples:
-  python3 scripts/white_to_alpha.py assets/posts/example/product.png
-  python3 scripts/white_to_alpha.py assets/posts/example --recursive
-  python3 scripts/white_to_alpha.py image.jpg --tolerance 42 --output image-cutout.png
-  python3 scripts/white_to_alpha.py product.jpg --tolerance 110 --cleanup-tolerance 150 --feather-radius 0.5
+  python3 .agents/skills/white-background-cutout/scripts/white_to_alpha.py assets/posts/example/product.png
+  python3 .agents/skills/white-background-cutout/scripts/white_to_alpha.py assets/posts/example --recursive
+  python3 .agents/skills/white-background-cutout/scripts/white_to_alpha.py image.jpg --tolerance 42 --output image-cutout.png
+  python3 .agents/skills/white-background-cutout/scripts/white_to_alpha.py product.jpg --tolerance 110 --cleanup-tolerance 150 --feather-radius 0.5 --trim-alpha
 """
 
 from __future__ import annotations
@@ -133,6 +133,26 @@ def parse_args() -> argparse.Namespace:
         help=(
             "Slightly blur the alpha mask edge and remove white matte from partially "
             "transparent pixels. Use 0.4-0.8 for JPG product photos. Default: disabled."
+        ),
+    )
+    parser.add_argument(
+        "--trim-alpha",
+        action="store_true",
+        help="Crop transparent margins after background removal.",
+    )
+    parser.add_argument(
+        "--trim-padding",
+        type=int,
+        default=0,
+        help="Transparent padding to keep around the trimmed subject. Default: %(default)s",
+    )
+    parser.add_argument(
+        "--alpha-threshold",
+        type=int,
+        default=1,
+        help=(
+            "Minimum alpha value treated as visible when trimming. "
+            "Use a higher value to ignore faint matte pixels. Default: %(default)s"
         ),
     )
     parser.add_argument(
@@ -374,6 +394,30 @@ def edge_white_ratio(
     return white_edges / len(indices)
 
 
+def trim_transparent_edges(
+    image: Image.Image,
+    *,
+    padding: int,
+    alpha_threshold: int,
+) -> tuple[Image.Image, bool]:
+    width, height = image.size
+    alpha = image.getchannel("A")
+    bbox = alpha.point(lambda value: 255 if value >= alpha_threshold else 0).getbbox()
+    if bbox is None:
+        return image, False
+
+    left, top, right, bottom = bbox
+    padding = max(0, padding)
+    left = max(0, left - padding)
+    top = max(0, top - padding)
+    right = min(width, right + padding)
+    bottom = min(height, bottom + padding)
+
+    if (left, top, right, bottom) == (0, 0, width, height):
+        return image, False
+    return image.crop((left, top, right, bottom)), True
+
+
 def remove_white_background(
     input_path: Path,
     output_path: Path,
@@ -387,6 +431,9 @@ def remove_white_background(
     cleanup_max_area: int,
     cleanup_max_thickness: int,
     feather_radius: float,
+    trim_alpha: bool,
+    trim_padding: int,
+    alpha_threshold: int,
     overwrite: bool,
     dry_run: bool,
 ) -> bool:
@@ -428,15 +475,6 @@ def remove_white_background(
         print(f"skip: {input_path} has no removable white background")
         return False
 
-    cleanup_text = f", cleanup +{cleanup_removed / len(pixels):.1%}" if cleanup_removed else ""
-    print(
-        f"{'would write' if dry_run else 'write'}: {output_path} "
-        f"({removed / len(pixels):.1%} pixels transparent{cleanup_text}, edge white {ratio:.1%})"
-    )
-    if dry_run:
-        return True
-
-    output_path.parent.mkdir(parents=True, exist_ok=True)
     if feather_radius > 0:
         output_image = apply_feathered_alpha(image, mask, width, height, feather_radius)
     else:
@@ -446,6 +484,31 @@ def remove_white_background(
         ]
         output_image = image.copy()
         output_image.putdata(new_pixels)
+
+    trimmed = False
+    original_size = output_image.size
+    if trim_alpha:
+        output_image, trimmed = trim_transparent_edges(
+            output_image,
+            padding=trim_padding,
+            alpha_threshold=alpha_threshold,
+        )
+
+    cleanup_text = f", cleanup +{cleanup_removed / len(pixels):.1%}" if cleanup_removed else ""
+    trim_text = (
+        f", trimmed {original_size[0]}x{original_size[1]}->{output_image.size[0]}x{output_image.size[1]}"
+        if trimmed
+        else ""
+    )
+    print(
+        f"{'would write' if dry_run else 'write'}: {output_path} "
+        f"({removed / len(pixels):.1%} pixels transparent{cleanup_text}{trim_text}, "
+        f"edge white {ratio:.1%})"
+    )
+    if dry_run:
+        return True
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     output_image.save(output_path, "PNG", optimize=True)
     return True
 
@@ -472,6 +535,9 @@ def main() -> int:
             cleanup_max_area=args.cleanup_max_area,
             cleanup_max_thickness=args.cleanup_max_thickness,
             feather_radius=args.feather_radius,
+            trim_alpha=args.trim_alpha,
+            trim_padding=args.trim_padding,
+            alpha_threshold=args.alpha_threshold,
             overwrite=args.overwrite,
             dry_run=args.dry_run,
         ):

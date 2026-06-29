@@ -8,6 +8,8 @@
 !.agents/skills/brickfiction-translate/**
 !.agents/skills/responsive-screenshots/
 !.agents/skills/responsive-screenshots/**
+!.agents/skills/white-background-cutout/
+!.agents/skills/white-background-cutout/**
 !.editorconfig
 !.nojekyll
 !.husky
