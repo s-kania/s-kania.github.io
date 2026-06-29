@@ -1858,9 +1858,9 @@ img {
 
 .content h2 {
   border-bottom: 1px solid var(--soft-line);
-  font-size: 1.75rem;
-  margin-top: 2.4rem;
-  padding-bottom: 0.35rem;
+  font-size: 2rem;
+  margin-top: 3.25rem;
+  padding-bottom: 0.45rem;
 }
 
 .content h3 {
@@ -3903,6 +3903,11 @@ img {
 
   body {
     font-size: 15px;
+  }
+
+  .content h2 {
+    font-size: 1.85rem;
+    margin-top: 2.85rem;
   }
 
   .site-frame {
