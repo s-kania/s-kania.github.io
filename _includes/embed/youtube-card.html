@@ -1,0 +1,20 @@
+{% capture video_url %}https://www.youtube.com/watch?v={{ include.id }}{% endcapture %}
+{% capture fallback_image %}https://i.ytimg.com/vi/{{ include.id }}/hqdefault.jpg{% endcapture %}
+{% assign poster = include.image | default: fallback_image %}
+{% assign title = include.title | default: "YouTube video" %}
+{% assign label = include.label | default: "Watch on YouTube" %}
+{% assign alt = include.alt | default: title %}
+
+<div class="video-card">
+  <a class="video-card__link" href="{{ video_url }}" target="_blank" rel="noopener" aria-label="{{ label }}: {{ title }}">
+    <img src="{{ poster }}" alt="{{ alt }}" loading="lazy">
+    <span class="video-card__shade" aria-hidden="true"></span>
+    <span class="video-card__play" aria-hidden="true">
+      <span class="video-card__triangle"></span>
+    </span>
+    <span class="video-card__meta">
+      <span class="video-card__title">{{ title }}</span>
+      <span class="video-card__label">{{ label }}</span>
+    </span>
+  </a>
+</div>

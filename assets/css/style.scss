@@ -1949,15 +1949,148 @@ img {
 
 .video-embed {
   aspect-ratio: 16 / 9;
-  border: 1.5px solid var(--hairline);
   margin: 1.5rem 0;
-  padding: 0.5rem;
 }
 
 .video-embed iframe {
   border: 0;
   height: 100%;
   width: 100%;
+}
+
+.video-card {
+  aspect-ratio: 16 / 9;
+  background: var(--paper);
+  border-radius: 6px;
+  color: #fff;
+  display: block;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-card__link {
+  color: #fff;
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  width: 100%;
+}
+
+.video-card__link:hover,
+.video-card__link:focus-visible {
+  color: #fff;
+}
+
+.video-card img {
+  display: block;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 180ms ease, filter 180ms ease;
+  width: 100%;
+}
+
+.video-card:hover img,
+.video-card:focus-within img {
+  filter: brightness(1.04);
+  transform: scale(1.035);
+}
+
+.video-card__shade {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.1), transparent 38%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.76), transparent 56%);
+  inset: 0;
+  position: absolute;
+}
+
+.video-card__play {
+  align-items: center;
+  background: #e62117;
+  border-radius: 18px;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.28);
+  display: flex;
+  height: 4.1rem;
+  justify-content: center;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 5.8rem;
+}
+
+.video-card__triangle {
+  border-bottom: 0.9rem solid transparent;
+  border-left: 1.45rem solid #fff;
+  border-top: 0.9rem solid transparent;
+  margin-left: 0.25rem;
+}
+
+.video-card__meta {
+  align-items: flex-end;
+  bottom: 1rem;
+  display: flex;
+  gap: 0.8rem;
+  justify-content: space-between;
+  left: 1rem;
+  position: absolute;
+  right: 1rem;
+  z-index: 1;
+}
+
+.video-card__title {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.2;
+  max-width: 70%;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+}
+
+.video-card__label {
+  background: rgba(0, 0, 0, 0.68);
+  border-radius: 999px;
+  color: #fff;
+  flex: 0 0 auto;
+  font-size: 0.86rem;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0.55rem 0.75rem;
+}
+
+@media (max-width: 520px) {
+  .video-card__play {
+    border-radius: 14px;
+    height: 3.1rem;
+    width: 4.5rem;
+  }
+
+  .video-card__triangle {
+    border-bottom-width: 0.7rem;
+    border-left-width: 1.1rem;
+    border-top-width: 0.7rem;
+  }
+
+  .video-card__meta {
+    align-items: flex-start;
+    bottom: 0.75rem;
+    flex-direction: column;
+    gap: 0.45rem;
+    left: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .video-card__title {
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+
+  .video-card__label {
+    font-size: 0.78rem;
+    padding: 0.45rem 0.6rem;
+  }
 }
 
 .gold {
