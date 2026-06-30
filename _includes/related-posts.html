@@ -1,0 +1,61 @@
+{% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+{% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+{% assign related_ids = include.related_posts | default: page.related_posts %}
+{% assign related_count = 0 %}
+
+{% capture related_markup %}
+  {% for related_id in related_ids limit:3 %}
+    {% assign related_post = nil %}
+    {% assign fallback_post = nil %}
+
+    {% for candidate in site.posts %}
+      {% if candidate.page_id == related_id and candidate.hidden != true %}
+        {% if fallback_post == nil %}
+          {% assign fallback_post = candidate %}
+        {% endif %}
+
+        {% if candidate.lang == active_lang %}
+          {% assign related_post = candidate %}
+          {% break %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign related_post = related_post | default: fallback_post %}
+
+    {% if related_post %}
+      {% assign related_count = related_count | plus: 1 %}
+      {% assign related_category = related_post.categories | first | default: locale.post_card.default_category %}
+      {% assign related_category_slug = related_category | slugify %}
+      {% assign related_category_label = locale.category_names[related_category_slug] | default: related_category %}
+      {% assign related_summary = related_post.summary | default: related_post.excerpt | markdownify | strip_html | normalize_whitespace %}
+      {% assign related_aria_title = related_post.title | replace: "&#35;", "#" %}
+      <a class="related-posts__item" href="{{ related_post.url | bf_lang_url: active_lang }}" aria-label="{{ locale.post_detail.related_cta }}: {{ related_aria_title | escape }}">
+        <span class="related-posts__meta">
+          <span class="related-posts__category">{{ related_category_label | slugify | replace: "-", "_" | upcase }}</span>
+          <time datetime="{{ related_post.date | date_to_xmlschema }}">{{ related_post.date | date: "%d.%m.%Y" }}</time>
+        </span>
+        <span class="related-posts__copy">
+          <strong class="related-posts__post-title">{{ related_post.title }}</strong>
+          {% if related_summary != "" %}
+            <span class="related-posts__summary">{{ related_summary }}</span>
+          {% endif %}
+        </span>
+        <span class="related-posts__cta">{{ locale.post_detail.related_cta }}</span>
+      </a>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% if related_count > 0 %}
+  <section class="related-posts" aria-label="{{ locale.post_detail.related_aria }}">
+    <div class="related-posts__titlebar">
+      <span>{{ locale.post_detail.related_label }}</span>
+      <span aria-hidden="true">::</span>
+      <strong>{{ locale.post_detail.related_title }}</strong>
+    </div>
+    <div class="related-posts__list">
+      {{ related_markup }}
+    </div>
+  </section>
+{% endif %}

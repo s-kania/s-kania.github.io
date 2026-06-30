@@ -167,6 +167,10 @@ post_detail:
   created_at: Created
   updated_at: Updated
   categories: Categories
+  related_aria: Posts to read next
+  related_label: BF_QUEUE
+  related_title: Read next
+  related_cta: Read next
 
 explorer:
   close_aria: Homepage

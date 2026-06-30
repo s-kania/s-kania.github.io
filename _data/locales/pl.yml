@@ -169,6 +169,10 @@ post_detail:
   created_at: Data powstania
   updated_at: Data aktualizacji
   categories: Kategorie
+  related_aria: Wpisy do przeczytania
+  related_label: BF_QUEUE
+  related_title: Do przeczytania
+  related_cta: Czytaj dalej
 
 explorer:
   close_aria: Strona glowna

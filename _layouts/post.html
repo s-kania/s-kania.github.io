@@ -43,6 +43,9 @@ layout: default
   <div class="post-layout">
     <div class="content">
       {{ content }}
+      {% if page.related_posts %}
+        {% include related-posts.html related_posts=page.related_posts %}
+      {% endif %}
     </div>
   </div>
 </article>
