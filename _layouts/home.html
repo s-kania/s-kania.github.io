@@ -233,6 +233,7 @@ layout: default
       const maxSummarySize = clamp(availableWidth * 0.025, 15, 19);
       const minSummarySize = clamp(availableWidth * 0.019, 13, 15.5);
       const minSummaryLines = featuredCopy.clientHeight < 230 ? 2 : 3;
+      const maxSummaryLines = 3;
       let best = null;
 
       for (let titleSize = maxTitleSize; titleSize >= minTitleSize; titleSize -= 1) {
@@ -248,7 +249,7 @@ layout: default
           featuredMeta.getBoundingClientRect().height +
           (rowGap * 2);
         const availableHeight = featuredCopy.clientHeight - verticalPadding - fixedContentHeight;
-        const lines = Math.max(1, Math.floor(availableHeight / lineHeight));
+        const lines = clamp(Math.floor(availableHeight / lineHeight), 1, maxSummaryLines);
 
         best = { titleSize, summarySize, lines };
         if (lines >= minSummaryLines) break;
