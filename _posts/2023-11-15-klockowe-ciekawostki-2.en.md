@@ -13,6 +13,10 @@ preview_image:
     path: /assets/posts/2023-11-15-klockowe-ciekawostki-2/1700083914502.png
 alt: Majisto's Hideout
 summary: "LEGO® has just treated fans of classic Castle sets in a particularly nasty way."
+related_posts:
+    - 2023-11-21-klockowe-ciekawostki-3
+    - 2023-04-03-klockowe-ciekawostki-1
+    - 2023-04-14-cashback
 ---
 LEGO® has just treated fans of classic Castle sets in a particularly nasty way. For half a year there were rumors and teasers about a mysterious gift-with-purchase set. Every one of us was hoping for something as good as last year's [**40567 Forest Hideout**](https://www.bricklink.com/v2/catalog/catalogitem.page?S=40567-1).
 

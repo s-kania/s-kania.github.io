@@ -12,6 +12,10 @@ image:
 preview_image:
     path: /assets/posts/2024-01-14-aukcja-duch-kijowa/1705245627734.png
 summary: "I decided to put one of my brick sets up for a WOŚP charity auction: COBI 5833 Ghost of Kyiv."
+related_posts:
+    - 2023-05-03-recenzja-jagdpanther
+    - 2026-06-27-klockowe-ciekawostki-4
+    - 2023-04-03-klockowe-ciekawostki-1
 ---
 I decided to put one of my brick sets up for a WOŚP charity auction: COBI 5833 Ghost of Kyiv.
 It is a good chance to support a worthy cause and get something cool in return.

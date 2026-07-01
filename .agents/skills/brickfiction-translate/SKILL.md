@@ -27,7 +27,11 @@ Before translating substantial content, read [references/voice-and-workflow.md](
    - `lang: en`
    - stable `page_id` shared with the Polish original when creating a paired translation
    - English permalink/slug only when the user asks for English URLs; otherwise preserve current repo conventions
-5. After edits, run validation through Docker only:
+5. For posts with hidden translation notes, use them but do not copy them:
+   - Read `<!-- EN price note: ... -->` comments in the Polish source.
+   - Use those prices as translation guidance after verifying they still fit the English market context.
+   - Do not include the HTML comments in the final English post.
+6. After edits, run validation through Docker only:
    - `docker compose run --rm test`
    - never use host Jekyll or host dependency installs
 

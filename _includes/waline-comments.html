@@ -1,0 +1,408 @@
+{% assign waline_should_render = true %}
+{% if site.waline.enabled == false or page.comments == false or site.waline.server_url == nil or site.waline.server_url == "" %}
+  {% assign waline_should_render = false %}
+{% endif %}
+
+{% if waline_should_render %}
+  {% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+  {% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+  {% assign comments_privacy_url = '/privacy-policy/' %}
+  {% if active_lang == 'en' %}
+    {% assign comments_privacy_url = '/en/privacy-policy/' %}
+  {% endif %}
+  <section class="waline-comments" aria-label="{{ locale.post_detail.comments_aria }}">
+    <div class="waline-comments__titlebar">
+      <span>{{ locale.post_detail.comments_label }}</span>
+      <span aria-hidden="true">::</span>
+      <strong>{{ locale.post_detail.comments_title }}</strong>
+      <a class="waline-comments__privacy-link" href="{{ comments_privacy_url | relative_url }}">{{ locale.footer.privacy_policy }}</a>
+    </div>
+    <div class="waline-comments__body">
+      <div id="waline-comments"></div>
+    </div>
+  </section>
+  <script type="module">
+    import { init } from {{ site.waline.client_js | default: 'https://unpkg.com/@waline/client@3.15.2/dist/waline.js' | jsonify }};
+
+    const activeLang = {{ active_lang | jsonify }};
+    const polishWalineLocale = {
+      nick: 'Nazwa',
+      nickError: 'Nazwa nie może być krótsza niż 3 znaki.',
+      mail: 'E-mail',
+      mailError: 'Sprawdź adres e-mail.',
+      link: 'Strona',
+      optional: 'Opcjonalne',
+      placeholder: 'Napisz komentarz...',
+      sofa: 'Brak komentarzy.',
+      submit: 'Wyślij',
+      like: 'Polub',
+      cancelLike: 'Cofnij polubienie',
+      reply: 'Odpowiedz',
+      cancelReply: 'Anuluj odpowiedź',
+      comment: 'Komentarze',
+      refresh: 'Odśwież',
+      more: 'Pokaż więcej...',
+      preview: 'Podgląd',
+      emoji: 'Emoji',
+      uploadImage: 'Prześlij obraz',
+      seconds: 'sekund temu',
+      minutes: 'minut temu',
+      hours: 'godzin temu',
+      days: 'dni temu',
+      now: 'przed chwilą',
+      uploading: 'Przesyłanie',
+      login: 'Zaloguj',
+      logout: 'Wyloguj',
+      admin: 'Admin',
+      sticky: 'Przypięty',
+      word: 'słów',
+      wordHint: 'Komentarz powinien mieć od $0 do $1 słów!\nAktualna liczba słów: $2',
+      anonymous: 'Anonim',
+      gif: 'GIF',
+      gifSearchPlaceholder: 'Szukaj GIF',
+      profile: 'Profil',
+      approved: 'Zatwierdzone',
+      waiting: 'Oczekuje',
+      spam: 'Spam',
+      unsticky: 'Odepnij',
+      oldest: 'Najstarsze',
+      latest: 'Najnowsze',
+      hottest: 'Najpopularniejsze',
+      reactionTitle: 'Co o tym sądzisz?'
+    };
+
+    const walineOptions = {
+      el: '#waline-comments',
+      serverURL: {{ site.waline.server_url | jsonify }},
+      path: window.location.pathname.replace(/\/$/, '') || '/',
+      lang: activeLang === 'en' ? 'en' : 'pl',
+      dark: 'html[data-theme="dark"]'
+    };
+
+    if (activeLang === 'pl') {
+      walineOptions.locale = polishWalineLocale;
+    }
+
+    const setupWalineImageUploadGuard = () => {
+      const root = document.querySelector('#waline-comments');
+      if (!root) return;
+
+      const maxUploadSize = 128 * 1000;
+      const maxUploadSizeLabel = '128 KB';
+      const uploadSizeError = activeLang === 'en'
+        ? `The image is too large. Waline's default upload supports up to ${maxUploadSizeLabel}.`
+        : `Obraz jest za duży. Domyślny upload Waline obsługuje maksymalnie ${maxUploadSizeLabel}.`;
+
+      root.addEventListener('change', (event) => {
+        const input = event.target;
+        if (!(input instanceof HTMLInputElement) || input.id !== 'wl-image-upload') return;
+
+        const file = input.files?.[0];
+        if (!file || file.size <= maxUploadSize) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        input.value = '';
+        window.alert(uploadSizeError);
+      }, true);
+    };
+
+    const setupWalineEditDraftGuard = () => {
+      const root = document.querySelector('#waline-comments');
+      if (!root) return;
+
+      const editorStorageKey = 'WALINE_COMMENT_BOX_EDITOR';
+      let mainDraftBeforeEdit = '';
+
+      const getMainEditor = () => root.querySelector('[data-waline] > .wl-comment .wl-editor');
+
+      const setEditorValue = (editor, value) => {
+        if (!editor || editor.value === value) return;
+
+        editor.value = value;
+        editor.dispatchEvent(new Event('input', { bubbles: true }));
+      };
+
+      const restoreMainDraft = () => {
+        const editor = getMainEditor();
+        const value = mainDraftBeforeEdit;
+
+        try {
+          localStorage.setItem(editorStorageKey, JSON.stringify(value));
+          sessionStorage.setItem(editorStorageKey, JSON.stringify(value));
+        } catch {
+          // Storage can be unavailable in strict privacy modes.
+        }
+
+        setEditorValue(editor, value);
+      };
+
+      root.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        if (target.closest('.wl-card .wl-edit')) {
+          mainDraftBeforeEdit = getMainEditor()?.value || '';
+          return;
+        }
+
+        if (!target.closest('.wl-edit-wrapper .wl-close')) return;
+
+        window.setTimeout(restoreMainDraft, 0);
+        window.setTimeout(restoreMainDraft, 80);
+      }, true);
+    };
+
+    const setupWalineEmojiPicker = () => {
+      const root = document.querySelector('#waline-comments');
+      if (!root) return;
+
+      const emojiTitleText = activeLang === 'en' ? 'EMOJI' : 'EMOTIKONY';
+      let emojiEnhancementFrame = 0;
+
+      const createScrollButton = (className) => {
+        const button = document.createElement('button');
+        button.className = `scroll-button ${className}`;
+        button.type = 'button';
+        button.tabIndex = -1;
+        return button;
+      };
+
+      const createEmojiTitlebar = () => {
+        const titlebar = document.createElement('div');
+        const label = document.createElement('span');
+        const separator = document.createElement('span');
+        const title = document.createElement('strong');
+
+        titlebar.className = 'bf-emoji-titlebar';
+        label.textContent = 'BF_EMOJI';
+        separator.setAttribute('aria-hidden', 'true');
+        separator.textContent = '::';
+        title.textContent = emojiTitleText;
+
+        titlebar.append(label, separator, title);
+        return titlebar;
+      };
+
+      const createEmojiScrollbar = () => {
+        const scrollbar = document.createElement('div');
+        const track = document.createElement('div');
+        const thumb = document.createElement('span');
+
+        scrollbar.className = 'bf-emoji-scrollbar category-scrollbar';
+        scrollbar.setAttribute('aria-hidden', 'true');
+        track.className = 'scroll-track';
+        thumb.className = 'scroll-thumb';
+
+        track.append(thumb);
+        scrollbar.append(
+          createScrollButton('scroll-up'),
+          track,
+          createScrollButton('scroll-down')
+        );
+
+        return scrollbar;
+      };
+
+      const ensureEmojiBody = (popup, wrapper) => {
+        let body = popup.querySelector(':scope > .bf-emoji-body');
+        if (!body) {
+          body = document.createElement('div');
+          body.className = 'bf-emoji-body';
+
+          const titlebar = popup.querySelector(':scope > .bf-emoji-titlebar');
+          if (titlebar) {
+            titlebar.after(body);
+          } else {
+            popup.prepend(body);
+          }
+        }
+
+        if (wrapper.parentElement !== body) {
+          body.prepend(wrapper);
+        }
+
+        return body;
+      };
+
+      const syncEmojiScrollbar = (wrapper, scrollbar) => {
+        const track = scrollbar.querySelector('.scroll-track');
+        const thumb = scrollbar.querySelector('.scroll-thumb');
+        if (!track || !thumb) return;
+
+        const maxScroll = wrapper.scrollHeight - wrapper.clientHeight;
+        const trackHeight = track.clientHeight;
+        const thumbHeight = maxScroll <= 1
+          ? trackHeight
+          : Math.max(24, Math.round((wrapper.clientHeight / wrapper.scrollHeight) * trackHeight));
+        const thumbRange = Math.max(0, trackHeight - thumbHeight);
+
+        scrollbar.classList.toggle('is-hidden', maxScroll <= 1);
+        scrollbar.classList.toggle('is-at-top', wrapper.scrollTop <= 1);
+        scrollbar.classList.toggle('is-at-bottom', wrapper.scrollTop >= maxScroll - 1);
+
+        if (maxScroll <= 1 || thumbRange <= 0) {
+          if (thumb.style.height !== '100%') {
+            thumb.style.height = '100%';
+          }
+
+          if (thumb.style.transform !== 'translateY(0px)') {
+            thumb.style.transform = 'translateY(0px)';
+          }
+
+          return;
+        }
+
+        const nextHeight = `${thumbHeight}px`;
+        const nextTransform = `translateY(${Math.round((wrapper.scrollTop / maxScroll) * thumbRange)}px)`;
+
+        if (thumb.style.height !== nextHeight) {
+          thumb.style.height = nextHeight;
+        }
+
+        if (thumb.style.transform !== nextTransform) {
+          thumb.style.transform = nextTransform;
+        }
+      };
+
+      const bindEmojiScrollbar = (wrapper, scrollbar) => {
+        if (scrollbar.dataset.bfScrollbarBound === 'true') return;
+
+        const scrollUp = scrollbar.querySelector('.scroll-up');
+        const scrollDown = scrollbar.querySelector('.scroll-down');
+        const thumb = scrollbar.querySelector('.scroll-thumb');
+        let dragStartY = 0;
+        let dragStartScrollTop = 0;
+
+        const getMetrics = () => {
+          const track = scrollbar.querySelector('.scroll-track');
+          const maxScroll = wrapper.scrollHeight - wrapper.clientHeight;
+          const thumbHeight = thumb ? thumb.getBoundingClientRect().height : 0;
+          const trackHeight = track ? track.clientHeight : 0;
+
+          return {
+            maxScroll,
+            thumbRange: Math.max(0, trackHeight - thumbHeight)
+          };
+        };
+
+        thumb?.addEventListener('pointerdown', (event) => {
+          const { maxScroll, thumbRange } = getMetrics();
+          if (maxScroll <= 1 || thumbRange <= 0) return;
+
+          event.preventDefault();
+          dragStartY = event.clientY;
+          dragStartScrollTop = wrapper.scrollTop;
+          thumb.classList.add('is-dragging');
+          thumb.setPointerCapture(event.pointerId);
+        });
+
+        thumb?.addEventListener('pointermove', (event) => {
+          if (!thumb.classList.contains('is-dragging')) return;
+
+          const { maxScroll, thumbRange } = getMetrics();
+          const dragDelta = event.clientY - dragStartY;
+          wrapper.scrollTop = dragStartScrollTop + (dragDelta / thumbRange) * maxScroll;
+        });
+
+        const endThumbDrag = (event) => {
+          if (!thumb?.classList.contains('is-dragging')) return;
+
+          thumb.classList.remove('is-dragging');
+          if (thumb.hasPointerCapture(event.pointerId)) {
+            thumb.releasePointerCapture(event.pointerId);
+          }
+        };
+
+        thumb?.addEventListener('pointerup', endThumbDrag);
+        thumb?.addEventListener('pointercancel', endThumbDrag);
+        wrapper.addEventListener('scroll', () => syncEmojiScrollbar(wrapper, scrollbar), { passive: true });
+        scrollUp?.addEventListener('click', () => wrapper.scrollBy({ top: -42, behavior: 'smooth' }));
+        scrollDown?.addEventListener('click', () => wrapper.scrollBy({ top: 42, behavior: 'smooth' }));
+        scrollbar.dataset.bfScrollbarBound = 'true';
+      };
+
+      const enhanceEmojiPopup = (popup) => {
+        const wrapper = popup.querySelector('.wl-tab-wrapper');
+        if (!wrapper) return;
+
+        popup.classList.add('bf-emoji-popup');
+
+        if (!popup.querySelector(':scope > .bf-emoji-titlebar')) {
+          popup.prepend(createEmojiTitlebar());
+        }
+
+        const body = ensureEmojiBody(popup, wrapper);
+        let scrollbar = body.querySelector(':scope > .bf-emoji-scrollbar');
+        if (!scrollbar) {
+          scrollbar = createEmojiScrollbar();
+          body.append(scrollbar);
+        }
+
+        wrapper.querySelectorAll('button[title]').forEach((button) => {
+          const emojiLabel = button.getAttribute('title');
+          if (!emojiLabel) return;
+
+          button.setAttribute('aria-label', emojiLabel);
+          button.removeAttribute('title');
+        });
+
+        bindEmojiScrollbar(wrapper, scrollbar);
+
+        if (window.getComputedStyle(popup).display !== 'none') {
+          window.requestAnimationFrame(() => syncEmojiScrollbar(wrapper, scrollbar));
+        }
+      };
+
+      const enhanceEmojiPopups = () => {
+        root.querySelectorAll('.wl-emoji-popup').forEach(enhanceEmojiPopup);
+      };
+
+      const scheduleEmojiEnhancement = () => {
+        if (emojiEnhancementFrame) return;
+
+        emojiEnhancementFrame = window.requestAnimationFrame(() => {
+          emojiEnhancementFrame = 0;
+          enhanceEmojiPopups();
+        });
+      };
+
+      const scheduleEmojiEnhancementSequence = () => {
+        scheduleEmojiEnhancement();
+        window.setTimeout(scheduleEmojiEnhancement, 80);
+        window.setTimeout(scheduleEmojiEnhancement, 180);
+      };
+
+      root.addEventListener('click', (event) => {
+        if (!(event.target instanceof Element)) return;
+        if (!event.target.closest('.wl-action, .wl-emoji-popup, .bf-emoji-scrollbar')) return;
+
+        scheduleEmojiEnhancementSequence();
+      });
+
+      root.addEventListener('keydown', (event) => {
+        if (!(event.target instanceof Element) || !['Enter', ' '].includes(event.key)) return;
+        if (!event.target.closest('.wl-action, .wl-emoji-popup, .bf-emoji-scrollbar')) return;
+
+        scheduleEmojiEnhancementSequence();
+      });
+
+      window.addEventListener('resize', () => {
+        root.querySelectorAll('.bf-emoji-popup .wl-tab-wrapper').forEach((wrapper) => {
+          const scrollbar = wrapper.parentElement?.querySelector(':scope > .bf-emoji-scrollbar');
+          if (scrollbar) {
+            syncEmojiScrollbar(wrapper, scrollbar);
+          }
+        });
+      });
+
+      scheduleEmojiEnhancementSequence();
+    };
+
+    setupWalineImageUploadGuard();
+    setupWalineEditDraftGuard();
+    init(walineOptions);
+    setupWalineEmojiPicker();
+  </script>
+{% endif %}

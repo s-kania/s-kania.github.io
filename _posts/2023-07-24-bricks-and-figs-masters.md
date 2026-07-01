@@ -9,6 +9,10 @@ image: /assets/posts/2023-07-24/preview.png
 preview_image:
     path: /assets/posts/2023-07-24/previewmini.png
     alt: MISB
+related_posts:
+    - 2023-04-14-cashback
+    - 2023-04-23-wizyta-w-bricks-and-figs
+    - 2023-11-21-klockowe-ciekawostki-3
 ---
 
 W krakowskim muzeum minifigurek LEGO®, 22 lipca odbyło się wydarzenie/konkurs polegający na ułożeniu jak największej ilości klocków.

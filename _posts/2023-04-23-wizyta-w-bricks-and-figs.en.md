@@ -11,6 +11,10 @@ preview_image:
     path: /assets/posts/2023-04-23/IMG_3795.JPEG
     alt: LEGO minifigures
 summary: "An atmospheric LEGO® minifigure museum has just opened in Kraków, with a collection of 12,000 minifigures and plenty of rare sets."
+related_posts:
+    - 2023-04-14-cashback
+    - 2023-07-24-bricks-and-figs-masters
+    - 2023-04-03-klockowe-ciekawostki-1
 ---
 
 An atmospheric LEGO® minifigure museum has just opened in Kraków, with a collection of 12,000 minifigures and plenty of rare sets!

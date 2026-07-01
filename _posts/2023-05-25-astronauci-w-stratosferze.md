@@ -9,6 +9,10 @@ image: /assets/posts/2023-05-25/astro.jpg
 preview_image:
     path: /assets/posts/2023-05-25/astro.jpg
     alt: Minifigurki
+related_posts:
+    - 2023-04-14-cashback
+    - 2026-06-27-klockowe-ciekawostki-4
+    - 2023-04-03-klockowe-ciekawostki-1
 ---
 
 Niestety, figurki nie przekroczyły umownej granicy kosmosu, ale i tak widok z kamerki robi wrażenie. Astronauci z klocków zostali wysłani w specjalną misję przy użyciu balonu stratosferycznego, który często jest używany w meteorologii. Dodatkowo, zaprojektowano specjalną platformę, która musiała wytrzymać przeciążenia i przetransportować 1000 ludzików w górę. 🚀
@@ -18,7 +22,7 @@ Niestety, figurki nie przekroczyły umownej granicy kosmosu, ale i tak widok z k
 Balon z legonautami uniósł się na wysokość 34 km, po czym planowo pękł i do akcji wszedł spadochron.
 Nie jest to pierwsza tego typu akcja, ponieważ już 11 lat temu pewien Kanadyjczyk przeprowadził podobny eksperyment:
 
-{% include embed/youtube.html id='MQwLmGR6bPA' %}
+{% include embed/youtube-card.html id='MQwLmGR6bPA' title='Kanadyjski eksperyment z figurką LEGO w stratosferze' label='Obejrzyj na YouTube' alt='Kadr z filmu o figurce LEGO wyniesionej balonem w stratosferę' %}
 
 Jednakże istnieje jedna znacząca różnica - podczas tej misji wysłano aż 1000 ludzików LEGO®! 😮   
 Dodatkowo, figurki będą rozlosowane w loterii paragonowej w Czechach i Słowacji.   

@@ -9,6 +9,10 @@ image: /assets/posts/2023-05-03/pudelko.png
 preview_image:
     path: /assets/posts/2023-05-03/pudelko.png
     alt: COBI 2573
+related_posts:
+    - 2024-01-14-aukcja-duch-kijowa
+    - 2026-06-27-klockowe-ciekawostki-4
+    - 2023-04-03-klockowe-ciekawostki-1
 ---
 
 Gdy zobaczyłem zapowiedź tego zestawu na fanowskiej grupie, od razu wiedziałem że wpadnie on w moje ręce.

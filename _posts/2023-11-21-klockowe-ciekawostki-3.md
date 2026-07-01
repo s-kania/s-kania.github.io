@@ -10,6 +10,10 @@ image:
     object_fit_contain: false
 preview_image:
     path: /assets/posts/2023-11-21-klockowe-ciekawostki-3/1700612681718.png
+related_posts:
+    - 2026-06-27-klockowe-ciekawostki-4
+    - 2023-11-15-klockowe-ciekawostki-2
+    - 2023-04-14-cashback
 ---
 Niedawno ogłoszono wydanie zestawów LEGO® na chiński nowy rok, który w tym roku będzie obchodzony pod znakiem smoka. LEGO® od kilku lat z okazji tego święta prezentuje nam tematyczne modele, i tym razem nie będzie inaczej.
 

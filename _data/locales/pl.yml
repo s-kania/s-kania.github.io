@@ -169,6 +169,13 @@ post_detail:
   created_at: Data powstania
   updated_at: Data aktualizacji
   categories: Kategorie
+  related_aria: Wpisy do przeczytania
+  related_label: BF_QUEUE
+  related_title: Do przeczytania
+  related_cta: Czytaj dalej
+  comments_aria: Komentarze do wpisu
+  comments_label: BF_COMMENTS
+  comments_title: Komentarze
 
 explorer:
   close_aria: Strona glowna
@@ -178,6 +185,7 @@ explorer:
 
 footer:
   language_switch_aria: Wybierz jezyk strony
+  privacy_policy: Polityka prywatności
 
 category_names:
   ciekawostki: Ciekawostki
