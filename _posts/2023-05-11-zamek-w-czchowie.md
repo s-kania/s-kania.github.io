@@ -9,6 +9,10 @@ image: /assets/posts/2023-05-11/IMG_4015.JPEG
 preview_image:
     path: /assets/posts/2023-05-11/IMG_4005.JPEG
     alt: Black Falcons
+related_posts:
+    - 2023-04-14-cashback
+    - 2023-11-15-klockowe-ciekawostki-2
+    - 2023-11-21-klockowe-ciekawostki-3
 ---
 
 Kilka dni temu odwiedziłem Zamek w Czchowie, gdzie zabrałem swoje minifigurki Black Falconów i zrobiłem im sesję zdjęciową. Dodatkowo wrzuciłem też parę zdjęć machin oblężniczych, może zainspiruje to kogoś do zbudowania MOC-a 😉

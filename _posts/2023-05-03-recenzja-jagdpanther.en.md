@@ -11,6 +11,10 @@ preview_image:
     path: /assets/posts/2023-05-03/pudelko.png
     alt: COBI 2573
 summary: "When I saw the announcement for this set in a fan group, I immediately knew it would end up in my hands."
+related_posts:
+    - 2024-01-14-aukcja-duch-kijowa
+    - 2026-06-27-klockowe-ciekawostki-4
+    - 2023-04-03-klockowe-ciekawostki-1
 ---
 
 When I saw the announcement for this set in a fan group, I immediately knew it would end up in my hands.

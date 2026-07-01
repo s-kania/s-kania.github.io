@@ -12,9 +12,9 @@ preview_image:
     path: /assets/posts/2026-06-27-klockowe-ciekawostki-4/sagrada-familia-21065-hero-transparent.png
 summary: "Ostatni miesiąc był dziwnie konkretny: rekordowa Sagrada Familia, działający pinball, Koenigsegg z bonusową kierownicą, Pokémony ze Smart Brickami, limitowany COBI i plotkowy Sea Serpent na Dni Insiders."
 related_posts:
+    - 2023-04-14-cashback
     - 2023-11-21-klockowe-ciekawostki-3
     - 2023-11-15-klockowe-ciekawostki-2
-    - 2023-04-03-klockowe-ciekawostki-1
 ---
 Ostatni miesiąc był dziwnie konkretny: rekordowa Sagrada Familia, działający pinball, Koenigsegg z bonusową kierownicą, Pokémony ze Smart Brickami, limitowany COBI i plotkowy Sea Serpent na Dni Insiders.
 

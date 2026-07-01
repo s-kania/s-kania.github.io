@@ -6,6 +6,10 @@ lang: pl
 page_id: 2026-06-21-nowy-wyglad-bloga-i-mala-zapowiedz
 categories: [Inne]
 summary: "Blog trochę odżył wizualnie. Od dawna chciałem, żeby miał więcej własnego charakteru i lepiej pasował do tego, co chcę tu wrzucać częściej - wpisów o tworzeniu gier."
+related_posts:
+    - 2024-06-03-piraci-4
+    - 2023-11-19-piraci-3
+    - 2023-06-15-piraci-1
 ---
 Blog trochę odżył wizualnie. Od dawna chciałem, żeby miał więcej własnego charakteru i lepiej pasował do tego, co chcę tu wrzucać częściej - wpisów o tworzeniu gier.
 

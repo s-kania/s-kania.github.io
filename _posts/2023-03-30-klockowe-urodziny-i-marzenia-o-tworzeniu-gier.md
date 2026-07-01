@@ -6,6 +6,10 @@ lang: pl
 page_id: 2023-03-30-klockowe-urodziny-i-marzenia-o-tworzeniu-gier
 categories: [Inne]
 summary:  W dzień swoich urodzin, otwieram oficjalnie tego bloga 🎉 Dlaczego i co tu będzie się działo? Zapraszam do przeczytania mojej krótkiej historii i motywacji stojącej za stworzeniem tego miejsca 🥳
+related_posts:
+    - 2023-06-15-piraci-1
+    - 2023-04-14-cashback
+    - 2026-06-21-nowy-wyglad-bloga-i-mala-zapowiedz
 ---
 
 ### Historia pewnych klocków

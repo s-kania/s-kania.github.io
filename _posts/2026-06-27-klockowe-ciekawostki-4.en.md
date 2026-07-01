@@ -13,9 +13,9 @@ preview_image:
     path: /assets/posts/2026-06-27-klockowe-ciekawostki-4/sagrada-familia-21065-hero-transparent.png
 summary: "The last month was oddly specific: a record-breaking Sagrada Familia, a working pinball machine, a Koenigsegg with a bonus steering wheel, Pokémon with Smart Bricks, a limited COBI release, and the rumored Sea Serpent for Insiders Days."
 related_posts:
+    - 2023-04-14-cashback
     - 2023-11-21-klockowe-ciekawostki-3
     - 2023-11-15-klockowe-ciekawostki-2
-    - 2023-04-03-klockowe-ciekawostki-1
 ---
 The last month was oddly specific: a record-breaking Sagrada Familia, a working pinball machine, a Koenigsegg with a bonus steering wheel, Pokémon with Smart Bricks, a limited COBI release, and the rumored Sea Serpent for Insiders Days.
 

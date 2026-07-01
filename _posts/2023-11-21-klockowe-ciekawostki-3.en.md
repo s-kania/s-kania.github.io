@@ -12,6 +12,10 @@ image:
 preview_image:
     path: /assets/posts/2023-11-21-klockowe-ciekawostki-3/1700612681718.png
 summary: "LEGO® recently announced its Chinese New Year sets, and this time the year will be celebrated under the sign of the dragon."
+related_posts:
+    - 2026-06-27-klockowe-ciekawostki-4
+    - 2023-11-15-klockowe-ciekawostki-2
+    - 2023-04-14-cashback
 ---
 LEGO® recently announced its Chinese New Year sets, and this time the year will be celebrated under the sign of the dragon. For several years now, LEGO® has been showing us themed models for this holiday, and this time will be no different.
 

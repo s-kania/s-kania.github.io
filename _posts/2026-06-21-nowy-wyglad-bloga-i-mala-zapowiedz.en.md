@@ -7,6 +7,10 @@ page_id: 2026-06-21-nowy-wyglad-bloga-i-mala-zapowiedz
 permalink: /posts/nowy-wyglad-bloga-i-mala-zapowiedz/
 categories: [Inne]
 summary: "The blog has had a bit of a visual refresh. For a long time I wanted it to feel more like its own thing and fit better with what I want to post here more often: posts about making games."
+related_posts:
+    - 2024-06-03-piraci-4
+    - 2023-11-19-piraci-3
+    - 2023-06-15-piraci-1
 ---
 The blog has had a bit of a visual refresh. For a long time I wanted it to feel more like its own thing and fit better with what I want to post here more often: posts about making games.
 

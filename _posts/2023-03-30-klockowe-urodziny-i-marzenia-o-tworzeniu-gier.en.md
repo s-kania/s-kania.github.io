@@ -7,6 +7,10 @@ page_id: 2023-03-30-klockowe-urodziny-i-marzenia-o-tworzeniu-gier
 permalink: /posts/klockowe-urodziny-i-marzenia-o-tworzeniu-gier/
 categories: [Inne]
 summary: "On my birthday, I am officially opening this blog 🎉 Why, and what will happen here? Here is a short story about where this place came from and what pushed me to create it 🥳"
+related_posts:
+    - 2023-06-15-piraci-1
+    - 2023-04-14-cashback
+    - 2026-06-21-nowy-wyglad-bloga-i-mala-zapowiedz
 ---
 
 ### The story of certain bricks

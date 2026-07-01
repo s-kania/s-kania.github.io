@@ -9,6 +9,10 @@ image: /assets/posts/2023-05-25/astro.jpg
 preview_image:
     path: /assets/posts/2023-05-25/astro.jpg
     alt: Minifigurki
+related_posts:
+    - 2023-04-14-cashback
+    - 2026-06-27-klockowe-ciekawostki-4
+    - 2023-04-03-klockowe-ciekawostki-1
 ---
 
 Niestety, figurki nie przekroczyły umownej granicy kosmosu, ale i tak widok z kamerki robi wrażenie. Astronauci z klocków zostali wysłani w specjalną misję przy użyciu balonu stratosferycznego, który często jest używany w meteorologii. Dodatkowo, zaprojektowano specjalną platformę, która musiała wytrzymać przeciążenia i przetransportować 1000 ludzików w górę. 🚀

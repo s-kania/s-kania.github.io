@@ -11,6 +11,10 @@ preview_image:
     path: /assets/posts/2023-04-03/preview.webp
     alt: Indiana Jones minifigure and his companion
 summary: "Indiana Jones is returning to the LEGO® world, and the Polish company COBI is adding a train collection to its offer. There is also something for Castle fans and car fans, plus a quick look at April Fools' jokes 😄"
+related_posts:
+    - 2023-11-15-klockowe-ciekawostki-2
+    - 2023-11-21-klockowe-ciekawostki-3
+    - 2023-04-14-cashback
 ---
 ## Return of a legend
 As usually happens at the beginning of a month, we have another wave of brick releases from LEGO®.

@@ -11,6 +11,10 @@ preview_image:
     path: /assets/posts/2023-07-24/previewmini.png
     alt: Sealed LEGO sets
 summary: "At the LEGO® minifigure museum in Kraków, on July 22, there was an event and contest about building as many bricks as possible."
+related_posts:
+    - 2023-04-14-cashback
+    - 2023-04-23-wizyta-w-bricks-and-figs
+    - 2023-11-21-klockowe-ciekawostki-3
 ---
 
 At the LEGO® minifigure museum in Kraków, on July 22, there was an event and contest about building as many bricks as possible.

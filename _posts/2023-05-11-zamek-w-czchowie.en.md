@@ -11,6 +11,10 @@ preview_image:
     path: /assets/posts/2023-05-11/IMG_4005.JPEG
     alt: Black Falcons
 summary: "A few days ago I visited Czchów Castle, took my Black Falcon minifigures with me, and gave them a photo session."
+related_posts:
+    - 2023-04-14-cashback
+    - 2023-11-15-klockowe-ciekawostki-2
+    - 2023-11-21-klockowe-ciekawostki-3
 ---
 
 A few days ago I visited Czchów Castle, took my Black Falcon minifigures with me, and gave them a photo session. I also added a few photos of siege engines, maybe it will inspire someone to build a MOC 😉

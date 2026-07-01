@@ -9,6 +9,10 @@ image: /assets/posts/2023-04-23/IMG_3795.JPEG
 preview_image:
     path: /assets/posts/2023-04-23/IMG_3795.JPEG
     alt: Minifigurki
+related_posts:
+    - 2023-04-14-cashback
+    - 2023-07-24-bricks-and-figs-masters
+    - 2023-04-03-klockowe-ciekawostki-1
 ---
 
 W Krakowie właśnie otwarto klimatyczne muzeum minifigurek LEGO® z kolekcją liczącą 12000 ludzików i masą rzadkich zestawów!
