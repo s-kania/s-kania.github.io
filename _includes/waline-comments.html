@@ -78,6 +78,76 @@
       walineOptions.locale = polishWalineLocale;
     }
 
+    const setupWalineSubmitLoading = () => {
+      const root = document.querySelector('#waline-comments');
+      if (!root || !window.MutationObserver) return;
+
+      const managedAriaButtons = new WeakSet();
+      const managedClassButtons = new WeakSet();
+      const normalSubmitLabels = new Set(['wyślij', 'wyslij', 'submit']);
+      const loadingTextPattern = /(przesy|wysy|loading|sending|submitting|please wait|wait)/i;
+      const loadingClassNames = ['wl-loading', 'loading', 'is-loading', 'submitting', 'pending'];
+
+      const getSubmitButton = () => root.querySelector('.wl-btn.primary');
+      const getButtonText = (button) => button.textContent.trim().replace(/\s+/g, ' ');
+      const hasLoadingClass = (button) => loadingClassNames.some((className) => (
+        button.classList.contains(className)
+      ));
+
+      const isWalineLoading = (button) => {
+        const buttonText = getButtonText(button);
+        const isNormalSubmitText = normalSubmitLabels.has(buttonText.toLowerCase());
+        const busyFromAria = button.getAttribute('aria-busy') === 'true' && !managedAriaButtons.has(button);
+
+        return busyFromAria ||
+          button.dataset.loading === 'true' ||
+          hasLoadingClass(button) ||
+          loadingTextPattern.test(buttonText) ||
+          (button.disabled && !isNormalSubmitText);
+      };
+
+      const syncSubmitState = () => {
+        const button = getSubmitButton();
+        if (!button) return;
+
+        const walineLoading = isWalineLoading(button);
+        if (walineLoading) {
+          button.classList.add('is-terminal-loading');
+          managedClassButtons.add(button);
+
+          if (button.getAttribute('aria-busy') !== 'true') {
+            managedAriaButtons.add(button);
+            button.setAttribute('aria-busy', 'true');
+          }
+
+          return;
+        }
+
+        if (managedClassButtons.has(button)) {
+          button.classList.remove('is-terminal-loading');
+          managedClassButtons.delete(button);
+        }
+
+        if (managedAriaButtons.has(button)) {
+          button.removeAttribute('aria-busy');
+          managedAriaButtons.delete(button);
+        }
+      };
+
+      const observer = new MutationObserver(syncSubmitState);
+      observer.observe(root, {
+        attributeFilter: ['aria-busy', 'class', 'data-loading', 'disabled'],
+        attributes: true,
+        characterData: true,
+        childList: true,
+        subtree: true
+      });
+
+      syncSubmitState();
+      window.setTimeout(syncSubmitState, 0);
+    };
+
     init(walineOptions);
+    setupWalineSubmitLoading();
   </script>
 {% endif %}

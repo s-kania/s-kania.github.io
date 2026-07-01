@@ -2651,17 +2651,73 @@ img {
 }
 
 .waline-comments .wl-btn.primary {
+  align-items: center;
   background: var(--accent);
   border-color: var(--accent);
   color: var(--paper);
+  display: inline-flex;
+  inline-size: 4.75rem;
+  justify-content: center;
+  min-inline-size: 4.75rem;
+  overflow: hidden;
+  position: relative;
+  transform: none;
+}
+
+.waline-comments .wl-btn.primary::before,
+.waline-comments .wl-btn.primary::after {
+  pointer-events: none;
+  position: absolute;
 }
 
 .waline-comments .wl-btn.primary:hover,
 .waline-comments .wl-btn.primary:focus-visible {
-  box-shadow:
-    inset 0 0 0 1px var(--panel-inset),
-    0 0 0.55rem var(--accent-glow);
+  background: color-mix(in srgb, var(--accent) 88%, var(--ink));
+  border-color: color-mix(in srgb, var(--accent) 88%, var(--ink));
+  box-shadow: none;
   color: var(--paper);
+  text-shadow: 0 0 0.4rem rgba(248, 245, 237, 0.42);
+  transform: scale(1.025);
+}
+
+.waline-comments .wl-btn.primary.is-terminal-loading,
+.waline-comments .wl-btn.primary[aria-busy="true"] {
+  color: transparent;
+  cursor: wait;
+  opacity: 1;
+  text-shadow: none;
+  transform: none;
+}
+
+.waline-comments .wl-btn.primary.is-terminal-loading:hover,
+.waline-comments .wl-btn.primary.is-terminal-loading:focus-visible,
+.waline-comments .wl-btn.primary[aria-busy="true"]:hover,
+.waline-comments .wl-btn.primary[aria-busy="true"]:focus-visible {
+  color: transparent;
+  text-shadow: none;
+  transform: none;
+}
+
+.waline-comments .wl-btn.primary.is-terminal-loading::before,
+.waline-comments .wl-btn.primary[aria-busy="true"]::before {
+  align-items: center;
+  color: var(--paper);
+  content: "> ...";
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  line-height: 1;
+}
+
+.waline-comments .wl-btn.primary.is-terminal-loading::after,
+.waline-comments .wl-btn.primary[aria-busy="true"]::after {
+  animation: browserCursorBlink 0.7s steps(1, end) infinite;
+  bottom: 0.16rem;
+  color: var(--paper);
+  content: "_";
+  line-height: 1;
+  opacity: 1;
+  right: 0.34rem;
 }
 
 .waline-comments .wl-meta-head {
@@ -5074,6 +5130,11 @@ img {
     white-space: nowrap;
   }
 
+  .waline-comments .wl-btn.primary {
+    inline-size: 4.5rem;
+    min-inline-size: 4.5rem;
+  }
+
   .waline-comments .wl-meta-head {
     align-items: stretch;
     flex-direction: column;
@@ -5234,5 +5295,10 @@ img {
     font-size: 0.78rem;
     min-height: 1.58rem;
     padding-inline: 0.32rem;
+  }
+
+  .waline-comments .wl-btn.primary {
+    inline-size: 4.05rem;
+    min-inline-size: 4.05rem;
   }
 }
