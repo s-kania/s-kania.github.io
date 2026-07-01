@@ -18,7 +18,7 @@ Niestety, figurki nie przekroczyły umownej granicy kosmosu, ale i tak widok z k
 Balon z legonautami uniósł się na wysokość 34 km, po czym planowo pękł i do akcji wszedł spadochron.
 Nie jest to pierwsza tego typu akcja, ponieważ już 11 lat temu pewien Kanadyjczyk przeprowadził podobny eksperyment:
 
-{% include embed/youtube.html id='MQwLmGR6bPA' %}
+{% include embed/youtube-card.html id='MQwLmGR6bPA' title='Kanadyjski eksperyment z figurką LEGO w stratosferze' label='Obejrzyj na YouTube' alt='Kadr z filmu o figurce LEGO wyniesionej balonem w stratosferę' %}
 
 Jednakże istnieje jedna znacząca różnica - podczas tej misji wysłano aż 1000 ludzików LEGO®! 😮   
 Dodatkowo, figurki będą rozlosowane w loterii paragonowej w Czechach i Słowacji.   

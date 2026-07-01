@@ -58,7 +58,7 @@ There is also the **40894 Koenigsegg Sadair's Spear Steering Wheel** bonus, a **
 ![LEGO 40894 Koenigsegg Sadair's Spear Steering Wheel box showing the gift model](/assets/posts/2026-06-27-klockowe-ciekawostki-4/koenigsegg-sadairs-spear-steering-wheel-40894-box-transparent.png)
 _The 40894 box with the tiny steering wheel, a bonus part of a car for a model of a car._
 
-It is also worth playing [the official LEGO Technic Goodwood video](https://www.youtube.com/watch?v=iYnxf_iDxtE), because only in motion can you see that this is not just the usual static show model with wheels stuck on.
+It is also worth watching the official LEGO Technic Goodwood video, because only in motion can you see that this is not just the usual static show model with wheels stuck on.
 
 {% include embed/youtube-card.html id='iYnxf_iDxtE' image='/assets/posts/2026-06-27-klockowe-ciekawostki-4/koenigsegg-goodwood-track.jpg' title='LEGO Technic Koenigsegg on the Goodwood route' label='Watch on YouTube' alt='Life-size LEGO Technic Koenigsegg on the Goodwood route beside the real car' %}
 
@@ -77,7 +77,7 @@ The theme is Space, so the set also includes two minifigures: a classic astronau
 ![LEGO Icons 11374 Arcade Pinball Machine box next to the built model](/assets/posts/2026-06-27-klockowe-ciekawostki-4/arcade-pinball-machine-11374-box.png)
 _The 11374 box beside the built pinball machine, with the Space crew ready to press the flippers._
 
-If you want to see whether it actually works like a small arcade machine, [Tiago Catarino has a short showcase and review](https://www.youtube.com/watch?v=g_3kez9__0w).
+If you want to see whether it actually works like a small arcade machine, Tiago Catarino has a short showcase and review.
 
 {% include embed/youtube-card.html id='g_3kez9__0w' image='/assets/posts/2026-06-27-klockowe-ciekawostki-4/arcade-pinball-machine-11374-web-pri.jpg' title='LEGO Icons Arcade Pinball Machine in Tiago Catarino&apos;s showcase' label='Watch on YouTube' alt='LEGO Icons Arcade Pinball Machine on a dark promotional background' %}
 

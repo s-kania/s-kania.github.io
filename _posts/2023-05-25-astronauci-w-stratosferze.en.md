@@ -20,7 +20,7 @@ Unfortunately, the figures did not cross the conventional boundary of space, but
 The balloon with the legonauts rose to an altitude of 34 km, then burst as planned and the parachute took over.
 This is not the first action of this kind, because 11 years earlier a Canadian ran a similar experiment:
 
-{% include embed/youtube.html id='MQwLmGR6bPA' %}
+{% include embed/youtube-card.html id='MQwLmGR6bPA' title='Canadian experiment with a LEGO figure in the stratosphere' label='Watch on YouTube' alt='Frame from a video about a LEGO figure carried into the stratosphere by balloon' %}
 
 There is, however, one significant difference: this mission sent as many as 1000 LEGO® minifigures! 😮   
 The figures will also be given away in a receipt lottery in Czechia and Slovakia.   

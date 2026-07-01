@@ -57,7 +57,7 @@ Do tego dochodzi bonus **40894 Kierownica Koenigsegg Sadair's Spear**, czyli **2
 ![Pudełko LEGO 40894 Kierownica Koenigsegg Sadair's Spear z widocznym modelem gratisu](/assets/posts/2026-06-27-klockowe-ciekawostki-4/koenigsegg-sadairs-spear-steering-wheel-40894-box-transparent.png)
 _Pudełko 40894 z miniaturową kierownicą, czyli gratisem do auta, które samo jest miniaturą auta._
 
-Warto też odpalić [oficjalny film LEGO Technic z Goodwood](https://www.youtube.com/watch?v=iYnxf_iDxtE), bo dopiero w ruchu widać, że to nie jest tylko statyczna pokazówka z doklejonymi kołami do których jesteśmy przyzwyczajeni.
+Warto też odpalić oficjalny film LEGO Technic z Goodwood, bo dopiero w ruchu widać, że to nie jest tylko statyczna pokazówka z doklejonymi kołami do których jesteśmy przyzwyczajeni.
 
 {% include embed/youtube-card.html id='iYnxf_iDxtE' image='/assets/posts/2026-06-27-klockowe-ciekawostki-4/koenigsegg-goodwood-track.jpg' title='LEGO Technic Koenigsegg na trasie Goodwood' label='Obejrzyj na YouTube' alt='Pełnowymiarowy LEGO Technic Koenigsegg na trasie Goodwood obok prawdziwego auta' %}
 
@@ -77,7 +77,7 @@ Tematem przewodnim jest Space, więc w zestawie są też dwie minifigurki: klasy
 _Pudełko 11374 obok zbudowanego pinballa, z kosmiczną ekipą gotową do wciskania flipperów._
 
 
-Jeśli chcecie zobaczyć, czy to faktycznie działa jak mały automat, [Tiago Catarino ma krótki film z prezentacją i recenzją](https://www.youtube.com/watch?v=g_3kez9__0w).
+Jeśli chcecie zobaczyć, czy to faktycznie działa jak mały automat, Tiago Catarino ma krótki film z prezentacją i recenzją.
 
 {% include embed/youtube-card.html id='g_3kez9__0w' image='/assets/posts/2026-06-27-klockowe-ciekawostki-4/arcade-pinball-machine-11374-web-pri.jpg' title='LEGO Icons Arcade Pinball Machine w prezentacji Tiago Catarino' label='Obejrzyj na YouTube' alt='LEGO Icons Arcade Pinball Machine na ciemnym tle promocyjnym' %}
 
