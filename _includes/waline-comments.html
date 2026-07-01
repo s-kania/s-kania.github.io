@@ -78,76 +78,311 @@
       walineOptions.locale = polishWalineLocale;
     }
 
-    const setupWalineSubmitLoading = () => {
+    const setupWalineImageUploadGuard = () => {
+      const root = document.querySelector('#waline-comments');
+      if (!root) return;
+
+      const maxUploadSize = 128 * 1000;
+      const maxUploadSizeLabel = '128 KB';
+      const uploadSizeError = activeLang === 'en'
+        ? `The image is too large. Waline's default upload supports up to ${maxUploadSizeLabel}.`
+        : `Obraz jest za duży. Domyślny upload Waline obsługuje maksymalnie ${maxUploadSizeLabel}.`;
+
+      root.addEventListener('change', (event) => {
+        const input = event.target;
+        if (!(input instanceof HTMLInputElement) || input.id !== 'wl-image-upload') return;
+
+        const file = input.files?.[0];
+        if (!file || file.size <= maxUploadSize) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        input.value = '';
+        window.alert(uploadSizeError);
+      }, true);
+    };
+
+    const setupWalineEditDraftGuard = () => {
+      const root = document.querySelector('#waline-comments');
+      if (!root) return;
+
+      const editorStorageKey = 'WALINE_COMMENT_BOX_EDITOR';
+      let mainDraftBeforeEdit = '';
+
+      const getMainEditor = () => root.querySelector('[data-waline] > .wl-comment .wl-editor');
+
+      const setEditorValue = (editor, value) => {
+        if (!editor || editor.value === value) return;
+
+        editor.value = value;
+        editor.dispatchEvent(new Event('input', { bubbles: true }));
+      };
+
+      const restoreMainDraft = () => {
+        const editor = getMainEditor();
+        const value = mainDraftBeforeEdit;
+
+        try {
+          localStorage.setItem(editorStorageKey, JSON.stringify(value));
+          sessionStorage.setItem(editorStorageKey, JSON.stringify(value));
+        } catch {
+          // Storage can be unavailable in strict privacy modes.
+        }
+
+        setEditorValue(editor, value);
+      };
+
+      root.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+
+        if (target.closest('.wl-card .wl-edit')) {
+          mainDraftBeforeEdit = getMainEditor()?.value || '';
+          return;
+        }
+
+        if (!target.closest('.wl-edit-wrapper .wl-close')) return;
+
+        window.setTimeout(restoreMainDraft, 0);
+        window.setTimeout(restoreMainDraft, 80);
+      }, true);
+    };
+
+    const setupWalineEmojiPicker = () => {
       const root = document.querySelector('#waline-comments');
       if (!root || !window.MutationObserver) return;
 
-      const managedAriaButtons = new WeakSet();
-      const managedClassButtons = new WeakSet();
-      const normalSubmitLabels = new Set(['wyślij', 'wyslij', 'submit']);
-      const loadingTextPattern = /(przesy|wysy|loading|sending|submitting|please wait|wait)/i;
-      const loadingClassNames = ['wl-loading', 'loading', 'is-loading', 'submitting', 'pending'];
+      const syncScrollbars = new Set();
+      const syncScrollbarByWrapper = new WeakMap();
+      const emojiTitleText = activeLang === 'en' ? 'EMOJI' : 'EMOTIKONY';
 
-      const getSubmitButton = () => root.querySelector('.wl-btn.primary');
-      const getButtonText = (button) => button.textContent.trim().replace(/\s+/g, ' ');
-      const hasLoadingClass = (button) => loadingClassNames.some((className) => (
-        button.classList.contains(className)
-      ));
-
-      const isWalineLoading = (button) => {
-        const buttonText = getButtonText(button);
-        const isNormalSubmitText = normalSubmitLabels.has(buttonText.toLowerCase());
-        const busyFromAria = button.getAttribute('aria-busy') === 'true' && !managedAriaButtons.has(button);
-
-        return busyFromAria ||
-          button.dataset.loading === 'true' ||
-          hasLoadingClass(button) ||
-          loadingTextPattern.test(buttonText) ||
-          (button.disabled && !isNormalSubmitText);
+      const createScrollButton = (className) => {
+        const button = document.createElement('button');
+        button.className = `scroll-button ${className}`;
+        button.type = 'button';
+        button.tabIndex = -1;
+        return button;
       };
 
-      const syncSubmitState = () => {
-        const button = getSubmitButton();
-        if (!button) return;
+      const createEmojiTitlebar = () => {
+        const titlebar = document.createElement('div');
+        const label = document.createElement('span');
+        const separator = document.createElement('span');
+        const title = document.createElement('strong');
 
-        const walineLoading = isWalineLoading(button);
-        if (walineLoading) {
-          button.classList.add('is-terminal-loading');
-          managedClassButtons.add(button);
+        titlebar.className = 'bf-emoji-titlebar';
+        label.textContent = 'BF_EMOJI';
+        separator.setAttribute('aria-hidden', 'true');
+        separator.textContent = '::';
+        title.textContent = emojiTitleText;
 
-          if (button.getAttribute('aria-busy') !== 'true') {
-            managedAriaButtons.add(button);
-            button.setAttribute('aria-busy', 'true');
+        titlebar.append(label, separator, title);
+        return titlebar;
+      };
+
+      const createEmojiScrollbar = () => {
+        const scrollbar = document.createElement('div');
+        const track = document.createElement('div');
+        const thumb = document.createElement('span');
+
+        scrollbar.className = 'bf-emoji-scrollbar category-scrollbar';
+        scrollbar.setAttribute('aria-hidden', 'true');
+        track.className = 'scroll-track';
+        thumb.className = 'scroll-thumb';
+
+        track.append(thumb);
+        scrollbar.append(
+          createScrollButton('scroll-up'),
+          track,
+          createScrollButton('scroll-down')
+        );
+
+        return scrollbar;
+      };
+
+      const ensureEmojiBody = (popup, wrapper) => {
+        let body = popup.querySelector(':scope > .bf-emoji-body');
+        if (!body) {
+          body = document.createElement('div');
+          body.className = 'bf-emoji-body';
+
+          const titlebar = popup.querySelector(':scope > .bf-emoji-titlebar');
+          if (titlebar) {
+            titlebar.after(body);
+          } else {
+            popup.prepend(body);
+          }
+        }
+
+        if (wrapper.parentElement !== body) {
+          body.prepend(wrapper);
+        }
+
+        return body;
+      };
+
+      const syncEmojiScrollbar = (wrapper, scrollbar) => {
+        const track = scrollbar.querySelector('.scroll-track');
+        const thumb = scrollbar.querySelector('.scroll-thumb');
+        if (!track || !thumb) return;
+
+        const maxScroll = wrapper.scrollHeight - wrapper.clientHeight;
+        const trackHeight = track.clientHeight;
+        const thumbHeight = maxScroll <= 1
+          ? trackHeight
+          : Math.max(24, Math.round((wrapper.clientHeight / wrapper.scrollHeight) * trackHeight));
+        const thumbRange = Math.max(0, trackHeight - thumbHeight);
+
+        scrollbar.classList.toggle('is-hidden', maxScroll <= 1);
+        scrollbar.classList.toggle('is-at-top', wrapper.scrollTop <= 1);
+        scrollbar.classList.toggle('is-at-bottom', wrapper.scrollTop >= maxScroll - 1);
+
+        if (maxScroll <= 1 || thumbRange <= 0) {
+          if (thumb.style.height !== '100%') {
+            thumb.style.height = '100%';
+          }
+
+          if (thumb.style.transform !== 'translateY(0px)') {
+            thumb.style.transform = 'translateY(0px)';
           }
 
           return;
         }
 
-        if (managedClassButtons.has(button)) {
-          button.classList.remove('is-terminal-loading');
-          managedClassButtons.delete(button);
+        const nextHeight = `${thumbHeight}px`;
+        const nextTransform = `translateY(${Math.round((wrapper.scrollTop / maxScroll) * thumbRange)}px)`;
+
+        if (thumb.style.height !== nextHeight) {
+          thumb.style.height = nextHeight;
         }
 
-        if (managedAriaButtons.has(button)) {
-          button.removeAttribute('aria-busy');
-          managedAriaButtons.delete(button);
+        if (thumb.style.transform !== nextTransform) {
+          thumb.style.transform = nextTransform;
         }
       };
 
-      const observer = new MutationObserver(syncSubmitState);
+      const bindEmojiScrollbar = (wrapper, scrollbar) => {
+        if (scrollbar.dataset.bfScrollbarBound === 'true') return;
+
+        const scrollUp = scrollbar.querySelector('.scroll-up');
+        const scrollDown = scrollbar.querySelector('.scroll-down');
+        const thumb = scrollbar.querySelector('.scroll-thumb');
+        let dragStartY = 0;
+        let dragStartScrollTop = 0;
+
+        const getMetrics = () => {
+          const track = scrollbar.querySelector('.scroll-track');
+          const maxScroll = wrapper.scrollHeight - wrapper.clientHeight;
+          const thumbHeight = thumb ? thumb.getBoundingClientRect().height : 0;
+          const trackHeight = track ? track.clientHeight : 0;
+
+          return {
+            maxScroll,
+            thumbRange: Math.max(0, trackHeight - thumbHeight)
+          };
+        };
+
+        thumb?.addEventListener('pointerdown', (event) => {
+          const { maxScroll, thumbRange } = getMetrics();
+          if (maxScroll <= 1 || thumbRange <= 0) return;
+
+          event.preventDefault();
+          dragStartY = event.clientY;
+          dragStartScrollTop = wrapper.scrollTop;
+          thumb.classList.add('is-dragging');
+          thumb.setPointerCapture(event.pointerId);
+        });
+
+        thumb?.addEventListener('pointermove', (event) => {
+          if (!thumb.classList.contains('is-dragging')) return;
+
+          const { maxScroll, thumbRange } = getMetrics();
+          const dragDelta = event.clientY - dragStartY;
+          wrapper.scrollTop = dragStartScrollTop + (dragDelta / thumbRange) * maxScroll;
+        });
+
+        const endThumbDrag = (event) => {
+          if (!thumb?.classList.contains('is-dragging')) return;
+
+          thumb.classList.remove('is-dragging');
+          if (thumb.hasPointerCapture(event.pointerId)) {
+            thumb.releasePointerCapture(event.pointerId);
+          }
+        };
+
+        thumb?.addEventListener('pointerup', endThumbDrag);
+        thumb?.addEventListener('pointercancel', endThumbDrag);
+        wrapper.addEventListener('scroll', () => syncEmojiScrollbar(wrapper, scrollbar));
+        scrollUp?.addEventListener('click', () => wrapper.scrollBy({ top: -42, behavior: 'smooth' }));
+        scrollDown?.addEventListener('click', () => wrapper.scrollBy({ top: 42, behavior: 'smooth' }));
+        scrollbar.dataset.bfScrollbarBound = 'true';
+      };
+
+      const enhanceEmojiPopup = (popup) => {
+        const wrapper = popup.querySelector('.wl-tab-wrapper');
+        if (!wrapper) return;
+
+        popup.classList.add('bf-emoji-popup');
+
+        if (!popup.querySelector(':scope > .bf-emoji-titlebar')) {
+          popup.prepend(createEmojiTitlebar());
+        }
+
+        const body = ensureEmojiBody(popup, wrapper);
+        let scrollbar = body.querySelector(':scope > .bf-emoji-scrollbar');
+        if (!scrollbar) {
+          scrollbar = createEmojiScrollbar();
+          body.append(scrollbar);
+        }
+
+        wrapper.querySelectorAll('button[title]').forEach((button) => {
+          const emojiLabel = button.getAttribute('title');
+          if (!emojiLabel) return;
+
+          button.setAttribute('aria-label', emojiLabel);
+          button.removeAttribute('title');
+        });
+
+        bindEmojiScrollbar(wrapper, scrollbar);
+        if (!syncScrollbarByWrapper.has(wrapper)) {
+          const syncScrollbar = () => syncEmojiScrollbar(wrapper, scrollbar);
+          syncScrollbarByWrapper.set(wrapper, syncScrollbar);
+          syncScrollbars.add(syncScrollbar);
+        }
+
+        if (window.getComputedStyle(popup).display !== 'none') {
+          window.requestAnimationFrame(() => syncEmojiScrollbar(wrapper, scrollbar));
+        }
+      };
+
+      const enhanceEmojiPopups = () => {
+        root.querySelectorAll('.wl-emoji-popup').forEach(enhanceEmojiPopup);
+      };
+
+      const observer = new MutationObserver(enhanceEmojiPopups);
       observer.observe(root, {
-        attributeFilter: ['aria-busy', 'class', 'data-loading', 'disabled'],
-        attributes: true,
-        characterData: true,
         childList: true,
         subtree: true
       });
 
-      syncSubmitState();
-      window.setTimeout(syncSubmitState, 0);
+      root.addEventListener('click', (event) => {
+        if (!event.target.closest('.wl-action, .wl-emoji-popup, .bf-emoji-scrollbar')) return;
+
+        window.setTimeout(enhanceEmojiPopups, 0);
+        window.setTimeout(enhanceEmojiPopups, 120);
+      });
+
+      window.addEventListener('resize', () => {
+        syncScrollbars.forEach((syncScrollbar) => syncScrollbar());
+      });
+
+      enhanceEmojiPopups();
     };
 
+    setupWalineImageUploadGuard();
+    setupWalineEditDraftGuard();
     init(walineOptions);
-    setupWalineSubmitLoading();
+    setupWalineEmojiPicker();
   </script>
 {% endif %}
