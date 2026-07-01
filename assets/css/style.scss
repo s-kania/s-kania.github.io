@@ -3198,9 +3198,14 @@ img {
   align-items: center;
   border-top: 1px dotted var(--soft-line);
   display: flex;
+  gap: 0.75rem;
   justify-content: space-between;
   margin-top: 0.8rem;
   padding-top: 0.7rem;
+}
+
+.waline-comments .wl-meta-foot .wl-rss {
+  flex: 0 0 auto;
 }
 
 .waline-comments .wl-rss svg {
@@ -3210,7 +3215,10 @@ img {
 
 .waline-comments .wl-power {
   color: var(--muted);
+  flex: 0 1 auto;
   font-size: 0.76rem;
+  margin-left: auto;
+  text-align: right;
 }
 
 .explorer-page {
