@@ -17,7 +17,7 @@
     </div>
   </section>
   <script type="module">
-    import { init } from {{ site.waline.client_js | default: 'https://unpkg.com/@waline/client@v3/dist/waline.js' | jsonify }};
+    import { init } from {{ site.waline.client_js | default: 'https://unpkg.com/@waline/client@3.15.2/dist/waline.js' | jsonify }};
 
     const activeLang = {{ active_lang | jsonify }};
     const polishWalineLocale = {
@@ -151,11 +151,10 @@
 
     const setupWalineEmojiPicker = () => {
       const root = document.querySelector('#waline-comments');
-      if (!root || !window.MutationObserver) return;
+      if (!root) return;
 
-      const syncScrollbars = new Set();
-      const syncScrollbarByWrapper = new WeakMap();
       const emojiTitleText = activeLang === 'en' ? 'EMOJI' : 'EMOTIKONY';
+      let emojiEnhancementFrame = 0;
 
       const createScrollButton = (className) => {
         const button = document.createElement('button');
@@ -313,7 +312,7 @@
 
         thumb?.addEventListener('pointerup', endThumbDrag);
         thumb?.addEventListener('pointercancel', endThumbDrag);
-        wrapper.addEventListener('scroll', () => syncEmojiScrollbar(wrapper, scrollbar));
+        wrapper.addEventListener('scroll', () => syncEmojiScrollbar(wrapper, scrollbar), { passive: true });
         scrollUp?.addEventListener('click', () => wrapper.scrollBy({ top: -42, behavior: 'smooth' }));
         scrollDown?.addEventListener('click', () => wrapper.scrollBy({ top: 42, behavior: 'smooth' }));
         scrollbar.dataset.bfScrollbarBound = 'true';
@@ -345,11 +344,6 @@
         });
 
         bindEmojiScrollbar(wrapper, scrollbar);
-        if (!syncScrollbarByWrapper.has(wrapper)) {
-          const syncScrollbar = () => syncEmojiScrollbar(wrapper, scrollbar);
-          syncScrollbarByWrapper.set(wrapper, syncScrollbar);
-          syncScrollbars.add(syncScrollbar);
-        }
 
         if (window.getComputedStyle(popup).display !== 'none') {
           window.requestAnimationFrame(() => syncEmojiScrollbar(wrapper, scrollbar));
@@ -360,24 +354,45 @@
         root.querySelectorAll('.wl-emoji-popup').forEach(enhanceEmojiPopup);
       };
 
-      const observer = new MutationObserver(enhanceEmojiPopups);
-      observer.observe(root, {
-        childList: true,
-        subtree: true
-      });
+      const scheduleEmojiEnhancement = () => {
+        if (emojiEnhancementFrame) return;
+
+        emojiEnhancementFrame = window.requestAnimationFrame(() => {
+          emojiEnhancementFrame = 0;
+          enhanceEmojiPopups();
+        });
+      };
+
+      const scheduleEmojiEnhancementSequence = () => {
+        scheduleEmojiEnhancement();
+        window.setTimeout(scheduleEmojiEnhancement, 80);
+        window.setTimeout(scheduleEmojiEnhancement, 180);
+      };
 
       root.addEventListener('click', (event) => {
+        if (!(event.target instanceof Element)) return;
         if (!event.target.closest('.wl-action, .wl-emoji-popup, .bf-emoji-scrollbar')) return;
 
-        window.setTimeout(enhanceEmojiPopups, 0);
-        window.setTimeout(enhanceEmojiPopups, 120);
+        scheduleEmojiEnhancementSequence();
+      });
+
+      root.addEventListener('keydown', (event) => {
+        if (!(event.target instanceof Element) || !['Enter', ' '].includes(event.key)) return;
+        if (!event.target.closest('.wl-action, .wl-emoji-popup, .bf-emoji-scrollbar')) return;
+
+        scheduleEmojiEnhancementSequence();
       });
 
       window.addEventListener('resize', () => {
-        syncScrollbars.forEach((syncScrollbar) => syncScrollbar());
+        root.querySelectorAll('.bf-emoji-popup .wl-tab-wrapper').forEach((wrapper) => {
+          const scrollbar = wrapper.parentElement?.querySelector(':scope > .bf-emoji-scrollbar');
+          if (scrollbar) {
+            syncEmojiScrollbar(wrapper, scrollbar);
+          }
+        });
       });
 
-      enhanceEmojiPopups();
+      scheduleEmojiEnhancementSequence();
     };
 
     setupWalineImageUploadGuard();

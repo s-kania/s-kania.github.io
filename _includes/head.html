@@ -43,7 +43,7 @@
     {% assign waline_should_load = false %}
   {% endif %}
   {% if waline_should_load %}
-    <link rel="stylesheet" href="{{ site.waline.client_css | default: 'https://unpkg.com/@waline/client@v3/dist/waline.css' }}">
+    <link rel="stylesheet" href="{{ site.waline.client_css | default: 'https://unpkg.com/@waline/client@3.15.2/dist/waline.css' }}">
   {% endif %}
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.style_version }}">
 

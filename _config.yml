@@ -36,8 +36,8 @@ style_version: 65
 waline:
   enabled: true
   server_url: https://comments-brick-fiction.vercel.app
-  client_css: https://unpkg.com/@waline/client@v3/dist/waline.css
-  client_js: https://unpkg.com/@waline/client@v3/dist/waline.js
+  client_css: https://unpkg.com/@waline/client@3.15.2/dist/waline.css
+  client_js: https://unpkg.com/@waline/client@3.15.2/dist/waline.js
 
 twitter:
   username: brick_fiction
