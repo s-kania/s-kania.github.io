@@ -2282,6 +2282,598 @@ img {
   opacity: 1;
 }
 
+.waline-comments {
+  --waline-font-size: 0.92rem;
+  --waline-theme-color: var(--accent);
+  --waline-active-color: var(--accent);
+  --waline-color: var(--ink);
+  --waline-bg-color: transparent;
+  --waline-bg-color-light: var(--panel-surface);
+  --waline-bg-color-hover: var(--panel-hover);
+  --waline-border-color: var(--soft-line);
+  --waline-disable-bg-color: var(--panel-surface);
+  --waline-disable-color: var(--muted);
+  --waline-code-bg-color: var(--code-bg);
+  --waline-bq-color: var(--panel-surface);
+  --waline-info-bg-color: var(--panel-surface);
+  --waline-info-color: var(--muted);
+  --waline-border: 1px solid var(--soft-line);
+  --waline-avatar-radius: 0;
+  --waline-avatar-size: 2.6rem;
+  --waline-box-shadow: none;
+  background: var(--window-bg);
+  border: 1px solid var(--hairline);
+  box-shadow:
+    inset 0 0 0 1px var(--panel-inset),
+    2px 2px 0 var(--panel-shadow);
+  font-family: var(--mono);
+  margin: 2.5rem 0 0;
+  overflow: hidden;
+}
+
+.waline-comments__titlebar {
+  align-items: baseline;
+  background: var(--window-title-bg);
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  font-weight: 900;
+  gap: 0.38rem;
+  line-height: 1.2;
+  padding: 0.72rem 0.85rem;
+  text-transform: uppercase;
+}
+
+.waline-comments__titlebar strong {
+  color: var(--accent);
+  font: inherit;
+}
+
+.waline-comments__body {
+  padding: 0.85rem;
+}
+
+.waline-comments :where(input, textarea, button) {
+  font-family: var(--mono);
+}
+
+.waline-comments :where(.wl-panel, .wl-header, .wl-header-item, .wl-editor, .wl-input, .wl-btn, .wl-card) {
+  border-radius: 0;
+}
+
+.waline-comments :where(.wl-btn) {
+  font-weight: 900;
+}
+
+.waline-comments [data-waline] {
+  max-width: none;
+}
+
+.waline-comments [data-waline],
+.waline-comments [data-waline] *,
+.waline-comments [data-waline] *::before,
+.waline-comments [data-waline] *::after {
+  box-sizing: border-box;
+}
+
+.waline-comments .wl-panel {
+  background: var(--panel-surface);
+  border: 1px solid var(--soft-line);
+  margin: 0;
+}
+
+.waline-comments .wl-comment:has(.wl-login-info) {
+  align-items: stretch;
+  display: grid;
+  gap: 0;
+  grid-template-columns: minmax(0, 1fr);
+  margin-bottom: 0.75rem;
+}
+
+.waline-comments .wl-login-info {
+  align-items: center;
+  background: var(--window-bg);
+  border: 1px solid var(--soft-line);
+  border-bottom: 0;
+  box-sizing: border-box;
+  display: flex;
+  gap: 0.7rem;
+  margin: 0;
+  max-width: none;
+  min-height: 3.45rem;
+  min-width: 0;
+  padding: 0.45rem 2.85rem 0.45rem 0.65rem;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+.waline-comments .wl-login-info + .wl-panel {
+  flex: none;
+  min-width: 0;
+  width: 100%;
+}
+
+.waline-comments .wl-login-info .wl-avatar {
+  align-self: center;
+  background: var(--panel-surface);
+  border: 1px solid var(--hairline);
+  border-radius: 0;
+  box-shadow: inset 0 0 0 1px var(--panel-inset);
+  box-sizing: border-box;
+  display: block;
+  flex: 0 0 2.5rem;
+  height: 2.5rem;
+  margin: 0;
+  max-height: none;
+  overflow: hidden;
+  position: static;
+  width: 2.5rem;
+}
+
+.waline-comments .wl-login-info .wl-avatar img {
+  border: 0;
+  border-radius: 0;
+  display: block;
+  height: 100%;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  object-fit: cover;
+  width: 100%;
+}
+
+.waline-comments .wl-login-nick {
+  align-self: center;
+  color: var(--accent);
+  display: block;
+  flex: 1 1 auto;
+  font-size: 0.95rem;
+  font-weight: 900;
+  line-height: 1.1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: normal;
+}
+
+.waline-comments .wl-login-info :where(.wl-logout-btn, .wl-close) {
+  align-items: center;
+  align-self: center;
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--soft-line);
+  box-sizing: border-box;
+  color: var(--muted);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 0;
+  height: 1.75rem;
+  inset: auto;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  right: 0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition:
+    border-color 120ms steps(2, end),
+    color 120ms steps(2, end),
+    text-shadow 120ms steps(2, end),
+    transform 120ms steps(2, end);
+  width: 1.75rem;
+}
+
+.waline-comments .wl-login-info :where(.wl-logout-btn, .wl-close)::before {
+  content: "x";
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.waline-comments .wl-login-info :where(.wl-logout-btn, .wl-close) > * {
+  display: none;
+}
+
+.waline-comments .wl-login-info :where(.wl-logout-btn, .wl-close):hover,
+.waline-comments .wl-login-info :where(.wl-logout-btn, .wl-close):focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  outline: 0;
+  text-shadow: 0 0 0.35rem var(--accent-glow);
+  transform: translateY(-50%) scale(1.04);
+}
+
+.waline-comments .wl-header {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px dotted var(--soft-line);
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  min-height: 0;
+  padding: 0;
+}
+
+.waline-comments .wl-header-item {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-right: 1px dotted var(--soft-line);
+  display: grid;
+  gap: 0.32rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  min-height: 1.9rem;
+  min-width: 0;
+  padding: 0.22rem 0.52rem;
+  transition:
+    background-color 120ms steps(2, end),
+    color 120ms steps(2, end);
+}
+
+.waline-comments .wl-header-item:last-child {
+  border-right: 0;
+}
+
+.waline-comments .wl-header-item:focus-within {
+  background: rgba(11, 11, 11, 0.025);
+}
+
+.waline-comments .wl-header-item label {
+  color: var(--muted);
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
+  text-align: left;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.waline-comments .wl-header-item label::after {
+  content: ":";
+}
+
+.waline-comments .wl-header-item:focus-within label {
+  color: var(--muted);
+}
+
+.waline-comments .wl-input {
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.25;
+  min-height: 1.2rem;
+  min-width: 0;
+  outline: 0;
+  padding: 0;
+  text-decoration: none;
+  width: 100%;
+}
+
+.waline-comments .wl-editor {
+  box-sizing: border-box;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin: 0.45rem 0.6rem;
+  min-height: 5.8rem;
+  padding: 0.35rem 0.45rem;
+  resize: vertical;
+  width: calc(100% - 1.2rem);
+}
+
+.waline-comments .wl-footer {
+  align-items: center;
+  display: flex;
+  gap: 0.55rem;
+  margin: 0.3rem 0.6rem 0.6rem;
+}
+
+.waline-comments .wl-actions {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.waline-comments .wl-action {
+  align-items: center;
+  color: var(--ink);
+  display: inline-flex;
+  min-height: 1.9rem;
+  opacity: 0.88;
+}
+
+.waline-comments .wl-action:hover,
+.waline-comments .wl-action:focus-visible {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.waline-comments .wl-info {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  width: auto;
+}
+
+.waline-comments .wl-text-number {
+  display: none;
+}
+
+.waline-comments .wl-btn {
+  background: transparent;
+  border: 1px solid var(--soft-line);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 0.86rem;
+  height: auto;
+  line-height: 1.08;
+  min-height: 1.72rem;
+  padding: 0.28rem 0.66rem;
+  transform-origin: left center;
+  transition:
+    border-color 120ms steps(2, end),
+    box-shadow 120ms steps(2, end),
+    color 120ms steps(2, end),
+    text-shadow 120ms steps(2, end),
+    transform 120ms steps(2, end);
+}
+
+.waline-comments .wl-btn:hover,
+.waline-comments .wl-btn:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-shadow: 0 0 0.45rem var(--accent-glow);
+  transform: scale(1.025);
+}
+
+.waline-comments .wl-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.waline-comments .wl-btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--paper);
+}
+
+.waline-comments .wl-btn.primary:hover,
+.waline-comments .wl-btn.primary:focus-visible {
+  box-shadow:
+    inset 0 0 0 1px var(--panel-inset),
+    0 0 0.55rem var(--accent-glow);
+  color: var(--paper);
+}
+
+.waline-comments .wl-meta-head {
+  align-items: center;
+  border-top: 1px dotted var(--soft-line);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin: 1.15rem 0 0;
+  padding: 0.8rem 0 0;
+}
+
+.waline-comments .wl-count {
+  flex: 1 1 auto;
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.2;
+  min-width: 0;
+}
+
+.waline-comments .wl-sort {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.85rem;
+  margin: 0;
+}
+
+.waline-comments .wl-sort li {
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.86rem;
+  line-height: 1.2;
+  padding: 0.1rem 0;
+  transition:
+    color 120ms steps(2, end),
+    text-shadow 120ms steps(2, end);
+  white-space: nowrap;
+}
+
+.waline-comments .wl-sort li.active,
+.waline-comments .wl-sort li:hover,
+.waline-comments .wl-sort li:focus-visible {
+  color: var(--accent);
+  text-shadow: 0 0 0.35rem var(--accent-glow);
+}
+
+.waline-comments .wl-cards {
+  margin-top: 0.75rem;
+}
+
+.waline-comments .wl-card-item {
+  align-items: start;
+  border-bottom: 1px dotted var(--soft-line);
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 2.6rem minmax(0, 1fr);
+  margin: 0;
+  padding: 0.75rem 0;
+}
+
+.waline-comments .wl-card-item:last-child {
+  border-bottom: 0;
+}
+
+.waline-comments .wl-user {
+  align-items: flex-start;
+  display: flex;
+  height: auto;
+  justify-content: center;
+  margin: 0;
+  padding-top: 0;
+  width: 2.6rem;
+}
+
+.waline-comments .wl-user-avatar {
+  background: var(--panel-surface);
+  border: 1px solid var(--hairline);
+  border-radius: 0;
+  box-shadow: inset 0 0 0 1px var(--panel-inset);
+  display: block;
+  flex: 0 0 auto;
+  height: 2.35rem;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  object-fit: cover;
+  overflow: hidden;
+  width: 2.35rem;
+}
+
+.waline-comments .wl-user::before {
+  align-items: center;
+  background: var(--panel-surface);
+  border: 1px solid var(--hairline);
+  box-shadow: inset 0 0 0 1px var(--panel-inset);
+  color: var(--accent);
+  content: "BF";
+  display: none;
+  font-size: 0.78rem;
+  font-weight: 900;
+  height: 2.35rem;
+  justify-content: center;
+  letter-spacing: 0;
+  line-height: 1;
+  width: 2.35rem;
+}
+
+.waline-comments .wl-card {
+  background: transparent;
+  border: 0;
+  min-width: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+.waline-comments .wl-head {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  line-height: 1;
+  min-width: 0;
+  padding-right: 4.9rem;
+}
+
+.waline-comments .wl-nick {
+  font-size: 0.95rem;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.waline-comments .wl-time {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.1;
+  padding-top: 0.08rem;
+}
+
+.waline-comments .wl-comment-actions {
+  align-items: flex-start;
+  align-self: flex-start;
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: -0.08rem;
+}
+
+.waline-comments .wl-card :where(.wl-like, .wl-reply, .wl-edit, .wl-delete) {
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.1rem;
+  transition:
+    color 120ms steps(2, end),
+    text-shadow 120ms steps(2, end),
+    transform 120ms steps(2, end);
+}
+
+.waline-comments .wl-card :where(.wl-edit, .wl-delete) svg {
+  display: block;
+  height: 1rem;
+  width: 1rem;
+}
+
+.waline-comments .wl-card :where(.wl-like, .wl-reply, .wl-edit, .wl-delete):hover,
+.waline-comments .wl-card :where(.wl-like, .wl-reply, .wl-edit, .wl-delete):focus-visible,
+.waline-comments .wl-card :where(.wl-like, .wl-reply, .wl-edit, .wl-delete).active {
+  color: var(--accent);
+  text-shadow: 0 0 0.35rem var(--accent-glow);
+  transform: scale(1.08);
+}
+
+.waline-comments .wl-meta {
+  display: none;
+}
+
+.waline-comments .wl-card .wl-content {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin: 0;
+  padding: 0.18rem 4.9rem 0 0;
+}
+
+.waline-comments .wl-card .wl-content :last-child {
+  margin-bottom: 0;
+}
+
+.waline-comments .wl-meta-foot {
+  align-items: center;
+  border-top: 1px dotted var(--soft-line);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+}
+
+.waline-comments .wl-rss svg {
+  filter: grayscale(1);
+  opacity: 0.65;
+}
+
+.waline-comments .wl-power {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
 .explorer-page {
   margin: 0 auto;
   max-width: 980px;
@@ -4385,6 +4977,178 @@ img {
     justify-self: start;
   }
 
+  .waline-comments {
+    margin-top: 2rem;
+  }
+
+  .waline-comments__titlebar {
+    font-size: 0.72rem;
+    padding: 0.62rem 0.7rem;
+  }
+
+  .waline-comments__body {
+    padding: 0.7rem;
+  }
+
+  .waline-comments .wl-header.item3 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .waline-comments .wl-header {
+    gap: 0;
+    padding: 0;
+  }
+
+  .waline-comments .wl-header-item {
+    border-bottom: 1px dotted var(--soft-line);
+    border-right: 0;
+    gap: 0.28rem;
+    grid-template-columns: auto minmax(0, 1fr);
+    min-height: 1.72rem;
+    padding: 0.18rem 0.42rem;
+  }
+
+  .waline-comments .wl-header-item:first-child {
+    border-bottom: 1px dotted var(--soft-line);
+    border-right: 0;
+    grid-column: auto;
+  }
+
+  .waline-comments .wl-header-item:nth-child(2) {
+    border-right: 0;
+  }
+
+  .waline-comments .wl-header-item:last-child {
+    border-bottom: 0;
+    border-right: 0;
+  }
+
+  .waline-comments .wl-header-item label {
+    font-size: 0.62rem;
+  }
+
+  .waline-comments .wl-input {
+    font-size: 0.72rem;
+    min-height: 1.08rem;
+  }
+
+  .waline-comments .wl-editor {
+    min-height: 6.4rem;
+  }
+
+  .waline-comments .wl-footer {
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: clamp(0.25rem, 1.2vw, 0.45rem);
+  }
+
+  .waline-comments .wl-actions {
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    gap: clamp(0.2rem, 1vw, 0.35rem);
+    width: auto;
+  }
+
+  .waline-comments .wl-action {
+    flex: 0 0 auto;
+    min-height: 1.7rem;
+  }
+
+  .waline-comments .wl-info {
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    gap: clamp(0.3rem, 1.2vw, 0.5rem);
+    justify-content: flex-end;
+    width: auto;
+  }
+
+  .waline-comments .wl-comment:has(.wl-login-info) .wl-info {
+    justify-content: flex-end;
+  }
+
+  .waline-comments .wl-btn {
+    flex: 0 0 auto;
+    padding-inline: clamp(0.42rem, 2vw, 0.66rem);
+    white-space: nowrap;
+  }
+
+  .waline-comments .wl-meta-head {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .waline-comments .wl-sort {
+    border: 0;
+    display: flex;
+    gap: 0.28rem;
+    justify-content: flex-start;
+    margin-left: -0.12rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.08rem 0 0.22rem 0.12rem;
+    scrollbar-width: thin;
+    width: 100%;
+  }
+
+  .waline-comments .wl-sort li {
+    align-items: center;
+    border: 1px solid transparent;
+    display: inline-flex;
+    flex: 0 0 auto;
+    font-size: 0.68rem;
+    justify-content: center;
+    line-height: 1;
+    margin: 0;
+    min-height: 1.65rem;
+    min-width: 0;
+    padding: 0.34rem 0.42rem;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .waline-comments .wl-sort li:hover,
+  .waline-comments .wl-sort li:focus-visible {
+    border-color: var(--soft-line);
+  }
+
+  .waline-comments .wl-sort li.active {
+    background: var(--panel-hover);
+    border-color: var(--soft-line);
+  }
+
+  .waline-comments .wl-card-item {
+    gap: 0.55rem;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    padding: 0.7rem 0;
+  }
+
+  .waline-comments .wl-user {
+    width: 2.25rem;
+  }
+
+  .waline-comments .wl-user-avatar {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .waline-comments .wl-user::before {
+    font-size: 0.72rem;
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .waline-comments .wl-comment-actions {
+    gap: 0.35rem;
+  }
+
+  .waline-comments .wl-head,
+  .waline-comments .wl-card .wl-content {
+    padding-right: 4.35rem;
+  }
+
   .layout-archives .page-header {
     margin-bottom: 1.75rem;
   }
@@ -4437,4 +5201,38 @@ img {
     width: 100%;
   }
 
+}
+
+@media (max-width: 340px) {
+  .waline-comments .wl-footer {
+    gap: 0.18rem;
+  }
+
+  .waline-comments .wl-actions {
+    gap: 0.12rem;
+  }
+
+  .waline-comments .wl-action {
+    flex-basis: 1.2rem;
+    height: 1.55rem;
+    justify-content: center;
+    min-height: 1.55rem;
+    min-width: 0;
+    width: 1.2rem;
+  }
+
+  .waline-comments .wl-action svg {
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+
+  .waline-comments .wl-info {
+    gap: 0.22rem;
+  }
+
+  .waline-comments .wl-btn {
+    font-size: 0.78rem;
+    min-height: 1.58rem;
+    padding-inline: 0.32rem;
+  }
 }

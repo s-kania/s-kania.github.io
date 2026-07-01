@@ -38,6 +38,13 @@
   <link rel="icon" href="{{ '/assets/img/favicons/favicon.ico' | relative_url }}" sizes="any">
   <link rel="apple-touch-icon" href="{{ '/assets/img/favicons/apple-touch-icon.png' | relative_url }}">
   <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | bf_lang_url: default_lang }}">
+  {% assign waline_should_load = true %}
+  {% if page.layout != 'post' or page.comments == false or site.waline.enabled == false or site.waline.server_url == nil or site.waline.server_url == "" %}
+    {% assign waline_should_load = false %}
+  {% endif %}
+  {% if waline_should_load %}
+    <link rel="stylesheet" href="{{ site.waline.client_css | default: 'https://unpkg.com/@waline/client@v3/dist/waline.css' }}">
+  {% endif %}
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}?v={{ site.style_version }}">
 
   {% comment %}

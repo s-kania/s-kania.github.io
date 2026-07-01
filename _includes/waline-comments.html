@@ -1,0 +1,83 @@
+{% assign waline_should_render = true %}
+{% if site.waline.enabled == false or page.comments == false or site.waline.server_url == nil or site.waline.server_url == "" %}
+  {% assign waline_should_render = false %}
+{% endif %}
+
+{% if waline_should_render %}
+  {% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
+  {% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+  <section class="waline-comments" aria-label="{{ locale.post_detail.comments_aria }}">
+    <div class="waline-comments__titlebar">
+      <span>{{ locale.post_detail.comments_label }}</span>
+      <span aria-hidden="true">::</span>
+      <strong>{{ locale.post_detail.comments_title }}</strong>
+    </div>
+    <div class="waline-comments__body">
+      <div id="waline-comments"></div>
+    </div>
+  </section>
+  <script type="module">
+    import { init } from {{ site.waline.client_js | default: 'https://unpkg.com/@waline/client@v3/dist/waline.js' | jsonify }};
+
+    const activeLang = {{ active_lang | jsonify }};
+    const polishWalineLocale = {
+      nick: 'Nazwa',
+      nickError: 'Nazwa nie może być krótsza niż 3 znaki.',
+      mail: 'E-mail',
+      mailError: 'Sprawdź adres e-mail.',
+      link: 'Strona',
+      optional: 'Opcjonalne',
+      placeholder: 'Napisz komentarz...',
+      sofa: 'Brak komentarzy.',
+      submit: 'Wyślij',
+      like: 'Polub',
+      cancelLike: 'Cofnij polubienie',
+      reply: 'Odpowiedz',
+      cancelReply: 'Anuluj odpowiedź',
+      comment: 'Komentarze',
+      refresh: 'Odśwież',
+      more: 'Pokaż więcej...',
+      preview: 'Podgląd',
+      emoji: 'Emoji',
+      uploadImage: 'Prześlij obraz',
+      seconds: 'sekund temu',
+      minutes: 'minut temu',
+      hours: 'godzin temu',
+      days: 'dni temu',
+      now: 'przed chwilą',
+      uploading: 'Przesyłanie',
+      login: 'Zaloguj',
+      logout: 'Wyloguj',
+      admin: 'Admin',
+      sticky: 'Przypięty',
+      word: 'słów',
+      wordHint: 'Komentarz powinien mieć od $0 do $1 słów!\nAktualna liczba słów: $2',
+      anonymous: 'Anonim',
+      gif: 'GIF',
+      gifSearchPlaceholder: 'Szukaj GIF',
+      profile: 'Profil',
+      approved: 'Zatwierdzone',
+      waiting: 'Oczekuje',
+      spam: 'Spam',
+      unsticky: 'Odepnij',
+      oldest: 'Najstarsze',
+      latest: 'Najnowsze',
+      hottest: 'Najpopularniejsze',
+      reactionTitle: 'Co o tym sądzisz?'
+    };
+
+    const walineOptions = {
+      el: '#waline-comments',
+      serverURL: {{ site.waline.server_url | jsonify }},
+      path: window.location.pathname.replace(/\/$/, '') || '/',
+      lang: activeLang === 'en' ? 'en' : 'pl',
+      dark: 'html[data-theme="dark"]'
+    };
+
+    if (activeLang === 'pl') {
+      walineOptions.locale = polishWalineLocale;
+    }
+
+    init(walineOptions);
+  </script>
+{% endif %}

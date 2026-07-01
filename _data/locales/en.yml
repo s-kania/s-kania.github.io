@@ -171,6 +171,9 @@ post_detail:
   related_label: BF_QUEUE
   related_title: Read next
   related_cta: Read next
+  comments_aria: Post comments
+  comments_label: BF_COMMENTS
+  comments_title: Comments
 
 explorer:
   close_aria: Homepage

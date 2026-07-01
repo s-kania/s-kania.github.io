@@ -173,6 +173,9 @@ post_detail:
   related_label: BF_QUEUE
   related_title: Do przeczytania
   related_cta: Czytaj dalej
+  comments_aria: Komentarze do wpisu
+  comments_label: BF_COMMENTS
+  comments_title: Komentarze
 
 explorer:
   close_aria: Strona glowna
