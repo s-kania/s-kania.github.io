@@ -2347,6 +2347,23 @@ img {
   font: inherit;
 }
 
+.waline-comments__privacy-link {
+  color: var(--theme-control-muted);
+  font-size: 0.68rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-left: auto;
+  text-decoration: none;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.waline-comments__privacy-link:hover,
+.waline-comments__privacy-link:focus-visible {
+  color: var(--accent);
+  outline: 0;
+}
+
 .waline-comments__body {
   padding: 0.85rem;
 }

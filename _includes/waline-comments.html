@@ -6,11 +6,16 @@
 {% if waline_should_render %}
   {% assign active_lang = site.active_lang | default: site.lang | default: site.default_lang | default: 'pl' %}
   {% assign locale = site.data.locales[active_lang] | default: site.data.locales.pl %}
+  {% assign comments_privacy_url = '/privacy-policy/' %}
+  {% if active_lang == 'en' %}
+    {% assign comments_privacy_url = '/en/privacy-policy/' %}
+  {% endif %}
   <section class="waline-comments" aria-label="{{ locale.post_detail.comments_aria }}">
     <div class="waline-comments__titlebar">
       <span>{{ locale.post_detail.comments_label }}</span>
       <span aria-hidden="true">::</span>
       <strong>{{ locale.post_detail.comments_title }}</strong>
+      <a class="waline-comments__privacy-link" href="{{ comments_privacy_url | relative_url }}">{{ locale.footer.privacy_policy }}</a>
     </div>
     <div class="waline-comments__body">
       <div id="waline-comments"></div>
